@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, makeStyles } from '@material-ui/core';
+import { Typography, makeStyles, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles({
   title: {
@@ -11,9 +11,11 @@ const useStyles = makeStyles({
 const Title = props => {
   const classes = useStyles()
   return (
-    <Typography variant='h4' className={classes.title}>
-      {props.title}
-    </Typography>
+    <Grid item xs={12}>
+      <Typography variant='h4' className={classes.title}>
+        {props.title}
+      </Typography>
+    </Grid>
   )
 }
 
