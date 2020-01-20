@@ -86,13 +86,16 @@ const Home = () => {
         return (
           <ExpansionPanel key={item.name}>
             <ExpansionPanelSummary>
-              {item.name}
+              <Typography>{item.name}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <div className={classes.root}>
+              {item.text ? (
               <Typography>
                 {item.text}
-              </Typography>
+              </Typography>) : (<></>)
+            }
+              
               {item.column.map(col => {
                 return (
                   <TextField
