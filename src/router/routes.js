@@ -1,7 +1,7 @@
-import Home from '../View/Home'
+import Home from '../View/Insurance/Home'
 import SignUp from '../View/SignUp'
 import Index from '../View/index';
-import CarInfo from '../View/CarInfo';
+import CarInfo from '../View/Insurance/CarInfo';
 
 const routes = [
   {
@@ -11,19 +11,19 @@ const routes = [
     routes: [
       {
         name: 'Home',
-        path: '/',
+        path: '/Insurance/home',
         component: Home,
         exact: true
       },
       {
         name: 'Sign Up',
-        path: '/SignUp',
+        path: '/Insurance/SignUp',
         component: SignUp,
         exact: false
       },
       {
         name: 'Car Info',
-        path: '/CarInfo',
+        path: '/Insurance/CarInfo',
         component: CarInfo,
         exact: true
       }
@@ -32,10 +32,25 @@ const routes = [
   {
     name: 'Bookers',
     component: Index,
-    path: 'Bookers',
+    path: '/Bookers',
     routes: [
       {
-        name: ''
+        name: 'Login',
+        path: '/Bookers/Login',
+        component: Home,
+        exact: true
+      },
+      {
+        name: 'Sign Up',
+        path: '/Bookers/SignUp',
+        component: SignUp,
+        exact: false
+      },
+      {
+        name: 'Car Info',
+        path: '/Bookers/CarInfo',
+        component: CarInfo,
+        exact: true
       }
     ]
   }

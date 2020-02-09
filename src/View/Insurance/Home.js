@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Carousel from '../component/Carousel'
+import Carousel from '../../component/Carousel'
 import {
   TextField,
   ExpansionPanel,
