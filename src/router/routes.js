@@ -1,12 +1,13 @@
 import Home from '../View/Home'
 import SignUp from '../View/SignUp'
 import Index from '../View/index';
+import CarInfo from '../View/CarInfo';
 
 const routes = [
   {
     name: 'Insurance',
     component: Index,
-    path: '/',
+    path: '/Insurance',
     routes: [
       {
         name: 'Home',
@@ -20,8 +21,24 @@ const routes = [
         component: SignUp,
         exact: false
       },
+      {
+        name: 'Car Info',
+        path: '/CarInfo',
+        component: CarInfo,
+        exact: true
+      }
     ]
   },
+  {
+    name: 'Bookers',
+    component: Index,
+    path: 'Bookers',
+    routes: [
+      {
+        name: ''
+      }
+    ]
+  }
 
 ]
 

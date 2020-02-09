@@ -5,7 +5,7 @@ import {Container, CssBaseline} from '@material-ui/core'
 
 const Index = ({route}) => {
   return (
-    <Container maxWidth='sm' style={{padding: "0px"}}>
+    <Container maxWidth='md'>
       <CssBaseline />
       <BreadcrumbBar/>
       {renderRoutes(route.routes)}
