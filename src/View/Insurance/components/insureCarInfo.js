@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
 import { Paper, Typography, Tabs, Tab } from '@material-ui/core'
 import SwipeableViews from 'react-swipeable-views'
-import Tab1 from './components/CarInfoTab'
-import Tab2 from './components/DriverInfoTab'
-import Tab3 from './components/InsureTypeTab'
+import Tab1 from './CarInfoTab'
+import Tab2 from './DriverInfoTab'
+import Tab3 from './InsureTypeTab'
 
 const CarInfo = () => {
   const [tabSelected, setTabSelected] = useState(0)

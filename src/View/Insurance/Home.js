@@ -12,13 +12,13 @@ import {
   InputLabel
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
-import expansionPanel from './inputList_setting'
+import expansionPanel from './components/inputList_setting'
 import {
   carState,
   ownerState,
   insureTypeState,
   completeState
-} from './inputList_setting'
+} from './components/inputList_setting'
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider

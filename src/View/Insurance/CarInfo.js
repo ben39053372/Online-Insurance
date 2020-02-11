@@ -1,6 +1,6 @@
 import React from 'react'
-import InsureCarInfo from './insureCarInfo'
-import QuoteDetails from './QuoteDetails'
+import InsureCarInfo from './components/insureCarInfo'
+import QuoteDetails from './components/QuoteDetails'
 
 const CarInfo = () => {
   return (
