@@ -6,34 +6,10 @@ import RequestList from '../View/Bookers/RequestList'
 
 const routes = [
   {
-    name: 'home',
-    component: Index,
-    path: '/',
-    exact: true,
-    routes: [
-      {
-        name: 'Home',
-        path: '/',
-        component: Home,
-        exact: true
-      },
-      {
-        name: 'Sign Up',
-        path: '/SignUp',
-        component: SignUp,
-        exact: false
-      },
-      {
-        name: 'Car Info',
-        path: '/CarInfo',
-        component: CarInfo,
-        exact: false
-      }
-    ]
-  },{
     name: 'Brokers',
     component: Index,
     path: '/Brokers',
+    exact: false,
     routes: [
       {
         name: 'Sign Up',
@@ -45,6 +21,31 @@ const routes = [
         name: 'RequestList',
         path: '/Brokers/RequestList',
         component: RequestList,
+        exact: false
+      }
+    ]
+  },{
+    name: 'home',
+    component: Index,
+    path: '/',
+    exact: false,
+    routes: [
+      {
+        name: 'Home',
+        path: '/home',
+        component: Home,
+        exact: false
+      },
+      {
+        name: 'Sign Up',
+        path: '/SignUp',
+        component: SignUp,
+        exact: false
+      },
+      {
+        name: 'Car Info',
+        path: '/CarInfo',
+        component: CarInfo,
         exact: false
       }
     ]
