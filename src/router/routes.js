@@ -6,7 +6,7 @@ import RequestList from '../View/Bookers/RequestList'
 
 const routes = [
   {
-    name: 'Insurance',
+    name: 'home',
     component: Index,
     path: '/',
     routes: [
@@ -14,7 +14,7 @@ const routes = [
         name: 'Home',
         path: '/',
         component: Home,
-        exact: false
+        exact: true
       },
       {
         name: 'Sign Up',
