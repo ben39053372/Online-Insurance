@@ -1,15 +1,7 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography, makeStyles, CssBaseline, Link } from '@material-ui/core'
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom'
-
-import Login from './Login/Login'
-import SignUp from './SignUp/SignUp'
-import CarList from './CarList/CarList'
+import { AppBar, Toolbar, Typography, makeStyles, CssBaseline } from '@material-ui/core'
+import { renderRoutes } from 'react-router-config'
+import routes from '../router/routes'
 
 const App = () => {
   const classes = useStyles();
@@ -18,20 +10,14 @@ const App = () => {
       <CssBaseline />
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" href="/" className={classes.title}>
+          <Typography variant="h4" href="/" component='a' className={classes.title}>
             Customer App
           </Typography>
         </Toolbar>
       </AppBar>
-    <main>
-      <Router>
-        <Switch>
-          <Route path="/car_list" component={CarList} />
-          <Route path="/sign_up" component={SignUp} />
-          <Route path="/" component={Login} />
-        </Switch>
-      </Router>
-    </main>
+      <main>
+        {renderRoutes(routes)}
+      </main>
     </div >
   )
 }
@@ -39,11 +25,15 @@ const App = () => {
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    height: '100%'
+    height: '100%',
+    background: '#eee',
+    overflowX: "hidden"
   },
   title: {
     flexGrow: 1,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#FFF',
+    textDecoration: 'none',
   }
 }));
 
