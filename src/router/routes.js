@@ -8,23 +8,23 @@ const routes = [
   {
     name: 'Insurance',
     component: Index,
-    path: '/Insurance',
+    path: '/',
     routes: [
       {
         name: 'Home',
-        path: '/Insurance/home',
+        path: '/',
         component: Home,
         exact: false
       },
       {
         name: 'Sign Up',
-        path: '/Insurance/SignUp',
+        path: '/SignUp',
         component: SignUp,
         exact: false
       },
       {
         name: 'Car Info',
-        path: '/Insurance/CarInfo',
+        path: '/CarInfo',
         component: CarInfo,
         exact: false
       }
