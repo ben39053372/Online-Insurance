@@ -9,6 +9,7 @@ const routes = [
     name: 'home',
     component: Index,
     path: '/',
+    exact: true,
     routes: [
       {
         name: 'Home',
@@ -29,21 +30,20 @@ const routes = [
         exact: false
       }
     ]
-  },
-  {
-    name: 'Bookers',
+  },{
+    name: 'Brokers',
     component: Index,
-    path: '/Bookers',
+    path: '/Brokers',
     routes: [
       {
         name: 'Sign Up',
-        path: '/Bookers/Login',
+        path: '/Brokers/Login',
         component: SignUp,
         exact: false
       },
       {
         name: 'RequestList',
-        path: '/Bookers/RequestList',
+        path: '/Brokers/RequestList',
         component: RequestList,
         exact: false
       }
