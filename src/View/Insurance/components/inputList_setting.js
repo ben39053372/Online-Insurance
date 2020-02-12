@@ -143,6 +143,7 @@ const expansionPanelSetting = [
         ]
       }
     ]
+    
   },{
     name: "投保類別",
     column: [

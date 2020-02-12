@@ -22,7 +22,8 @@
     "react-swipeable-views": "^0.13.8",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "yarn": "^1.22.0"
   },
   "scripts": {
     "start": "react-scripts start",

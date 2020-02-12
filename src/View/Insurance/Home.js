@@ -47,8 +47,22 @@ const useStyles = makeStyles(theme => ({
 const Home = () => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(0)
+  const [expansionPanel_state, setExpansionPanel_state] = useState(expansionPanel)
+  const [driverIndex, setDriverIndex] = useState(1)
   const next = () => {
     setExpanded(expanded + 1);
+  }
+  const carOwner = ownerState
+  const addDriver = async() => {
+    setTotalState(() => {
+      totalState.splice(driverIndex+1,0, Object.assign({},carOwner))
+      return totalState
+    })
+    setDriverIndex(driverIndex+1)
+    setExpansionPanel_state(() => {
+      expansionPanel_state.splice(1, 0, expansionPanel[1])
+      return expansionPanel_state
+    })
   }
   const back = () => {
     setExpanded(expanded - 1);
@@ -75,25 +89,28 @@ const Home = () => {
   return (
     <div>
       <Carousel />
-      {expansionPanel.map((item, expIndex) => {
+      {expansionPanel_state.map((item, expIndex) => {
         return (
-          <ExpansionPanel key={item.name} expanded={expanded === expIndex}>
+          <ExpansionPanel key={item.name + expIndex} expanded={expanded === expIndex}>
             <ExpansionPanelSummary>
-              <Typography>{item.name}</Typography>
+              <Typography>{item.name}{(expIndex >=1 && expIndex <= driverIndex) ?  `(${expIndex})` : ''}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Grid container alignItems="center">
                 <Grid item xs={12}>
+                  {/* title */}
                   {item.text ? (
                     <Typography>
                       {item.text}
                     </Typography>) : (null)
                   }
+                  {/* items */}
                   {item.column.map((col, colIndex) => (
+                    // item
                     <div key={'col_key:' + col.label}>
                       {col.type === 'text' && (
                         // text field
-                        < TextField
+                        <TextField
                           className={classes.textField}
                           fullWidth
                           value={(totalState[expIndex][expansionPanel[expIndex].column[colIndex].name])}
@@ -146,6 +163,7 @@ const Home = () => {
                     </div>
                   ))}
                 </Grid>
+
                 {/* button display */}
                 <Grid item xs={12} className={classes.button}>
                   {expanded !== 0 && (
@@ -156,6 +174,11 @@ const Home = () => {
                   {expanded === expansionPanel.length - 1 && (
                     <Fab variant="extended" onClick={finish} style={{ margin: '8px' }}>
                       <Typography>完成</Typography>
+                    </Fab>
+                  )}
+                  {(expanded >= 1 && expanded <= driverIndex)  && (
+                    <Fab variant="extended" onClick={addDriver} style={{ margin: '8px' }}>
+                      <Typography>新增車主</Typography>
                     </Fab>
                   )}
                   {expanded < expansionPanel.length - 1 && (
