@@ -5,7 +5,7 @@ const RequestList = () => {
   const [tabValue, setTabValue] = useState(0)
   return (
     <>
-      <TextField label="搜尋報價編號或電話車牌" />
+      <TextField fullWidth label="搜尋報價編號或電話車牌" />
       <Tabs
         value={tabValue}
         onChange={(e,value) => setTabValue(value)}
@@ -19,6 +19,8 @@ const RequestList = () => {
         <Tab label="已被客戶選擇" />
         <Tab label="已刪除" />
       </Tabs>
+
+      
     </>
   )
 }
