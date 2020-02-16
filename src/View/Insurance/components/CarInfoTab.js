@@ -20,9 +20,9 @@ const CarInfoTab = () => {
   const classes = useStyles();
   return (
     <Grid container style={{padding: '10px'}}>
-      {setting.map(obj => {
+      {setting.map((obj,index) => {
         return (
-          <Grid item xs={4} className={classes.grid}>
+          <Grid item xs={4} key={index+"CarInfoTab"} className={classes.grid}>
             <Typography className={classes.title} color="textSecondary" gutterBottom>{obj.title}</Typography>
             <Typography className={classes.content} align="center">{obj.content}</Typography>
           </Grid>

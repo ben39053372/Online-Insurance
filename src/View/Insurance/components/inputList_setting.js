@@ -8,7 +8,11 @@ export const carState = {
 }
 export const ownerState = {
   insuredIdentity: '',
-  dateOfBirth: new Date(),
+  dateOfBirth: {
+    year: "2000年",
+    month: "1月",
+    date: "1日"
+  },
   industry: '',
   discount: '',
   drivingExperience: '',

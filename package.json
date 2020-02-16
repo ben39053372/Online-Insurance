@@ -13,6 +13,7 @@
     "date-fns": "^2.9.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-mobile-datepicker": "^4.0.2",
     "react-redux": "^7.1.3",
     "react-router": "^5.1.2",
     "react-router-config": "^5.1.1",

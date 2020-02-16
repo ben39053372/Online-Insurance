@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paper, Typography, Grid, makeStyles } from '@material-ui/core'
+import { Paper, Typography, Grid, makeStyles, Button } from '@material-ui/core'
 
 const setting = [
   ['投保「全保」', '(包括第三者責任保險)'],
@@ -40,7 +40,7 @@ const QuoteDetail = () => {
           {setting.map((array, i) => (
             <Grid container item key={i} alignItems="center" className={i % 2 ? classes.odd : classes.even}>
               {(array).map((arr, j) => (
-                <Typography key={arr} display="block" style={{fontSize: '14px', width: '100%'}}>{arr}</Typography>
+                <Typography key={arr} display="block" style={{ fontSize: '14px', width: '100%' }}>{arr}</Typography>
               ))}
             </Grid>
           ))}
@@ -50,6 +50,23 @@ const QuoteDetail = () => {
           </Grid>
         </Grid>
       </Grid>
+      <div style={{ padding: '12px'}}>
+        <Button variant="contained" color="primary" style={{ float: 'right', marginTop: '12px' }}>
+          請顯示
+          </Button>
+        <Typography>step 1</Typography>
+        <Typography>我有興趣，請顯示雙方聯絡
+
+        </Typography>
+      </div>
+      <div style={{ padding: '12px'}}>
+        <Button variant="contained" color="primary" style={{ float: 'right', marginTop: '12px'  }}>
+          換領禮品
+        </Button>
+        <Typography>step 2</Typography>
+        <Typography>請上載保單主頁以換領禮品</Typography>
+
+      </div>
     </Paper>
   )
 }
