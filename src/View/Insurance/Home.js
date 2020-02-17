@@ -13,6 +13,7 @@ import {
   Select
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
+import ReCAPTCHA from 'react-google-recaptcha'
 import expansionPanel from './components/inputList_setting'
 import {
   carState,
@@ -46,6 +47,7 @@ const Home = () => {
   const [driverIndex, setDriverIndex] = useState(1)
   const next = () => {
     setExpanded(expanded + 1);
+    console.log(expanded)
   }
   const carOwner = ownerState
   const addDriver = async () => {
@@ -89,6 +91,9 @@ const Home = () => {
     let state = [...totalState]
     state[expIndex][expansionPanel[expIndex].column[colIndex].name].month = date.target.value
     setTotalState(state)
+  }
+  const onReCAPTCHAChange = (value) => {
+    console.log(value)
   }
 
   return (
@@ -138,7 +143,7 @@ const Home = () => {
 
                       {col.type === 'date' && (
                         // date picker
-                        <div style={{marginTop: '10px'}}>
+                        <div style={{ marginTop: '10px' }}>
                           <InputLabel style={{ fontSize: '12px' }}>{col.label}</InputLabel>
                           <Grid container justify='space-around' style={{ marginBottom: '15px', marginTop: '8px' }} >
                             <Grid item xs={4} >
@@ -198,6 +203,13 @@ const Home = () => {
                   ))}
                 </Grid>
 
+                {(expanded === expansionPanel_state.length - 1) && (
+                  <ReCAPTCHA
+                    sitekey="Your client site key"
+                    onChange={onReCAPTCHAChange}
+                  />
+                )}
+
                 {/* button display */}
                 <Grid item xs={12} className={classes.button}>
 
@@ -208,9 +220,11 @@ const Home = () => {
                   )}
 
                   {expanded === expansionPanel.length - 1 && (
-                    <Fab variant="extended" onClick={finish} style={{ margin: '8px' }}>
-                      <Typography>完成</Typography>
-                    </Fab>
+                    <>
+                      <Fab variant="extended" onClick={finish} style={{ margin: '8px' }}>
+                        <Typography>完成</Typography>
+                      </Fab>
+                    </>
                   )}
 
                   {(expanded >= 1 && expanded <= driverIndex) && (
