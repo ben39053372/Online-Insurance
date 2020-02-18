@@ -1,15 +1,15 @@
 import React from 'react'
 import { renderRoutes } from 'react-router-config'
 import BreadcrumbBar from '../component/BreadcrumbBar'
-import {Container, CssBaseline} from '@material-ui/core'
+import {CssBaseline} from '@material-ui/core'
 
 const Index = ({route}) => {
   return (
-    <Container maxWidth='md'>
+    <div>
       <CssBaseline />
       <BreadcrumbBar/>
       {renderRoutes(route.routes)}
-    </Container>
+    </div>
   )
 }
 

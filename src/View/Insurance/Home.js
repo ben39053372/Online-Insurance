@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import Carousel from '../../component/Carousel'
+import React, { useState, useEffect } from 'react';
+import Carousel from '../../component/Carousel';
 import {
   TextField,
   ExpansionPanel,
@@ -14,45 +14,57 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import ReCAPTCHA from 'react-google-recaptcha'
-import expansionPanel from './components/inputList_setting'
+import expansionPanel from './settings/inputList_setting'
 import {
   carState,
   ownerState,
   insureTypeState,
   completeState
-} from './components/inputList_setting'
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  textField: {
-    marginBottom: theme.spacing(1)
-  },
-  gridRoot: {
-    flexGrow: 1,
-  },
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
-    paddingTop: '10px'
-  }
-}))
+} from './settings/inputList_setting'
+import homeStyle from './style/home'
+import {
+  getRegisterType,
+  getbrandList,
+  getManufactureYearList, 
+  getBodyTypeList
+} from '../../api/api/car/car'
+const useStyles = makeStyles(theme => homeStyle(theme))
 
 const Home = () => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(0)
   const [expansionPanel_state, setExpansionPanel_state] = useState(expansionPanel)
   const [driverIndex, setDriverIndex] = useState(1)
+  const [totalState, setTotalState] = useState([
+    { ...carState },
+    { ...ownerState },
+    { ...insureTypeState },
+    { ...completeState }
+  ])
+
+  useEffect(() => {
+    const onMount = async() => {
+      const result = await Promise.all([
+        getRegisterType(),
+        getbrandList(),
+        getManufactureYearList(),
+        getBodyTypeList()
+      ])
+      
+    }
+    onMount()
+  },[])
+
   const next = () => {
     setExpanded(expanded + 1);
-    console.log(expanded)
   }
-  const carOwner = ownerState
+  const back = () => {
+    setExpanded(expanded - 1);
+  }
+  const finish = () => { }
   const addDriver = async () => {
     setTotalState(() => {
-      totalState.splice(driverIndex + 1, 0, Object.assign({}, carOwner))
+      totalState.splice(driverIndex + 1, 0, Object.assign({}, ownerState))
       return totalState
     })
     setDriverIndex(driverIndex + 1)
@@ -61,16 +73,6 @@ const Home = () => {
       return expansionPanel_state
     })
   }
-  const back = () => {
-    setExpanded(expanded - 1);
-  }
-  const finish = () => { }
-  const [totalState, setTotalState] = useState([
-    { ...carState },
-    { ...ownerState },
-    { ...insureTypeState },
-    { ...completeState }
-  ])
   const handleChange = (e, expIndex) => {
     let state = [...totalState]
     state[expIndex][e.target.name] = e.target.value
@@ -101,7 +103,7 @@ const Home = () => {
       <Carousel />
       {expansionPanel_state.map((item, expIndex) => {
         return (
-          <ExpansionPanel key={item.name + expIndex} expanded={expanded === expIndex}>
+          <ExpansionPanel key={item.name + expIndex} className={classes.expansionPanel} expanded={expanded === expIndex}>
             <ExpansionPanelSummary>
               <Typography>{item.name}{(expIndex >= 1 && expIndex <= driverIndex) ? `(${expIndex})` : ''}</Typography>
             </ExpansionPanelSummary>
@@ -128,6 +130,7 @@ const Home = () => {
                           onChange={e => handleChange(e, expIndex)}
                           InputLabelProps={{
                             shrink: true,
+                            classes: { root: classes.InputLabel }
                           }}
                           key={'textField:' + col.label}
                           {...col}
@@ -144,12 +147,12 @@ const Home = () => {
                       {col.type === 'date' && (
                         // date picker
                         <div style={{ marginTop: '10px' }}>
-                          <InputLabel style={{ fontSize: '12px' }}>{col.label}</InputLabel>
-                          <Grid container justify='space-around' style={{ marginBottom: '15px', marginTop: '8px' }} >
+                          <InputLabel className={classes.InputLabel}>{col.label}</InputLabel>
+                          <Grid container justify='space-around' className={classes.date_Grid}>
                             <Grid item xs={4} >
-                              <InputLabel>Year</InputLabel>
+                              <InputLabel className={classes.InputLabel}>Year</InputLabel>
                               <Select
-                                style={{ width: '90%' }}
+                                className={classes.date_select}
                                 value={(totalState[expIndex][expansionPanel[expIndex].column[colIndex].name].year)}
                                 onChange={e => handleYearChange(e, expIndex, colIndex)}
                               >
@@ -159,9 +162,9 @@ const Home = () => {
                               </Select>
                             </Grid>
                             <Grid item xs={4}>
-                              <InputLabel>Month</InputLabel>
+                              <InputLabel className={classes.InputLabel}>Month</InputLabel>
                               <Select
-                                style={{ width: '90%' }}
+                                className={classes.date_select}
                                 value={(totalState[expIndex][expansionPanel[expIndex].column[colIndex].name].month)}
                                 onChange={e => handleMonthChange(e, expIndex, colIndex)}
                               >
@@ -171,9 +174,9 @@ const Home = () => {
                               </Select>
                             </Grid>
                             <Grid item xs={4}>
-                              <InputLabel>Date</InputLabel>
+                              <InputLabel className={classes.InputLabel}>Date</InputLabel>
                               <Select
-                                style={{ width: '90%' }}
+                                className={classes.date_select}
                                 value={(totalState[expIndex][expansionPanel[expIndex].column[colIndex].name].date)}
                                 onChange={e => handleDateChange(e, expIndex, colIndex)}
                               >
@@ -189,7 +192,7 @@ const Home = () => {
                       {(col.type === 'checkBox' || col.type === 'button') && (
                         <>
                           <div style={{ height: '40px', marginBottom: '10px' }}>
-                            <InputLabel style={{ fontSize: '12px' }}>{col.label}</InputLabel>
+                            <InputLabel className={classes.InputLabel}>{col.label}</InputLabel>
                             <div style={{ float: 'right' }}>
                               {col.buttons.map(btn => (
                                 <Fab size="small" key={btn.label} variant="extended" style={{ marginRight: '16px', paddingLeft: '15px', paddingRight: '15px', paddingTop: '5px', paddingBottom: '5px' }}>{btn.label}</Fab>

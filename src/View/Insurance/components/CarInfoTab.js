@@ -1,20 +1,10 @@
 import React from 'react'
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import setting from './CarInfoSetting'
+import setting from '../settings/CarInfoSetting';
+import InfoTab from '../style/InfoTab'
 
-const useStyles = makeStyles({
-  title: {
-    fontSize: '12px'
-  },
-  content: {
-    fontSize: '14px',
-    fontWeight: 'bold'
-  },
-  grid: {
-    padding: '14px'
-  }
-})
+const useStyles = makeStyles(theme => InfoTab(theme));
 
 const CarInfoTab = () => {
   const classes = useStyles();

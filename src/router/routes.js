@@ -25,26 +25,26 @@ const routes = [
       }
     ]
   },{
-    name: 'home',
+    name: 'Customers',
     component: Index,
-    path: '/',
+    path: '/Customers',
     exact: false,
     routes: [
       {
         name: 'Home',
-        path: '/home',
+        path: '/Customers/home',
         component: Home,
         exact: false
       },
       {
         name: 'Sign Up',
-        path: '/SignUp',
+        path: '/Customers/SignUp',
         component: SignUp,
         exact: false
       },
       {
         name: 'Car Info',
-        path: '/CarInfo',
+        path: 'Customers/CarInfo',
         component: CarInfo,
         exact: false
       }

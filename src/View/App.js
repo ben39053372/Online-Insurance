@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     height: '100%',
-    background: '#eee',
+    background: '#fff',
     overflowX: "hidden"
   },
   title: {

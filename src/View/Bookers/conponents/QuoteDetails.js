@@ -39,20 +39,14 @@ const QuoteDetail = () => {
         </Grid>
       </Grid>
       <div style={{ padding: '12px'}}>
-        <Button variant="contained" color="primary" style={{ float: 'right', marginTop: '12px' }}>
-          請顯示
-          </Button>
-        <Typography>step 1</Typography>
-        <Typography>我有興趣，請顯示雙方聯絡
-
-        </Typography>
+        <Typography>車主資料</Typography>
+        <Typography>未授權顯示</Typography>
       </div>
       <div style={{ padding: '12px'}}>
         <Button variant="contained" color="primary" style={{ float: 'right', marginTop: '12px'  }}>
-          換領禮品
+          提交報價
         </Button>
-        <Typography>step 2</Typography>
-        <Typography>請上載保單主頁以換領禮品</Typography>
+        <Typography>你的報價將會即時電郵給車主</Typography>
 
       </div>
     </Paper>

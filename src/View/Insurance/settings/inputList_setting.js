@@ -1,3 +1,10 @@
+import {
+  getRegisterType,
+  getbrandList,
+  getManufactureYearList, 
+  getBodyTypeList
+} from '../../../api/api/car/car'
+
 export const carState = {
   regisType: '',
   depotName: '',
@@ -30,13 +37,24 @@ export const completeState = {
   email: '',
   mobile: ''
 }
-const expansionPanelSetting = [
+const mapData = async() => {
+  const result = await Promise.all([
+    getRegisterType(),
+    getbrandList(),
+    getManufactureYearList(),
+    getBodyTypeList()
+  ])
+  // expansionPanelSetting[0].column[0]. = reuslt[0].carRegisterTypeList
+}
+
+
+var expansionPanelSetting = [
   {
     name:"車輛資料",
     column: [
       {
         label: "登記類別",
-        name: 'regisType',
+        name: 'registerType',
         autoFocus: true,
         type: 'text',
         select: true,
@@ -124,11 +142,7 @@ const expansionPanelSetting = [
       }, {
         label: "駕駛經驗(年)",
         name: 'drivingExperience',
-        type: 'text',
-        select: true,
-        selectoption: [
-          {value: 'value', label: 'label'}
-        ]
+        type: 'text'
       }, {
         label: "職位",
         name: 'position',
@@ -140,11 +154,7 @@ const expansionPanelSetting = [
       },{
         label: "現有車輛數目",
         name: 'numberOfExistingVehicles',
-        type: 'text',
-        select: true,
-        selectoption: [
-          {value: 'value', label: 'label'}
-        ]
+        type: 'text'
       }
     ]
     
