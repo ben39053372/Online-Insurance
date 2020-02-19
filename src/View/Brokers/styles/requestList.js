@@ -4,5 +4,6 @@ export default theme => ({
   },
   searchBar: {
     margin: '10px',
-  }
+  },
+  tab: {}
 })

@@ -50,7 +50,7 @@ const Home = () => {
         getManufactureYearList(),
         getBodyTypeList()
       ])
-      
+      console.log(result)
     }
     onMount()
   },[])

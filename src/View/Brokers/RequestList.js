@@ -20,7 +20,7 @@ const RequestList = () => {
         variant="fullWidth"
         indicatorColor="primary"
         textColor="primary"
-        className={classes}
+        className={classes.tab}
       >
         <Tab label="所有" />
         <Tab label={

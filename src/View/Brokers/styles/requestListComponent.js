@@ -28,5 +28,11 @@ export default (theme) => ({
     height: '20px',
     position: 'relative',
     top: '-9px'
+  },
+  title: {
+    textAlign: 'center'
+  },
+  content: {
+    textAlign: 'center'
   }
 })

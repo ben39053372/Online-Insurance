@@ -37,14 +37,28 @@ export const completeState = {
   email: '',
   mobile: ''
 }
-const mapData = async() => {
+const mapChtData = async() => {
   const result = await Promise.all([
     getRegisterType(),
     getbrandList(),
     getManufactureYearList(),
     getBodyTypeList()
   ])
-  // expansionPanelSetting[0].column[0]. = reuslt[0].carRegisterTypeList
+  console.log(result)
+  
+  let selectoption = []
+  // set 登記類別 選項
+  result[0].carRegisterTypeList.forEach( e => {
+    let item = { value: e.id, label: e.registerTypeCht }
+    selectoption.push(item)
+  })
+  expansionPanelSetting[0].column[0].selectoption = selectoption
+
+  // set 車廠名稱 選項
+  result[1].brandList.forEash( e => {
+    // let item = { value: }
+  })
+  
 }
 
 

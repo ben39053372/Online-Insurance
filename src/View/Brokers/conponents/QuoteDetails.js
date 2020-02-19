@@ -1,6 +1,6 @@
 import React from 'react'
 import { Paper, Typography, Grid, makeStyles, Button } from '@material-ui/core'
-import quoteDetail from '../style/quoteDetails'
+import quoteDetail from '../styles/quoteDetails'
 
 const setting = [
   ['投保「全保」', '(包括第三者責任保險)'],

@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AppBar, Toolbar, Typography, makeStyles, CssBaseline } from '@material-ui/core'
 import { renderRoutes } from 'react-router-config'
 import routes from '../router/routes'
 
-const App = () => {
+const App = props => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h4" href="/" component='a' className={classes.title}>
-            Customer App
+          <Typography variant="h4" href="/Customers/home" component='a' className={classes.title}>
+            {window.location.pathname.split('/')[1]} Apps
           </Typography>
         </Toolbar>
       </AppBar>

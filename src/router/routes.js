@@ -1,8 +1,9 @@
 import Home from '../View/Insurance/Home'
-import SignUp from '../View/Bookers/SignUp'
+import SignUp from '../View/Brokers/SignUp'
 import Index from '../View/index';
 import CarInfo from '../View/Insurance/CarInfo';
-import RequestList from '../View/Bookers/RequestList'
+import RequestList from '../View/Brokers/RequestList'
+import RequestListDetail from '../View/Brokers/RequestListDetail'
 
 const routes = [
   {
@@ -21,6 +22,12 @@ const routes = [
         name: 'RequestList',
         path: '/Brokers/RequestList',
         component: RequestList,
+        exact: false
+      },
+      {
+        name: 'RequestListDetail',
+        path: '/Brokers/RequestListDetail',
+        component: RequestListDetail,
         exact: false
       }
     ]
