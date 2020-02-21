@@ -1,4 +1,4 @@
-import Home from '../View/Insurance/Home'
+import Home from '../View/Insurance/Home2'
 import SignUp from '../View/Brokers/SignUp'
 import Index from '../View/index';
 import CarInfo from '../View/Insurance/CarInfo';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Paper, Typography, Tabs, Tab } from '@material-ui/core'
+import { Paper, Typography, Tabs, Tab, Button } from '@material-ui/core'
 import SwipeableViews from 'react-swipeable-views'
 import Tab1 from './CarInfoTab'
 import Tab2 from './DriverInfoTab'
@@ -19,14 +19,13 @@ const CarInfo = () => {
   };
   const classes = useStyles()
   return (
-    <Paper elevation={0}>
-
-      <Typography align="center" variant="subtitle1" className={classes.title}>
-        <div className={classes.ball} style={{ backgroundColor: '#000' }}>
-          
-        </div>
-        <div style={{ float: 'left', position: 'relative' }}>{new Date().toISOString().slice(0, 10)}</div>
-        報價車款資料</Typography>
+    <Paper elevation={0} style={{position: 'relative'}}>
+      <Typography align="center" variant="subtitle1" className={classes.title}>報價車款資料</Typography>
+      <div className={classes.box}>
+        <div className={classes.ball} style={{ backgroundColor: '#000' }} />
+        <Typography className={classes.ballDate}>{new Date().toISOString().slice(0, 10)}</Typography>
+        <Button variant="outlined" className={classes.boxButton}>列印資料</Button>
+      </div>
       <Tabs
         value={tabSelected}
         indicatorColor="primary"

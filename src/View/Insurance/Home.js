@@ -22,18 +22,27 @@ import {
   completeState
 } from './settings/inputList_setting'
 import homeStyle from './style/home'
-import {
-  getRegisterType,
-  getbrandList,
-  getManufactureYearList, 
-  getBodyTypeList
-} from '../../api/api/car/car'
+// import {
+//   getRegisterType,
+//   getbrandList,
+//   getManufactureYearList,
+//   getBodyTypeList
+// } from '../../api/api/car/car'
 const useStyles = makeStyles(theme => homeStyle(theme))
 
 const Home = () => {
+  const [expansionPanel_state, setExpansionPanel_state] = useState([])
+  useEffect(() => {
+    const x = async () => {
+      let data = await expansionPanel()
+      console.log(data)
+      setExpansionPanel_state(data)
+    }
+    x()
+  },[])
   const classes = useStyles();
   const [expanded, setExpanded] = useState(0)
-  const [expansionPanel_state, setExpansionPanel_state] = useState(expansionPanel)
+  
   const [driverIndex, setDriverIndex] = useState(1)
   const [totalState, setTotalState] = useState([
     { ...carState },
@@ -41,19 +50,6 @@ const Home = () => {
     { ...insureTypeState },
     { ...completeState }
   ])
-
-  useEffect(() => {
-    const onMount = async() => {
-      const result = await Promise.all([
-        getRegisterType(),
-        getbrandList(),
-        getManufactureYearList(),
-        getBodyTypeList()
-      ])
-      console.log(result)
-    }
-    onMount()
-  },[])
 
   const next = () => {
     setExpanded(expanded + 1);
@@ -126,7 +122,7 @@ const Home = () => {
                         <TextField
                           className={classes.textField}
                           fullWidth
-                          value={(totalState[expIndex][expansionPanel[expIndex].column[colIndex].name])}
+                          value={(totalState[expIndex][expansionPanel_state[expIndex].column[colIndex].name])}
                           onChange={e => handleChange(e, expIndex)}
                           InputLabelProps={{
                             shrink: true,
@@ -137,8 +133,8 @@ const Home = () => {
                         >
                           {/* select input */}
                           {col.select && col.selectoption.map((opt, index) => (
-                            <MenuItem key={opt.value + index} value={opt.value}>
-                              {opt.value}
+                            <MenuItem key={opt.value + index} value={opt.id}>
+                              {opt.nameCht}
                             </MenuItem>
                           ))}
                         </TextField>
@@ -153,7 +149,7 @@ const Home = () => {
                               <InputLabel className={classes.InputLabel}>Year</InputLabel>
                               <Select
                                 className={classes.date_select}
-                                value={(totalState[expIndex][expansionPanel[expIndex].column[colIndex].name].year)}
+                                value={(totalState[expIndex][expansionPanel_state[expIndex].column[colIndex].name].year)}
                                 onChange={e => handleYearChange(e, expIndex, colIndex)}
                               >
                                 {[...Array(80)].map((e, i) => {
@@ -165,7 +161,7 @@ const Home = () => {
                               <InputLabel className={classes.InputLabel}>Month</InputLabel>
                               <Select
                                 className={classes.date_select}
-                                value={(totalState[expIndex][expansionPanel[expIndex].column[colIndex].name].month)}
+                                value={(totalState[expIndex][expansionPanel_state[expIndex].column[colIndex].name].month)}
                                 onChange={e => handleMonthChange(e, expIndex, colIndex)}
                               >
                                 {[...Array(12)].map((e, i) => {
@@ -177,7 +173,7 @@ const Home = () => {
                               <InputLabel className={classes.InputLabel}>Date</InputLabel>
                               <Select
                                 className={classes.date_select}
-                                value={(totalState[expIndex][expansionPanel[expIndex].column[colIndex].name].date)}
+                                value={(totalState[expIndex][expansionPanel_state[expIndex].column[colIndex].name].date)}
                                 onChange={e => handleDateChange(e, expIndex, colIndex)}
                               >
                                 {[...Array(31)].map((e, i) => {
@@ -222,7 +218,7 @@ const Home = () => {
                     </Fab>
                   )}
 
-                  {expanded === expansionPanel.length - 1 && (
+                  {expanded === expansionPanel_state.length - 1 && (
                     <>
                       <Fab variant="extended" onClick={finish} style={{ margin: '8px' }}>
                         <Typography>完成</Typography>
@@ -236,7 +232,7 @@ const Home = () => {
                     </Fab>
                   )}
 
-                  {expanded < expansionPanel.length - 1 && (
+                  {expanded < expansionPanel_state.length - 1 && (
                     <Fab variant="extended" onClick={next} style={{ margin: '8px' }}>
                       <Typography>下一步</Typography>
                     </Fab>

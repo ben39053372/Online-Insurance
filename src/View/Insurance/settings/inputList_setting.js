@@ -1,7 +1,7 @@
 import {
   getRegisterType,
   getbrandList,
-  getManufactureYearList, 
+  getManufactureYearList,
   getBodyTypeList
 } from '../../../api/api/car/car'
 
@@ -37,34 +37,26 @@ export const completeState = {
   email: '',
   mobile: ''
 }
-const mapChtData = async() => {
+
+const map = async () => {
   const result = await Promise.all([
     getRegisterType(),
     getbrandList(),
     getManufactureYearList(),
     getBodyTypeList()
   ])
-  console.log(result)
-  
-  let selectoption = []
-  // set 登記類別 選項
-  result[0].carRegisterTypeList.forEach( e => {
-    let item = { value: e.id, label: e.registerTypeCht }
-    selectoption.push(item)
-  })
-  expansionPanelSetting[0].column[0].selectoption = selectoption
-
-  // set 車廠名稱 選項
-  result[1].brandList.forEash( e => {
-    // let item = { value: }
-  })
-  
+  let eps = await expansionPanelSetting
+  eps[0].column[0].selectoption = await result[0].carRegisterTypeList
+  eps[0].column[1].selectoption = await result[0].brandList
+  eps[0].column[3].selectoption = await result[0].yearList
+  eps[0].column[4].selectoption = await result[0].bodyTypeList
+  return eps
 }
 
 
 var expansionPanelSetting = [
   {
-    name:"車輛資料",
+    name: "車輛資料",
     column: [
       {
         label: "登記類別",
@@ -73,10 +65,10 @@ var expansionPanelSetting = [
         type: 'text',
         select: true,
         selectoption: [
-          {value: 'abc', label: 'abc'},
-          {value: 'value', label: 'label'},
-          {value: 'value', label: 'label'},
-          {value: 'value', label: 'label'}
+          { value: 'abc', label: 'abc' },
+          { value: 'value', label: 'label' },
+          { value: 'value', label: 'label' },
+          { value: 'value', label: 'label' }
         ]
       }, {
         label: "車廠名稱",
@@ -84,40 +76,40 @@ var expansionPanelSetting = [
         name: 'depotName',
         select: true,
         selectoption: [
-          {value: 'value', label: 'label'},
-          {value: 'value', label: 'label'},
-          {value: 'value', label: 'label'},
-          {value: 'value', label: 'label'}
+          { value: 'value', label: 'label' },
+          { value: 'value', label: 'label' },
+          { value: 'value', label: 'label' },
+          { value: 'value', label: 'label' }
         ]
-      },{
+      }, {
         label: "出廠年份",
         type: 'text',
         name: 'manufactureYear',
         select: true,
         selectoption: [
-          {value: 'value', label: 'label'},
-          {value: 'value', label: 'label'},
-          {value: 'value', label: 'label'},
-          {value: 'value', label: 'label'}
+          { value: 'value', label: 'label' },
+          { value: 'value', label: 'label' },
+          { value: 'value', label: 'label' },
+          { value: 'value', label: 'label' }
         ]
-      },{
+      }, {
         label: "型號",
         type: 'text',
         name: 'model'
-      },{
+      }, {
         label: "引擎容量(c.c)",
         type: 'text',
         name: 'engineCapacity'
-      },{
+      }, {
         label: "車身類型",
         type: 'text',
         name: 'carBodyType',
         select: true,
         selectoption: [
-          {value: 'value', label: 'label'},
-          {value: 'value', label: 'label'},
-          {value: 'value', label: 'label'},
-          {value: 'value', label: 'label'}
+          { value: 'value', label: 'label' },
+          { value: 'value', label: 'label' },
+          { value: 'value', label: 'label' },
+          { value: 'value', label: 'label' }
         ]
       }
     ]
@@ -131,7 +123,7 @@ var expansionPanelSetting = [
         type: 'text',
         select: true,
         selectoption: [
-          {value: 'value', label: 'label'}
+          { value: 'value', label: 'label' }
         ]
       }, {
         label: "出生日期",
@@ -143,7 +135,7 @@ var expansionPanelSetting = [
         type: 'text',
         select: true,
         selectoption: [
-          {value: 'value', label: 'label'}
+          { value: 'value', label: 'label' }
         ]
       }, {
         label: "無索償折扣(NCD)",
@@ -151,7 +143,7 @@ var expansionPanelSetting = [
         type: 'text',
         select: true,
         selectoption: [
-          {value: 'value', label: 'label'}
+          { value: 'value', label: 'label' }
         ]
       }, {
         label: "駕駛經驗(年)",
@@ -163,16 +155,16 @@ var expansionPanelSetting = [
         type: 'text',
         select: true,
         selectoption: [
-          {value: 'value', label: 'label'}
+          { value: 'value', label: 'label' }
         ]
-      },{
+      }, {
         label: "現有車輛數目",
         name: 'numberOfExistingVehicles',
         type: 'text'
       }
     ]
-    
-  },{
+
+  }, {
     name: "投保類別",
     column: [
       {
@@ -180,15 +172,15 @@ var expansionPanelSetting = [
         name: 'onlineInsure',
         type: 'button',
         buttons: [
-          {label: "了解更多"}
+          { label: "了解更多" }
         ]
       }, {
         label: "請選擇保險類別",
         name: 'insureType',
         type: 'checkBox',
         buttons: [
-          {label: "全保"},
-          {label: "三保"}
+          { label: "全保" },
+          { label: "三保" }
         ]
       }, {
         label: "全保投保額(HK$) #",
@@ -196,7 +188,7 @@ var expansionPanelSetting = [
         type: 'text'
       }
     ]
-  },{
+  }, {
     name: "完成報價",
     text: "只差一步!請提供您的聯絡資料方便我們即時提供報價消息!",
     column: [
@@ -204,7 +196,7 @@ var expansionPanelSetting = [
         label: "您的電郵",
         name: 'email',
         type: 'text'
-      },{
+      }, {
         label: "您的手提號碼",
         name: 'mobile',
         type: 'text'
@@ -213,4 +205,4 @@ var expansionPanelSetting = [
   }
 ]
 
-export default expansionPanelSetting
+export default map
