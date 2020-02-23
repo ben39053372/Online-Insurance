@@ -14,9 +14,9 @@ export const getJobIndustryList = () => {
   })
 }
 
-export const getOcupationList = () => {
+export const getOcupationList = (id) => {
   return api({
-    url: '/v1/driver/:jobIndustryId/ocupationList',
+    url: `/v1/driver/${id || 1}/ocupationList`,
     method: 'get'
   })
 }

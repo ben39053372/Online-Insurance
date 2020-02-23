@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { AppBar, Toolbar, Typography, makeStyles, CssBaseline } from '@material-ui/core'
 import { renderRoutes } from 'react-router-config'
 import routes from '../router/routes'
