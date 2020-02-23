@@ -100,17 +100,39 @@ const ExpansionPanel1 = props => {
           <TextField
             fullWidth
             value={props.state.model}
-            onChange={(e) => props.setState(state => ({
-              ...state, model: e.target.value
-            }))}
+            onChange={(e) => {
+              let value = e.target.value
+              props.setState(state => ({
+                ...state, model: value
+              }))
+            }}
             InputLabelProps={InputLabelProps}
             label="型號"
           />
           <TextField
             fullWidth
             value={props.state.engineCapacity}
+            type="number"
+            onChange={(e) => {
+              let value = e.target.value
+              props.setState(state => ({
+                ...state, engineCapacity: value
+              }))
+            }}
             InputLabelProps={InputLabelProps}
             label="引擎容量(c.c)"
+          />
+          <TextField
+            fullWidth
+            value={props.state.licensePlate}
+            onChange={(e) => {
+              let value = e.target.value
+              props.setState(state => ({
+                ...state, licensePlate: value
+              }))
+            }}
+            InputLabelProps={InputLabelProps}
+            label="車牌號碼"
           />
           <TextField
             fullWidth

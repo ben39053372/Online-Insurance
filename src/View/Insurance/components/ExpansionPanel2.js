@@ -9,13 +9,12 @@ import {
   Grid,
   MenuItem,
   InputLabel,
+  Checkbox,
   Select
 } from '@material-ui/core'
 import {
-  getRoleList,
   getJobIndustryList,
   getOcupationList,
-  getNoClaimDiscountList
 } from '../../../api/api/driver/driver'
 
 const InputLabelProps = {
@@ -24,56 +23,34 @@ const InputLabelProps = {
 }
 
 const ExpansionPanel2 = props => {
-  const [roleList, setRoleList] = useState([])
   const [jobIndustryList, setJobIndustryList] = useState([])
   const [ocupationList, setOcupationList] = useState([])
-  const [noClaimDiscountList, setNoClaimDiscountList] = useState([])
   useEffect(() => {
-    const x = async () => {
-      const result = await getOcupationList(props.state[props.index].industry)
+    let x = async () => {
+      let result = await getOcupationList(props.state[props.index].industry)
       setOcupationList(result.driverOcupationList)
     }
     x()
-  },[props.state[props.index].industry])
+    // eslint-disable-next-line
+  }, [props.state[props.index].industry, props.index, props.state])
   useEffect(() => {
-    const x = async () => {
-      const result = await Promise.all([
-        getRoleList(),
-        getJobIndustryList(),
-        getNoClaimDiscountList()
-      ])
-      setRoleList(result[0].driverRoleList)
-      setJobIndustryList(result[1].driverJobIndustryList)
-      setNoClaimDiscountList(result[2].driverNoClaimDiscountList)
+    let x = async () => {
+      let result = await getJobIndustryList()
+      setJobIndustryList(result.driverJobIndustryList)
     }
     x()
+    // eslint-disable-next-line
   }, [])
-  
+  useEffect(() => {
+    console.log(props.index)
+  })
   return (
-    <ExpansionPanel expanded={props.open === props.index + 1}>
+    <ExpansionPanel expanded={props.open === props.index + 2}>
       <ExpansionPanelSummary>
-        <Typography>車主資料</Typography>
+        <Typography>駕駛者資料</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <div>
-          <TextField
-            fullWidth
-            select
-            value={props.state[props.index].insuredIdentity}
-            onChange={(e) => {
-              let temp = props.state
-              temp[props.index].insuredIdentity = e.target.value
-              props.setState([...temp])
-            }}
-            InputLabelProps={InputLabelProps}
-            label="投保身份"
-          >
-            {roleList.map((item, i) => (
-              <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
-                {item.nameCht}
-              </MenuItem>
-            ))}
-          </TextField>
           <Grid container justify='space-around'>
             <Grid item xs={4} >
               <InputLabel>Year</InputLabel>
@@ -141,24 +118,6 @@ const ExpansionPanel2 = props => {
           </TextField>
           <TextField
             fullWidth
-            select
-            value={props.state[props.index].discount}
-            onChange={(e) => {
-              let temp = props.state
-              temp[props.index].discount = e.target.value
-              props.setState([...temp])
-            }}
-            InputLabelProps={InputLabelProps}
-            label="無索償折扣(NCD)"
-          >
-            {noClaimDiscountList.map((item, i) => (
-              <MenuItem key={`option${i}${item.discount}`} value={item.id}>
-                {item.discount}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            fullWidth
             type="number"
             value={props.state[props.index].drivingExperience}
             onChange={(e) => {
@@ -187,18 +146,13 @@ const ExpansionPanel2 = props => {
               </MenuItem>
             ))}
           </TextField>
-          <TextField
-            fullWidth
-            type="number"
-            value={props.state[props.index].numberOfExistingVehicles}
-            onChange={(e) => {
-              let temp = props.state
-              temp[props.index].numberOfExistingVehicles = e.target.value
-              props.setState([...temp])
-            }}
-            InputLabelProps={InputLabelProps}
-            label="現有車輛數目"
+          <Checkbox
+            defaultChecked
+            value="secondary"
+            color="primary"
           />
+          <Typography variant='inherit'>主要車主</Typography>
+          <br/>
           <Fab variant="extended" onClick={props.prev} style={{ margin: '8px' }}>
             <Typography>上一步</Typography>
           </Fab>
@@ -210,7 +164,6 @@ const ExpansionPanel2 = props => {
               <Typography>移除車主</Typography>
             </Fab>
           )}
-
           <Fab variant="extended" onClick={props.next} style={{ margin: '8px' }}>
             <Typography>下一步</Typography>
           </Fab>
