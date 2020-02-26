@@ -11,7 +11,7 @@ import {
 import {
   getRoleList,
   getNoClaimDiscountList
-} from '../../../api/api/driver/driver'
+} from '../../../api/api/driver'
 
 const InputLabelProps = {
   shrink: true,

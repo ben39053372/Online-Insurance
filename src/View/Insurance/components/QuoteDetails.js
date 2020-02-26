@@ -1,6 +1,5 @@
 import React from 'react'
-import { Paper, Typography, Grid, makeStyles, Button } from '@material-ui/core'
-import quoteDetail from '../style/quoteDetails'
+import { Paper, Typography, Grid, Button } from '@material-ui/core'
 
 const setting = [
   ['投保「全保」', '(包括第三者責任保險)'],
@@ -14,10 +13,7 @@ const setting = [
   ['TPPD-U', '財物損失-不記名司機']
 ]
 
-const useStyles = makeStyles(theme => quoteDetail(theme))
-
 const QuoteDetail = () => {
-  const classes = useStyles()
   return (
     <Paper elevation={0}>
       <Typography align="center" variant="subtitle1" style={{ padding: '10px', marginTop: '16px' }}>
@@ -26,7 +22,7 @@ const QuoteDetail = () => {
       <Grid container direction="row">
         <Grid item xs={6} container direction="column">
           {setting.map((array, i) => (
-            <Grid container item key={i} alignItems="center" className={i % 2 ? classes.odd : classes.even}>
+            <Grid container item key={i} alignItems="center">
               {(array).map((arr, j) => (
                 <Typography key={arr} display="block" style={{ fontSize: '14px', width: '100%' }}>{arr}</Typography>
               ))}

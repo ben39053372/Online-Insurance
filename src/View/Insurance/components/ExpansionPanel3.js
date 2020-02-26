@@ -6,7 +6,8 @@ import {
   ExpansionPanelDetails,
   TextField,
   Fab,
-  MenuItem
+  MenuItem,
+  InputLabel
 } from '@material-ui/core'
 
 const InputLabelProps = {
@@ -26,11 +27,8 @@ const ExpansionPanel3 = props => {
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <div>
-          <TextField
-            fullWidth
-            InputLabelProps={InputLabelProps}
-            label="網上購買汽車保險"
-          />
+          <InputLabel>網上購買汽車保險</InputLabel>
+          <Fab size="medium" variant="extended" style={{float: 'right'}}>了解更多</Fab>
           <TextField
             fullWidth
             select

@@ -1,6 +1,8 @@
 import React from 'react'
-import { Paper, Typography, Grid, makeStyles, Button } from '@material-ui/core'
-import quoteDetail from '../styles/quoteDetails'
+import { Paper, Typography, Grid, makeStyles, Button, IconButton } from '@material-ui/core'
+import quoteDetail from '../styles/quoteDetails';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const setting = [
   ['投保「全保」', '(包括第三者責任保險)'],
@@ -21,33 +23,40 @@ const QuoteDetail = () => {
   return (
     <Paper elevation={0}>
       <Typography align="center" variant="subtitle1" style={{ padding: '10px', marginTop: '16px' }}>
+        <IconButton aria-label="delete" className={classes.margin}>
+          <ArrowBackIosIcon />
+        </IconButton>
         報價詳情
+        <IconButton aria-label="delete" className={classes.margin}>
+          <ArrowForwardIosIcon />
+        </IconButton>
       </Typography>
-      <Grid container direction="row">
-        <Grid item xs={6} container direction="column">
-          {setting.map((array, i) => (
-            <Grid container item key={i} alignItems="center" className={i % 2 ? classes.odd : classes.even}>
-              {(array).map((arr, j) => (
-                <Typography key={arr} display="block" style={{ fontSize: '14px', width: '100%' }}>{arr}</Typography>
-              ))}
-            </Grid>
-          ))}
+      <div>
+        <Grid container direction="row">
           <Grid item xs={6} container direction="column">
-            <>
-            </>
+            {setting.map((array, i) => (
+              <Grid container item key={i} alignItems="center" className={i % 2 ? classes.odd : classes.even}>
+                {(array).map((arr, j) => (
+                  <Typography key={arr} display="block" style={{ fontSize: '14px', width: '100%' }}>{arr}</Typography>
+                ))}
+              </Grid>
+            ))}
+            <Grid item xs={6} container direction="column">
+              <>
+              </>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-      <div style={{ padding: '12px'}}>
-        <Typography>車主資料</Typography>
-        <Typography>未授權顯示</Typography>
-      </div>
-      <div style={{ padding: '12px'}}>
-        <Button variant="contained" color="primary" style={{ float: 'right', marginTop: '12px'  }}>
-          提交報價
-        </Button>
-        <Typography>你的報價將會即時電郵給車主</Typography>
-
+        <div style={{ padding: '12px' }}>
+          <Typography>車主資料</Typography>
+          <Typography>未授權顯示</Typography>
+        </div>
+        <div style={{ padding: '12px' }}>
+          <Button variant="contained" color="primary" style={{ float: 'right', marginTop: '12px' }}>
+            提交報價
+          </Button>
+          <Typography>你的報價將會即時電郵給車主</Typography>
+        </div>
       </div>
     </Paper>
   )

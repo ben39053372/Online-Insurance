@@ -15,7 +15,7 @@ import {
 import {
   getJobIndustryList,
   getOcupationList,
-} from '../../../api/api/driver/driver'
+} from '../../../api/api/driver'
 
 const InputLabelProps = {
   shrink: true,
@@ -32,7 +32,7 @@ const ExpansionPanel2 = props => {
     }
     x()
     // eslint-disable-next-line
-  }, [props.state[props.index].industry, props.index, props.state])
+  }, [props.state[props.index].industry])
   useEffect(() => {
     let x = async () => {
       let result = await getJobIndustryList()
@@ -41,9 +41,6 @@ const ExpansionPanel2 = props => {
     x()
     // eslint-disable-next-line
   }, [])
-  useEffect(() => {
-    console.log(props.index)
-  })
   return (
     <ExpansionPanel expanded={props.open === props.index + 2}>
       <ExpansionPanelSummary>
@@ -147,8 +144,12 @@ const ExpansionPanel2 = props => {
             ))}
           </TextField>
           <Checkbox
-            defaultChecked
-            value="secondary"
+            value={props.state[props.index].isMainDriver}
+            onChange={ e=> {
+              let temp = props.state
+              temp[props.index].isMainDriver = e.target.checked
+              props.setState([...temp])
+            }}
             color="primary"
           />
           <Typography variant='inherit'>主要車主</Typography>

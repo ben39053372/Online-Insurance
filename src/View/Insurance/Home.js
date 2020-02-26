@@ -38,24 +38,43 @@ const InputForm = () => {
     setOwnerState(ownerState)
   }
   const finish = () => {
+    // eslint-disable-next-line
     let data = {
+      // 電郵
       email: userState.email,
+      // 手機
       phoneNumber: userState.mobile,
+      // 登記類別
       registerTypeId: carState.regisType,
+      // 車廠
       brandId: carState.depotName,
+      // 出廠年份
       manufactureYearId: carState.manufactureYear,
+      // 型號
       model: carState.model,
+      // 引擎容量
       cylinderCapacity: carState.engineCapacity,
+      // 車身類型
       bodyTypeId: carState.carBodyType,
+      // 車牌號碼
       licenseNumber: carState.licensePlate,
+
       drivers: ownerState.map(item => ({
         birthday: `${item.dateOfBirth.year}-${item.dateOfBirth.month}-${item.dateOfBirth.date}`,
-        jobIndustryId: item.insuredIdentity
+        jobIndustryId: item.insuredIdentity,
+        ocupationId: item.position,
+        isMainDriver: item.isMainDriver? 1 : 0,
       })),
+      // 保險類別
       insuranceTypeId: insuredState.insureType,
+      // 全保投保額
       insuredAmount: insuredState.insuredAmount,
-      roleId: 0
+      // 投保身份
+      roleId: ownerState_head.insuredIdentity,
+      noClaimDiscountId: ownerState_head.discount,
+      isNewApply: 1
     }
+    console.log(data)
   }
   const [carState, setCarState] = useState({
     regisType: '',
@@ -80,6 +99,7 @@ const InputForm = () => {
     industry: '',
     drivingExperience: '',
     position: '',
+    isMainDriver: false
   }])
   const [insuredState, setInsuredState] = useState({
     insureType: 0,
