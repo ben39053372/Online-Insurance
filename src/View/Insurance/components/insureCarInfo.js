@@ -5,7 +5,7 @@ import Tab1 from './CarInfoTab'
 import Tab2 from './DriverInfoTab'
 import Tab3 from './InsureTypeTab'
 
-const CarInfo = () => {
+const CarInfo = props => {
   const [tabSelected, setTabSelected] = useState(0)
   const handleChange = (event, newValue) => {
     setTabSelected(newValue);
@@ -29,9 +29,9 @@ const CarInfo = () => {
         <Tab label="投保類別" />
       </Tabs>
       <SwipeableViews index={tabSelected} onChangeIndex={handleChangeIndex}>
-        <Tab1/>
-        <Tab2/>
-        <Tab3/>
+        <Tab1 data={props.data} />
+        <Tab2 data={props.data} />
+        <Tab3 data={props.data} />
       </SwipeableViews>
     </Paper>
   )

@@ -27,8 +27,8 @@ export default props => {
         getRoleList(),
         getNoClaimDiscountList()
       ])
-      setRoleList(result[0].driverRoleList)
-      setNoClaimDiscountList(result[1].driverNoClaimDiscountList)
+      setRoleList(result[0].data.driverRoleList)
+      setNoClaimDiscountList(result[1].data.driverNoClaimDiscountList)
     }
     x()
     // eslint-disable-next-line

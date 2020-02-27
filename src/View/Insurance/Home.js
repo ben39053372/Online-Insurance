@@ -4,6 +4,11 @@ import Exp2 from './components/ExpansionPanel2'
 import Exp3 from './components/ExpansionPanel3'
 import Exp4 from './components/ExpansionPanel4'
 import Exp5 from './components/ExpansionPanel5'
+import {postQuotationRequest} from '../../api/api/quotation'
+
+import { Snackbar } from '@material-ui/core'
+import Alert from '@material-ui/lab/Alert';
+import { useHistory } from "react-router-dom";
 
 const ownerStateTemp = {
   insuredIdentity: '',
@@ -19,6 +24,7 @@ const ownerStateTemp = {
   numberOfExistingVehicles: ''
 }
 const InputForm = () => {
+  const history = useHistory();
   const [open, setOpen] = useState(0)
   const next = () => {
     setOpen(open + 1)
@@ -58,10 +64,9 @@ const InputForm = () => {
       bodyTypeId: carState.carBodyType,
       // 車牌號碼
       licenseNumber: carState.licensePlate,
-
       drivers: ownerState.map(item => ({
         birthday: `${item.dateOfBirth.year}-${item.dateOfBirth.month}-${item.dateOfBirth.date}`,
-        jobIndustryId: item.insuredIdentity,
+        jobIndustryId: item.industry,
         ocupationId: item.position,
         isMainDriver: item.isMainDriver? 1 : 0,
       })),
@@ -75,7 +80,23 @@ const InputForm = () => {
       isNewApply: 1
     }
     console.log(data)
+    postQuotationRequest(data).then(res => {
+      console.log(res)
+      if(res.status === 200){
+        localStorage.setItem('jwt1', res.data.jwt)
+        history.push("/Customers/CarInfo");
+      }else {
+        console.log('error')
+        setErrorState(res.data.error)
+        setErrorOpen(true)
+      }
+    })
+    .catch(err => {
+      setErrorState(err)
+      setErrorOpen(true)
+    })
   }
+  const [errorState, setErrorState] = useState('')
   const [carState, setCarState] = useState({
     regisType: '',
     depotName: '',
@@ -110,8 +131,17 @@ const InputForm = () => {
     mobile: ''
   })
   const [drivers, setDrivers] = useState(0)
+  const [ErrorOpen, setErrorOpen] = useState(false)
+  const handleClose = () => {
+    setErrorOpen(false)
+  }
   return (
     <>
+      <Snackbar open={ErrorOpen} autoHideDuration={4000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error">
+          {errorState.toString()}
+        </Alert>
+      </Snackbar>
       <Exp1 open={open} next={next} state={carState} setState={setCarState} />
       <Exp5 open={open} prev={prev} next={next} state={ownerState_head} setState={setOwnerState_head} />
         {ownerState.map((item, i) => (

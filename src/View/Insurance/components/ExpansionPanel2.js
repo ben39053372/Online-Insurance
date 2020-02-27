@@ -28,7 +28,7 @@ const ExpansionPanel2 = props => {
   useEffect(() => {
     let x = async () => {
       let result = await getOcupationList(props.state[props.index].industry)
-      setOcupationList(result.driverOcupationList)
+      setOcupationList(result.data.driverOcupationList)
     }
     x()
     // eslint-disable-next-line
@@ -36,7 +36,7 @@ const ExpansionPanel2 = props => {
   useEffect(() => {
     let x = async () => {
       let result = await getJobIndustryList()
-      setJobIndustryList(result.driverJobIndustryList)
+      setJobIndustryList(result.data.driverJobIndustryList)
     }
     x()
     // eslint-disable-next-line

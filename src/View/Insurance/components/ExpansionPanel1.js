@@ -35,10 +35,10 @@ const ExpansionPanel1 = props => {
         getManufactureYearList(),
         getBodyTypeList()
       ])
-      setRegisterTypeList(result[0].carRegisterTypeList)
-      setBrandList(result[1].brandList)
-      setManufactureYearList(result[2].yearList)
-      setBodyTypeList(result[3].bodyTypeList)
+      setRegisterTypeList(result[0].data.carRegisterTypeList)
+      setBrandList(result[1].data.brandList)
+      setManufactureYearList(result[2].data.yearList)
+      setBodyTypeList(result[3].data.bodyTypeList)
     }
     x()
   }, [])

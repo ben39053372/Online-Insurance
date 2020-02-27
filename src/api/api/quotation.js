@@ -20,7 +20,7 @@ export const getQuotationRequestSummary = () => {
     url: '/v1/customer/quotationRequest/latest/summary',
     method: 'get',
     headers: {
-      'Authorization': 'jwt1'
+      'Authorization': `Bearer ${localStorage.getItem('jwt1')}`
     }
   })
 }
@@ -39,6 +39,6 @@ export const postClosing = quoteId => {
   return api({
     url: `/v1/customer/quotation/${quoteId}/closing`,
     method: 'post',
-    headers
+    headers: {}
   })
 }

@@ -51,7 +51,7 @@ const routes = [
       },
       {
         name: 'Car Info',
-        path: 'Customers/CarInfo',
+        path: '/Customers/CarInfo',
         component: CarInfo,
         exact: false
       }
