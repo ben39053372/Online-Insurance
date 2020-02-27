@@ -42,7 +42,7 @@ export const getQuotationRequestList = keyword => {
       keyword: keyword || ''
     },
     headers: {
-      'Authorization': 'jwt2'
+      'Authorization': localStorage.getItem('jwt1')
     }
   })
 }

@@ -4,6 +4,7 @@ import Index from '../View/index';
 import CarInfo from '../View/Insurance/CarInfo';
 import RequestList from '../View/Brokers/RequestList'
 import RequestListDetail from '../View/Brokers/RequestListDetail'
+import Reset from '../View/Brokers/Reset'
 
 const routes = [
   {
@@ -17,6 +18,11 @@ const routes = [
         path: '/Brokers/Login',
         component: SignUp,
         exact: false
+      },
+      {
+        name: 'Reset Password',
+        path: '/Brokers/Reset',
+        component: Reset,
       },
       {
         name: 'RequestList',
@@ -41,12 +47,6 @@ const routes = [
         name: 'Home',
         path: '/Customers/home',
         component: Home,
-        exact: false
-      },
-      {
-        name: 'Sign Up',
-        path: '/Customers/SignUp',
-        component: SignUp,
         exact: false
       },
       {
