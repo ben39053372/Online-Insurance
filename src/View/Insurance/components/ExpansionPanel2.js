@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import {
-  ExpansionPanel,
-  ExpansionPanelSummary,
   Typography,
-  ExpansionPanelDetails,
   TextField,
   Fab,
   Grid,
   MenuItem,
   InputLabel,
   Checkbox,
-  Select
+  Select,
+  Divider
 } from '@material-ui/core'
 import {
   getJobIndustryList,
@@ -32,7 +30,7 @@ const ExpansionPanel2 = props => {
     }
     x()
     // eslint-disable-next-line
-  }, [props.state[props.index].industry])
+  }, [])
   useEffect(() => {
     let x = async () => {
       let result = await getJobIndustryList()
@@ -41,13 +39,17 @@ const ExpansionPanel2 = props => {
     x()
     // eslint-disable-next-line
   }, [])
+  useEffect(()=>{
+    console.log(props)
+  },[props])
   return (
-    <ExpansionPanel expanded={props.open === props.index + 2}>
-      <ExpansionPanelSummary>
-        <Typography>駕駛者資料</Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
-        <div>
+    // <ExpansionPanel expanded={props.offset === props.index}>
+    //   <ExpansionPanelSummary>
+    //     <Typography>駕駛者{props.index+1}資料</Typography>
+    //   </ExpansionPanelSummary>
+    //   <ExpansionPanelDetails>
+        <div style={{marginBottom: '10px'}}>
+          <Typography variant="subtitle1">駕駛者{props.index + 1}</Typography>
           <Grid container justify='space-around'>
             <Grid item xs={4} >
               <InputLabel>Year</InputLabel>
@@ -60,7 +62,7 @@ const ExpansionPanel2 = props => {
                 }}
               >
                 {[...Array(80)].map((e, i) => {
-                  return <MenuItem key={i + "year"} value={new Date().getFullYear() - 18 - i + '年'}>{(new Date().getFullYear() - 18) - i}年</MenuItem>
+                  return <MenuItem key={i + "year"} value={new Date().getFullYear() - 18 - i}>{(new Date().getFullYear() - 18) - i}</MenuItem>
                 })}
               </Select>
             </Grid>
@@ -75,7 +77,7 @@ const ExpansionPanel2 = props => {
                 }}
               >
                 {[...Array(12)].map((e, i) => {
-                  return <MenuItem key={i + "month"} value={i + 1 + '月'}>{i + 1}月</MenuItem>
+                  return <MenuItem key={i + "month"} value={i + 1 }>{i + 1}</MenuItem>
                 })}
               </Select>
             </Grid>
@@ -90,7 +92,7 @@ const ExpansionPanel2 = props => {
                 }}
               >
                 {[...Array(31)].map((e, i) => {
-                  return <MenuItem key={i + "month"} value={i + 1 + '日'}>{i + 1}日</MenuItem>
+                  return <MenuItem key={i + "month"} value={i + 1}>{i + 1}</MenuItem>
                 })}
               </Select>
             </Grid>
@@ -144,34 +146,39 @@ const ExpansionPanel2 = props => {
             ))}
           </TextField>
           <Checkbox
+            checked={props.state[props.index].isMainDriver}
             value={props.state[props.index].isMainDriver}
-            onChange={ e=> {
+            onChange={async ()=> {
               let temp = props.state
-              temp[props.index].isMainDriver = e.target.checked
+              await temp.forEach((value) => {
+                value.isMainDriver = false
+              })
+              temp[props.index].isMainDriver = true
               props.setState([...temp])
             }}
             color="primary"
           />
           <Typography variant='inherit'>主要車主</Typography>
           <br/>
-          <Fab variant="extended" onClick={props.prev} style={{ margin: '8px' }}>
+          {/* <Fab variant="extended" onClick={props.prev} style={{ margin: '8px' }}>
             <Typography>上一步</Typography>
-          </Fab>
-          <Fab variant="extended" onClick={props.add} style={{ margin: '8px' }}>
+          </Fab> */}
+          {/* <Fab variant="extended" onClick={props.add} style={{ margin: '8px' }}>
             <Typography>新增車主</Typography>
-          </Fab>
+          </Fab> */}
           {props.index !== 0 && (
             <Fab variant="extended" onClick={props.remove(props.index)} style={{ margin: '8px' }}>
               <Typography>移除車主</Typography>
             </Fab>
           )}
-          <Fab variant="extended" onClick={props.next} style={{ margin: '8px' }}>
+          <Divider />
+          {/* <Fab variant="extended" onClick={props.next} style={{ margin: '8px' }}>
             <Typography>下一步</Typography>
-          </Fab>
+          </Fab> */}
         </div>
 
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+    //   </ExpansionPanelDetails>
+    // </ExpansionPanel>
   )
 }
 

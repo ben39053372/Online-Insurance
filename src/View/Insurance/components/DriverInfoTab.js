@@ -1,5 +1,4 @@
 import React from 'react'
-import setting from '../settings/DriverInfoSetting'
 import {Grid, Typography} from '@material-ui/core'
 
 const DriverInfoTab = props => {

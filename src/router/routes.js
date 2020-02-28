@@ -5,6 +5,9 @@ import CarInfo from '../View/Insurance/CarInfo';
 import RequestList from '../View/Brokers/RequestList'
 import RequestListDetail from '../View/Brokers/RequestListDetail'
 import Reset from '../View/Brokers/Reset'
+import { ishaveTokenOne } from '../utils/Auth'
+import { Redirect } from 'react-router-dom'
+import React from 'react'
 
 const routes = [
   {
@@ -46,14 +49,16 @@ const routes = [
       {
         name: 'Home',
         path: '/Customers/home',
-        component: Home,
-        exact: false
+        component: Home,        
+        exact: false,
+        render: () => ishaveTokenOne() ? (<Redirect to='/Customers/CarInfo' /> ) : (<Home/>) 
       },
       {
         name: 'Car Info',
         path: '/Customers/CarInfo',
         component: CarInfo,
-        exact: false
+        exact: false,
+        render: () => ishaveTokenOne() ? (<CarInfo/>) : (<Redirect to='/Customers/home'/>)
       }
     ]
   }

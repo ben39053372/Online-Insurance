@@ -26,6 +26,7 @@ const ExpansionPanel4 = props => {
           <Typography>請提供您的聯絡資料方便我們即時提供報價消息!</Typography>
           <TextField
             vaule={props.state.email}
+            type="email"
             InputLabelProps={InputLabelProps}
             onChange={(e) => {
               let value = e.target.value
@@ -38,6 +39,7 @@ const ExpansionPanel4 = props => {
           />
           <TextField
             value={props.state.mobile}
+            type="number"
             InputLabelProps={InputLabelProps}
             onChange={(e) => {
               let value = e.target.value

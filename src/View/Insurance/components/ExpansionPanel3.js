@@ -16,8 +16,8 @@ const InputLabelProps = {
 }
 
 const insureType = [
-  { id: 0, nameCht: '全保', nameEn: 'Full' },
-  { id: 1, nameCht: '三保', nameEN: 'Three' }
+  { id: 1, nameCht: '全保', nameEn: 'Full' },
+  { id: 2, nameCht: '三保', nameEN: 'Three' }
 ]
 
 
@@ -61,6 +61,7 @@ const ExpansionPanel3 = props => {
           <TextField
             fullWidth
             value={props.state.insuredAmount}
+            type="number"
             onChange={(e) => {
               let value = e.target.value
               props.setState(state => ({

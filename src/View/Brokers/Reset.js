@@ -3,6 +3,7 @@ import { Paper, TextField, Typography } from '@material-ui/core';
 import queryString from 'query-string'
 
 export default props => {
+  // eslint-disable-next-line 
   const [token, setToken] = useState('')
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('')

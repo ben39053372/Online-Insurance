@@ -1,6 +1,5 @@
 import React from 'react'
 import { Grid, Typography } from '@material-ui/core';
-import setting from '../settings/InsureTypeSetting'
 
 const InsureTypeTab = props => {
   const data = [

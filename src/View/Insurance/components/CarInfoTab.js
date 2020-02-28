@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Grid, Typography } from '@material-ui/core';
-import setting from '../settings/CarInfoSetting';
 
 // {title: '登記類別', content: 'data 1'},
 //   {title: '車廠名稱', content: 'data 2'},
