@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
@@ -6,7 +6,8 @@ import {
   ExpansionPanelDetails,
   TextField,
   MenuItem,
-  Fab
+  Fab,
+  Grid
 } from '@material-ui/core'
 import {
   getRoleList,
@@ -41,7 +42,7 @@ export default props => {
         <Typography>投保者資料</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        <div>
+        <div className={classes.ExpansionPanelDetails}>
           <TextField
             fullWidth
             select
@@ -93,12 +94,18 @@ export default props => {
             InputLabelProps={InputLabelProps}
             label="現有車輛數目"
           />
-          <Fab variant="extended" onClick={props.prev}>
-            <Typography>上一步</Typography>
-          </Fab>
-          <Fab variant="extended" onClick={props.next}>
-            <Typography>下一步</Typography>
-          </Fab>
+          <Grid container>
+            <Grid item xs={6}>
+              <Fab className={classes.PrevButton} variant="extended" onClick={props.prev}>
+                <Typography>上一步</Typography>
+              </Fab>
+            </Grid>
+            <Grid item xs={6}>
+              <Fab className={classes.NextButton} variant="extended" onClick={props.next}>
+                <Typography>下一步</Typography>
+              </Fab>
+            </Grid>
+          </Grid>
         </div>
       </ExpansionPanelDetails>
     </ExpansionPanel>

@@ -32,18 +32,18 @@ const InputForm = props => {
   const prev = () => {
     setOpen(open - 1)
   }
-  const addDrivers = async() => {
-    console.log('before:',ownerState)
-    await setDrivers(drivers + 1)
-    await setOwnerState([...ownerState].concat({...ownerStateTemp}))
-    await setOpen(ownerState.length + 2)
-    await console.log('after:',ownerState)
+  const addDrivers = () => {
+    console.log('before:', ownerState)
+    setDrivers(drivers + 1)
+    setOwnerState([...ownerState].concat({ ...ownerStateTemp }))
+    setOpen(ownerState.length + 2)
+    console.log('after:', ownerState)
   }
   const removeDrivers = index => {
     console.log(index)
     setDrivers(drivers - 1)
     setOpen(open - 1)
-    ownerState.splice(index+1, 1)
+    ownerState.splice(index + 1, 1)
     setOwnerState(ownerState)
   }
   const finish = () => {
@@ -170,15 +170,21 @@ const InputForm = props => {
                 remove={(i) => removeDrivers}
               />
             ))}
-            <Fab variant="extended" onClick={prev}>
-              <Typography>上一步</Typography>
+            <Fab className={classes.newDriverButton} variant="extended" onClick={addDrivers}>
+              <Typography>新增車主</Typography>
             </Fab>
-            <Fab variant="extended" onClick={addDrivers}>
-            <Typography>新增車主</Typography>
-          </Fab>
-            <Fab variant="extended" onClick={next}>
-              <Typography>下一步</Typography>
-            </Fab>
+            <Grid container>
+              <Grid item xs={6}>
+                <Fab className={classes.PrevButton} variant="extended" onClick={prev}>
+                  <Typography>上一步</Typography>
+                </Fab>
+              </Grid>
+              <Grid item xs={6}>
+                <Fab className={classes.NextButton} variant="extended" onClick={next}>
+                  <Typography>下一步</Typography>
+                </Fab>
+              </Grid>
+            </Grid>
           </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>

@@ -6,7 +6,8 @@ import {
   ExpansionPanelDetails,
   TextField,
   MenuItem,
-  Fab
+  Fab,
+  Grid
 } from '@material-ui/core'
 
 import {
@@ -153,9 +154,11 @@ const ExpansionPanel1 = props => {
               </MenuItem>
             ))}
           </TextField>
-          <Fab variant="extended" onClick={props.next}>
-            <Typography>下一步</Typography>
-          </Fab>
+          <Grid container item xs={12} justify="center" alignContent="center">
+            <Fab className={classes.NextButton} variant="extended" onClick={props.next} alignItems="center">
+              <Typography>下一步</Typography>
+            </Fab>
+          </Grid>
         </div>
       </ExpansionPanelDetails>
     </ExpansionPanel>
