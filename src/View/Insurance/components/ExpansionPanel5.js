@@ -12,6 +12,7 @@ import {
   getRoleList,
   getNoClaimDiscountList
 } from '../../../api/api/driver'
+import useStyles from '../../../style/style'
 
 const InputLabelProps = {
   shrink: true,
@@ -19,6 +20,7 @@ const InputLabelProps = {
 }
 
 export default props => {
+  const classes = useStyles()
   const [roleList, setRoleList] = useState([])
   const [noClaimDiscountList, setNoClaimDiscountList] = useState([])
   useEffect(() => {
@@ -91,10 +93,10 @@ export default props => {
             InputLabelProps={InputLabelProps}
             label="現有車輛數目"
           />
-          <Fab variant="extended" onClick={props.prev} style={{ margin: '8px' }}>
+          <Fab variant="extended" onClick={props.prev}>
             <Typography>上一步</Typography>
           </Fab>
-          <Fab variant="extended" onClick={props.next} style={{ margin: '8px' }}>
+          <Fab variant="extended" onClick={props.next}>
             <Typography>下一步</Typography>
           </Fab>
         </div>

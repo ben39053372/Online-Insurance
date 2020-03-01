@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button} from '@material-ui/core'
 import { getTermsANdCondition } from '../../../api/api/quotation'
+import useStyles from '../../../style/style'
 
 export default React.memo(props => {
+  const classes = useStyles()
   const [data, setData] = useState({})
   useEffect(() => {
     getTermsANdCondition(1).then(res => {

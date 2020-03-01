@@ -14,7 +14,6 @@ const Carousel = () => {
     arrows: false,
     style: {
       textAlign: "center",
-      height: "160px",
       background: "#364d79",
       marginBottom: "30px"
     }

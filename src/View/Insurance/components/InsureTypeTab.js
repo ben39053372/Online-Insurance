@@ -1,7 +1,9 @@
 import React from 'react'
 import { Grid, Typography } from '@material-ui/core';
+import useStyles from '../../../style/style'
 
 const InsureTypeTab = props => {
+  const classes = useStyles()
   const data = [
     { title: '保險類別', contentEn: props.data.insuranceTypeEn, contentCht: props.data.insuranceTypeCht },
     { title: '投保額', contentEn: props.data.insuredAmount, contentCht: props.data.insuredAmount },

@@ -30,15 +30,21 @@ export const putInterested = quoteId => {
     url: `/v1/customer/quotation/${quoteId}/maskAsInterested`,
     method: 'put',
     headers: {
-      'Authorization': 'jwt1'
+      'Authorization': `Bearer ${localStorage.getItem('jwt1')}`
     }
   })
 }
 
-export const postClosing = quoteId => {
+export const postClosing = (quoteId,file) => {
+  let fd = new FormData()
+  fd.append('invoiceImg',file)
   return api({
     url: `/v1/customer/quotation/${quoteId}/closing`,
     method: 'post',
-    headers: {}
+    headers: {
+      'content-type': 'multipart/form-data',
+      'Authorization': `Bearer ${localStorage.getItem('jwt1')}`
+    },
+    data: fd
   })
 }

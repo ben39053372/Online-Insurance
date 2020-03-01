@@ -9,6 +9,7 @@ import { postQuotationRequest } from '../../api/api/quotation'
 import { Snackbar, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography, Grid, Fab } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert';
 import { useHistory } from "react-router-dom";
+import useStyles from '../../style/style'
 
 const ownerStateTemp = {
   dateOfBirth: {
@@ -22,6 +23,7 @@ const ownerStateTemp = {
   isMainDriver: false
 }
 const InputForm = props => {
+  const classes = useStyles()
   const history = useHistory();
   const [open, setOpen] = useState(0)
   const next = () => {
@@ -168,13 +170,13 @@ const InputForm = props => {
                 remove={(i) => removeDrivers}
               />
             ))}
-            <Fab variant="extended" onClick={prev} style={{ margin: '8px' }}>
+            <Fab variant="extended" onClick={prev}>
               <Typography>上一步</Typography>
             </Fab>
-            <Fab variant="extended" onClick={addDrivers} style={{ margin: '8px' }}>
+            <Fab variant="extended" onClick={addDrivers}>
             <Typography>新增車主</Typography>
           </Fab>
-            <Fab variant="extended" onClick={next} style={{ margin: '8px' }}>
+            <Fab variant="extended" onClick={next}>
               <Typography>下一步</Typography>
             </Fab>
           </Grid>

@@ -1,4 +1,5 @@
 import apiBroker from '../axiosBroker'
+import md5 from 'md5'
 
 export const login = (loginId, password) => {
   return apiBroker({
@@ -20,16 +21,15 @@ export const forgotPassword = email => {
   })
 }
 
-export const resetPassword = (loginId,password) => {
+export const resetPassword = (password) => {
   return apiBroker({
     url: `/v1/broker/resetPassword`,
     method: 'put',
     headers: {
-      "Authorization": 'jwt3'
+      "Authorization": 'Bearer ' + localStorage.getItem('jwt3')
     },
     data: {
-      loginId,
-      "loginPasswordMD5": password
+      "loginPasswordMD5": md5(password)
     }
   })
 }
@@ -42,7 +42,7 @@ export const getQuotationRequestList = keyword => {
       keyword: keyword || ''
     },
     headers: {
-      'Authorization': localStorage.getItem('jwt1')
+      'Authorization': 'Bearer ' +localStorage.getItem('jwt2')
     }
   })
 }
@@ -52,7 +52,7 @@ export const getQuotationRequestDetail = requestId => {
     url: `/v1/broker/quotationRequest/${requestId}/detail`,
     method: 'get',
     headers: {
-      "Authorization": 'jwt2'
+      "Authorization": 'Bearer ' +localStorage.getItem('jwt2')
     }
   })
 }
@@ -73,11 +73,11 @@ export const getPlanList = () => {
 
 export const putQuotationRequest = (requestId,data) => {
   return apiBroker({
-    url: `/v1/broker/quotationRequest/${requestId}/Qoute`,
+    url: `/v1/broker/quotationRequest/${requestId}/quote`,
     method: 'put',
     data,
     headers: {
-      "Authorization": 'jwt'
+      "Authorization": 'Bearer ' +localStorage.getItem('jwt2')
     }
   })
 }

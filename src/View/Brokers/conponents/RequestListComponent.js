@@ -1,40 +1,47 @@
 import React from 'react'
 import { Card, CardContent, Typography, Grid, IconButton, CardActionArea } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import requestListComponent from '../styles/requestListComponent'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-const useStyles = makeStyles(requestListComponent)
+import { useHistory } from 'react-router-dom'
+import useStyles from '../../../style/style'
 
 export default props => {
   const classes = useStyles()
+  const history = useHistory()
+  const sendRequest = () => {
+    console.log(props.item.requestId)
+    history.push(`/Brokers/RequestListDetail/${props.item.requestId}`)
+  } 
   return (
     <>
-      <Card className={classes.card}>
-        <CardActionArea>
-          <CardContent className={classes.CardContent}>
+      <Card>
+        <CardActionArea onClick={sendRequest}>
+          <CardContent>
             <Grid container direction="row">
               <Grid container item xs={11} direction="column">
                 <Grid item>
-                  <div className={classes.ball} style={{ backgroundColor: '#000' }} />
-                  <Typography variant='h6' className={classes.date}>{'jan 17 2020'}</Typography>
+                  {props.item.isQuoted === 1 ? <div style={{ backgroundColor: '#F0F' }} /> :
+                  props.item.isQuoted === 0 ? <div style={{ backgroundColor: '#F0F' }} /> :
+                  props.item.isInterested === 1 ? <div style={{ backgroundColor: '#FF0' }} /> :
+                  props.item.isDeleted === 1 && <div style={{ backgroundColor: '#008000' }} />}
+                  <Typography variant='h6'>{props.item.requestTimestamp.slice(0, 10)}</Typography>
                 </Grid>
                 <Grid item>
                   <Grid container>
                     <Grid item xs={3}>
-                      <Typography className={classes.title}>車廠名稱</Typography>
-                      <Typography className={classes.content}>content</Typography>
+                      <Typography>車廠名稱</Typography>
+                      <Typography>{props.item.brandEn || props.item.brandCht || 'None'}</Typography>
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography className={classes.title}>型號</Typography>
-                      <Typography className={classes.content}>content</Typography>
+                      <Typography>型號</Typography>
+                      <Typography>{props.item.carModel || 'None'}</Typography>
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography className={classes.title}>出廠年份</Typography>
-                      <Typography className={classes.content}>content</Typography>
+                      <Typography>出廠年份</Typography>
+                      <Typography>{props.item.manufactureYear || 'None'}</Typography>
                     </Grid>
                     <Grid item xs={3}>
-                      <Typography className={classes.title}>車輛數目</Typography>
-                      <Typography className={classes.content}>content</Typography>
+                      <Typography>車輛數目</Typography>
+                      <Typography>{props.item.ownCarsCount || 'None'}</Typography>
                     </Grid>
                   </Grid>
                 </Grid>

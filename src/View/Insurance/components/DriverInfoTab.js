@@ -1,7 +1,9 @@
 import React from 'react'
 import {Grid, Typography} from '@material-ui/core'
+import useStyles from '../../../style/style'
 
 const DriverInfoTab = props => {
+  const classes = useStyles()
   const data = [
     { title: '出生日期', contentEn: props.data.driverBirthday, contentCht: props.data.driverBirthday },
     { title: '所屬行業', contentEn: props.data.jobIndustryNameEn, contentCht: props.data.jobIndustryNameCht },

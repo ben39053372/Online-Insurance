@@ -16,12 +16,15 @@ import {
   getBodyTypeList
 } from '../../../api/api/car'
 
+import useStyles from '../../../style/style'
+
 const InputLabelProps = {
   shrink: true,
   classes: {}
 }
 
 const ExpansionPanel1 = props => {
+  const classes = useStyles()
   const [registerTypeList, setRegisterTypeList] = useState([])
   const [brandList, setBrandList] = useState([])
   const [manufactureYearList, setManufactureYearList] = useState([])
@@ -43,12 +46,12 @@ const ExpansionPanel1 = props => {
     x()
   }, [])
   return (
-    <ExpansionPanel expanded={props.open === 0}>
+    <ExpansionPanel className={classes.ExpansionPanel} expanded={props.open === 0}>
       <ExpansionPanelSummary>
         <Typography>車輛資料</Typography>
       </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
-        <div>
+      <ExpansionPanelDetails >
+        <div className={classes.ExpansionPanelDetails}>
           <TextField
             fullWidth
             select
@@ -150,7 +153,7 @@ const ExpansionPanel1 = props => {
               </MenuItem>
             ))}
           </TextField>
-          <Fab variant="extended" onClick={props.next} style={{ margin: '8px' }}>
+          <Fab variant="extended" onClick={props.next}>
             <Typography>下一步</Typography>
           </Fab>
         </div>

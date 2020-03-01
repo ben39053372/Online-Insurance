@@ -5,7 +5,7 @@ import CarInfo from '../View/Insurance/CarInfo';
 import RequestList from '../View/Brokers/RequestList'
 import RequestListDetail from '../View/Brokers/RequestListDetail'
 import Reset from '../View/Brokers/Reset'
-import { ishaveTokenOne } from '../utils/Auth'
+import { ishaveTokenOne, ishaveTokenTwo } from '../utils/Auth'
 import { Redirect } from 'react-router-dom'
 import React from 'react'
 
@@ -20,7 +20,8 @@ const routes = [
         name: 'Sign Up',
         path: '/Brokers/Login',
         component: SignUp,
-        exact: false
+        exact: false,
+        render: () => ishaveTokenTwo() ? <Redirect to='/Brokers/RequestList'/> : <SignUp />
       },
       {
         name: 'Reset Password',
@@ -28,15 +29,16 @@ const routes = [
         component: Reset,
       },
       {
-        name: 'RequestList',
-        path: '/Brokers/RequestList',
-        component: RequestList,
+        name: 'RequestListDetail',
+        path: '/Brokers/RequestListDetail/:id',
+        component: RequestListDetail,
         exact: false
       },
       {
-        name: 'RequestListDetail',
-        path: '/Brokers/RequestListDetail',
-        component: RequestListDetail,
+        name: 'RequestList',
+        path: '/Brokers/RequestList',
+        component: RequestList,
+        render: () => ishaveTokenTwo() ? <RequestList /> : <Redirect to='/Brokers/Login'/>,
         exact: false
       }
     ]
@@ -51,7 +53,7 @@ const routes = [
         path: '/Customers/home',
         component: Home,        
         exact: false,
-        render: () => ishaveTokenOne() ? (<Redirect to='/Customers/CarInfo' /> ) : (<Home/>) 
+        render: () => ishaveTokenOne() ? (<Redirect to='/Customers/CarInfo' /> ):(<Home/>)
       },
       {
         name: 'Car Info',

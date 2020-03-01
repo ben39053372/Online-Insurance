@@ -8,6 +8,7 @@ import {
   Fab,
   Checkbox
 } from '@material-ui/core'
+import useStyles from '../../../style/style'
 
 const InputLabelProps = {
   shrink: true,
@@ -15,6 +16,7 @@ const InputLabelProps = {
 }
 
 const ExpansionPanel4 = props => {
+  const classes = useStyles()
   return (
     <ExpansionPanel expanded={props.open === 4 + props.offset}>
       <ExpansionPanelSummary>
@@ -57,10 +59,10 @@ const ExpansionPanel4 = props => {
           />
           <Typography variant='inherit'>我已閱讀條項與細則</Typography>
           <br/>
-          <Fab variant="extended" onClick={props.prev} style={{ margin: '8px' }}>
+          <Fab variant="extended" onClick={props.prev}>
             <Typography>上一步</Typography>
           </Fab>
-          <Fab variant="extended" onClick={props.finish} style={{ margin: '8px' }}>
+          <Fab variant="extended" onClick={props.finish}>
             <Typography>完成</Typography>
           </Fab>
         </div>

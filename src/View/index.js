@@ -4,6 +4,7 @@ import BreadcrumbBar from '../component/BreadcrumbBar'
 import {CssBaseline, Container} from '@material-ui/core'
 
 const Index = ({route}) => {
+
   return (
     <Container>
       <CssBaseline />

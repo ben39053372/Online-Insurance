@@ -4,8 +4,10 @@ import SwipeableViews from 'react-swipeable-views'
 import Tab1 from './CarInfoTab'
 import Tab2 from './DriverInfoTab'
 import Tab3 from './InsureTypeTab'
+import useStyles from '../../../style/style'
 
 const CarInfo = props => {
+  const classes = useStyles()
   const [tabSelected, setTabSelected] = useState(0)
   const handleChange = (event, newValue) => {
     setTabSelected(newValue);

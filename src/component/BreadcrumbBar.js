@@ -10,17 +10,18 @@ const BreadcrumbBar = () => {
   const matchedRoutes = matchRoutes(routes, location.pathname)
   return (
     <>
-      <Breadcrumbs aria-label="breadcrumb">
-        <IconButton color="inherit" aria-label="open drawer">
+      <Breadcrumbs>
+        <IconButton color="inherit">
           <Menu />
         </IconButton>
         {matchedRoutes.map((matchRoute, i) => {
+          console.log(matchRoute)
           const { path, name } = matchRoute.route;
           const isActive = path === location.pathname;
           return isActive ? (
-            <Link component='span' underline="none" aria-current="page" color="textPrimary" key={i} >{name}</Link>
+            <Link component='span' underline="none" color="textPrimary" key={i} >{name}</Link>
           ) : (
-              <Link color='inherit' key={i} href={path}>{name}</Link>
+              <Link color='inherit' key={i}>{name}</Link>
             )
         })}
       </Breadcrumbs>

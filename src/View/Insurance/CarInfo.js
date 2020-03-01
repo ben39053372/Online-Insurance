@@ -1,9 +1,12 @@
 import React,{useEffect, useState} from 'react'
 import InsureCarInfo from './components/insureCarInfo'
 import QuoteDetails from './components/QuoteDetails'
+import QuoteDetailsEmpty from './components/QuoteDetailsEmpty'
 import { getQuotationRequestSummary } from '../../api/api/quotation'
+import useStyles from '../../style/style'
 
 const CarInfo = () => {
+  const classes = useStyles()
   const [ latestQuotationRequest, setLatestQuotationRequest] = useState({})
   const [ Quotation, setQuotation ] = useState([])
 
@@ -20,7 +23,13 @@ const CarInfo = () => {
   return (
     <>
       <InsureCarInfo data={latestQuotationRequest}/>
-      <QuoteDetails data={Quotation}/>
+      {Quotation.length === 0 ? (
+        <QuoteDetailsEmpty />
+        // <QuoteDetails data={Quotation}/>
+      ) : (
+        <QuoteDetails data={Quotation}/>
+        // <QuoteDetailsEmpty />
+      )}
     </>
   )
 }

@@ -14,6 +14,7 @@ import {
   getJobIndustryList,
   getOcupationList,
 } from '../../../api/api/driver'
+import useStyles from '../../../style/style'
 
 const InputLabelProps = {
   shrink: true,
@@ -21,6 +22,7 @@ const InputLabelProps = {
 }
 
 const ExpansionPanel2 = props => {
+  const classes = useStyles()
   const [jobIndustryList, setJobIndustryList] = useState([])
   const [ocupationList, setOcupationList] = useState([])
   useEffect(() => {
@@ -39,146 +41,132 @@ const ExpansionPanel2 = props => {
     x()
     // eslint-disable-next-line
   }, [])
-  useEffect(()=>{
+  useEffect(() => {
     console.log(props)
-  },[props])
+  }, [props])
   return (
-    // <ExpansionPanel expanded={props.offset === props.index}>
-    //   <ExpansionPanelSummary>
-    //     <Typography>駕駛者{props.index+1}資料</Typography>
-    //   </ExpansionPanelSummary>
-    //   <ExpansionPanelDetails>
-        <div style={{marginBottom: '10px'}}>
-          <Typography variant="subtitle1">駕駛者{props.index + 1}</Typography>
-          <Grid container justify='space-around'>
-            <Grid item xs={4} >
-              <InputLabel>Year</InputLabel>
-              <Select
-                value={props.state[props.index].dateOfBirth.year}
-                onChange={(e) => {
-                  let temp = props.state
-                  temp[props.index].dateOfBirth.year = e.target.value
-                  props.setState([...temp])
-                }}
-              >
-                {[...Array(80)].map((e, i) => {
-                  return <MenuItem key={i + "year"} value={new Date().getFullYear() - 18 - i}>{(new Date().getFullYear() - 18) - i}</MenuItem>
-                })}
-              </Select>
-            </Grid>
-            <Grid item xs={4}>
-              <InputLabel>Month</InputLabel>
-              <Select
-                value={props.state[props.index].dateOfBirth.month}
-                onChange={(e) => {
-                  let temp = props.state
-                  temp[props.index].dateOfBirth.month = e.target.value
-                  props.setState([...temp])
-                }}
-              >
-                {[...Array(12)].map((e, i) => {
-                  return <MenuItem key={i + "month"} value={i + 1 }>{i + 1}</MenuItem>
-                })}
-              </Select>
-            </Grid>
-            <Grid item xs={4}>
-              <InputLabel>Date</InputLabel>
-              <Select
-                value={props.state[props.index].dateOfBirth.date}
-                onChange={(e) => {
-                  let temp = props.state
-                  temp[props.index].dateOfBirth.date = e.target.value
-                  props.setState([...temp])
-                }}
-              >
-                {[...Array(31)].map((e, i) => {
-                  return <MenuItem key={i + "month"} value={i + 1}>{i + 1}</MenuItem>
-                })}
-              </Select>
-            </Grid>
-          </Grid>
-          <TextField
-            fullWidth
-            select
-            value={props.state[props.index].industry}
+    <div className={classes.ExpansionPanelDetails}>
+      <Typography variant="subtitle1">駕駛者{props.index + 1}</Typography>
+      <Grid container justify='space-around'>
+        <Grid item xs={4} >
+          <InputLabel>Year</InputLabel>
+          <Select
+            className={classes.dateSelect}
+            value={props.state[props.index].dateOfBirth.year}
             onChange={(e) => {
               let temp = props.state
-              temp[props.index].industry = e.target.value
+              temp[props.index].dateOfBirth.year = e.target.value
               props.setState([...temp])
             }}
-            InputLabelProps={InputLabelProps}
-            label="所屬行業"
           >
-            {jobIndustryList.map((item, i) => (
-              <MenuItem key={`option${i}${item.nameEN}`} value={item.id}>
-                {item.nameCht}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            fullWidth
-            type="number"
-            value={props.state[props.index].drivingExperience}
+            {[...Array(80)].map((e, i) => {
+              return <MenuItem key={i + "year"} value={new Date().getFullYear() - 18 - i}>{(new Date().getFullYear() - 18) - i}</MenuItem>
+            })}
+          </Select>
+        </Grid>
+        <Grid item xs={4}>
+          <InputLabel>Month</InputLabel>
+          <Select
+            className={classes.dateSelect}
+            value={props.state[props.index].dateOfBirth.month}
             onChange={(e) => {
               let temp = props.state
-              temp[props.index].drivingExperience = e.target.value
+              temp[props.index].dateOfBirth.month = e.target.value
               props.setState([...temp])
             }}
-            InputLabelProps={InputLabelProps}
-            label="駕駛經驗(年)"
-          />
-          <TextField
-            fullWidth
-            select
-            value={props.state[props.index].position}
-            onChange={(e) => {
-              let temp = props.state
-              temp[props.index].position = e.target.value
-              props.setState([...temp])
-            }}
-            InputLabelProps={InputLabelProps}
-            label="職位"
           >
-            {ocupationList.map((item, i) => (
-              <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
-                {item.nameCht}
-              </MenuItem>
-            ))}
-          </TextField>
-          <Checkbox
-            checked={props.state[props.index].isMainDriver}
-            value={props.state[props.index].isMainDriver}
-            onChange={async ()=> {
+            {[...Array(12)].map((e, i) => {
+              return <MenuItem key={i + "month"} value={i + 1}>{i + 1}</MenuItem>
+            })}
+          </Select>
+        </Grid>
+        <Grid item xs={4}>
+          <InputLabel>Date</InputLabel>
+          <Select
+            className={classes.dateSelect}
+            value={props.state[props.index].dateOfBirth.date}
+            onChange={(e) => {
               let temp = props.state
-              await temp.forEach((value) => {
-                value.isMainDriver = false
-              })
-              temp[props.index].isMainDriver = true
+              temp[props.index].dateOfBirth.date = e.target.value
               props.setState([...temp])
             }}
-            color="primary"
-          />
-          <Typography variant='inherit'>主要車主</Typography>
-          <br/>
-          {/* <Fab variant="extended" onClick={props.prev} style={{ margin: '8px' }}>
-            <Typography>上一步</Typography>
-          </Fab> */}
-          {/* <Fab variant="extended" onClick={props.add} style={{ margin: '8px' }}>
-            <Typography>新增車主</Typography>
-          </Fab> */}
-          {props.index !== 0 && (
-            <Fab variant="extended" onClick={props.remove(props.index)} style={{ margin: '8px' }}>
-              <Typography>移除車主</Typography>
-            </Fab>
-          )}
-          <Divider />
-          {/* <Fab variant="extended" onClick={props.next} style={{ margin: '8px' }}>
-            <Typography>下一步</Typography>
-          </Fab> */}
-        </div>
-
-    //   </ExpansionPanelDetails>
-    // </ExpansionPanel>
+          >
+            {[...Array(31)].map((e, i) => {
+              return <MenuItem key={i + "month"} value={i + 1}>{i + 1}</MenuItem>
+            })}
+          </Select>
+        </Grid>
+      </Grid>
+      <TextField
+        fullWidth
+        select
+        value={props.state[props.index].industry}
+        onChange={(e) => {
+          let temp = props.state
+          temp[props.index].industry = e.target.value
+          props.setState([...temp])
+        }}
+        InputLabelProps={InputLabelProps}
+        label="所屬行業"
+      >
+        {jobIndustryList.map((item, i) => (
+          <MenuItem key={`option${i}${item.nameEN}`} value={item.id}>
+            {item.nameCht}
+          </MenuItem>
+        ))}
+      </TextField>
+      <TextField
+        fullWidth
+        type="number"
+        value={props.state[props.index].drivingExperience}
+        onChange={(e) => {
+          let temp = props.state
+          temp[props.index].drivingExperience = e.target.value
+          props.setState([...temp])
+        }}
+        InputLabelProps={InputLabelProps}
+        label="駕駛經驗(年)"
+      />
+      <TextField
+        fullWidth
+        select
+        value={props.state[props.index].position}
+        onChange={(e) => {
+          let temp = props.state
+          temp[props.index].position = e.target.value
+          props.setState([...temp])
+        }}
+        InputLabelProps={InputLabelProps}
+        label="職位"
+      >
+        {ocupationList.map((item, i) => (
+          <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
+            {item.nameCht}
+          </MenuItem>
+        ))}
+      </TextField>
+      <Checkbox
+        checked={props.state[props.index].isMainDriver}
+        value={props.state[props.index].isMainDriver}
+        onChange={async () => {
+          let temp = props.state
+          await temp.forEach((value) => {
+            value.isMainDriver = false
+          })
+          temp[props.index].isMainDriver = true
+          props.setState([...temp])
+        }}
+        color="primary"
+      />
+      <Typography variant='inherit'>主要車主</Typography>
+      <br />
+      {props.index !== 0 && (
+        <Fab variant="extended" onClick={props.remove(props.index)}>
+          <Typography>移除車主</Typography>
+        </Fab>
+      )}
+      <Divider />
+    </div>
   )
 }
 

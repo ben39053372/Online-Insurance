@@ -21,8 +21,13 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import CloseIcon from '@material-ui/icons/Close';
 import md5 from 'md5'
+import { useHistory } from 'react-router-dom'
 import { login, forgotPassword} from '../../api/api/broker'
+import useStyles from '../../style/style'
+
 const SignUp = () => {
+  const classes = useStyles()
+  const history = useHistory();
   const [open, setOpen] = useState(false);
   const [loginState, setLoginState] = useState('Error')
   const [userName, setUserName] = useState('')
@@ -40,7 +45,8 @@ const SignUp = () => {
       login(userName, md5(password))
         .then(res => {
           if (res.status === 200) {
-            localStorage.setItem('jwt1', res.staffToken)
+            localStorage.setItem('jwt2', res.data.staffToken)
+            history.push()
             setLoginState('')
             setOpen(false)
           } else {
@@ -80,7 +86,6 @@ const SignUp = () => {
             setEmailState(res.data.error)
             setDialogAlertOpen(true)
           }
-
         })
         .catch(err => {
           setEmailState(err)
@@ -94,7 +99,7 @@ const SignUp = () => {
   }
   return (
     <>
-      <div style={{ width: '100%', height: '180px', background: '#777' }}>
+      <div>
         Banner
       </div>
       <Snackbar
@@ -150,12 +155,11 @@ const SignUp = () => {
           </Button>
         </DialogActions>
       </Dialog>
-      <Paper style={{ marginBottom: '16px' }}>
+      <Paper>
         <Typography>
           登入
         </Typography>
         <TextField
-          style={{ margin: '8px', width: '95%' }}
           id="input-with-icon-textfield"
           label="Broker ID"
           value={userName}
@@ -169,7 +173,6 @@ const SignUp = () => {
           }}
         />
         <TextField
-          style={{ margin: '8px', width: '95%' }}
           id="input-with-icon-textfield"
           label="Password"
           value={password}
@@ -201,25 +204,23 @@ const SignUp = () => {
             {loginState}
           </Alert>
         </Collapse>
-        <Grid container alignItems="center" justify="center" style={{ padding: '16px' }}>
-          <Grid container item xs={6} style={{ justifyContent: 'center' }}>
+        <Grid container alignItems="center" justify="center">
+          <Grid container item xs={6}>
             <Fab
               variant="extended"
               size="medium"
               color="primary"
-              style={{ width: '120px' }}
               onClick={onForgetClick}
             >
               <NavigationIcon />
               忘記密碼
             </Fab>
           </Grid>
-          <Grid container item xs={6} style={{ justifyContent: 'center' }}>
+          <Grid container item xs={6}>
             <Fab
               variant="extended"
               size="medium"
               color="primary"
-              style={{ width: '120px' }}
               onClick={onLoginClick}
             >
               <NavigationIcon />
