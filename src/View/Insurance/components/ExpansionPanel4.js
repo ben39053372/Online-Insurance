@@ -6,7 +6,8 @@ import {
   ExpansionPanelDetails,
   TextField,
   Fab,
-  Checkbox
+  Checkbox,
+  Grid
 } from '@material-ui/core'
 import useStyles from '../../../style/style'
 
@@ -58,13 +59,19 @@ const ExpansionPanel4 = props => {
             color="primary"
           />
           <Typography variant='inherit'>我已閱讀條項與細則</Typography>
-          <br/>
-          <Fab variant="extended" onClick={props.prev}>
-            <Typography>上一步</Typography>
-          </Fab>
-          <Fab variant="extended" onClick={props.finish}>
-            <Typography>完成</Typography>
-          </Fab>
+          <br />
+          <Grid container>
+            <Grid item xs={6}>
+              <Fab className={classes.PrevButton} variant="extended" onClick={props.prev}>
+                <Typography>上一步</Typography>
+              </Fab>
+            </Grid>
+            <Grid item xs={6}>
+              <Fab className={classes.NextButton} variant="extended" onClick={props.finish}>
+                <Typography>完成</Typography>
+              </Fab>
+            </Grid>
+          </Grid>
         </div>
       </ExpansionPanelDetails>
     </ExpansionPanel>

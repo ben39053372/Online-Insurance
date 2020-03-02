@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
   NextButton:{
     margin: '10px',
-    backgroundColor: '#a00',
+    backgroundColor: '#800',
     color: '#FFF',
     width: '90%',
     fontWeight: 'bold',
@@ -23,15 +23,28 @@ const useStyles = makeStyles({
     backgroundColor: '#FFF',
     color: '#000',
     width: '90%',
-    border: '1px solid #a00',
+    border: '1px solid #800',
     fontWeight: 'bold',
     boxShadow: 'None'
   },
-  newDriverButton: {
+  DriverButton: {
     width: '100%',
     margin: '10px',
-    backgroundColor: '#EEE',
+    backgroundColor: '#CCC',
     boxShadow: 'None'
+  },
+  header: {
+    color: '#FFF',
+    width: '100%',
+    textDecoration: 'none',
+  },
+  comprehendFab: {
+    float: 'right',
+    boxShadow: 'None',
+    backgroundColor: '#CCC',
+  },
+  ".MuiTextField-root":{
+    backgroundColor: '#000'
   }
 })
 

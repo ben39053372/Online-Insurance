@@ -160,11 +160,15 @@ const ExpansionPanel2 = props => {
       />
       <Typography variant='inherit'>主要車主</Typography>
       <br />
+
       {props.index !== 0 && (
-        <Fab variant="extended" onClick={props.remove(props.index)}>
-          <Typography>移除車主</Typography>
-        </Fab>
+        <Grid container item xs={12} alignItems="center">
+          <Fab className={classes.DriverButton} variant="extended" onClick={props.remove(props.index)}>
+            <Typography >移除車主</Typography>
+          </Fab>
+        </Grid>
       )}
+
       <Divider />
     </div>
   )

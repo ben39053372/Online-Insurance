@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
@@ -7,7 +7,8 @@ import {
   TextField,
   Fab,
   MenuItem,
-  InputLabel
+  InputLabel,
+  Grid
 } from '@material-ui/core'
 import Terms from './TermsAndCondition'
 import useStyles from '../../../style/style'
@@ -26,13 +27,13 @@ const insureType = [
 const ExpansionPanel3 = props => {
   const classes = useStyles()
   const [termOpen, setTermOpen] = useState(false)
-  useEffect(()=>{
+  useEffect(() => {
 
-  },[])
+  }, [])
   const handleTermsClick = () => {
     setTermOpen(true)
   }
-  
+
   const handleTermsClose = () => {
     setTermOpen(false)
   }
@@ -45,7 +46,7 @@ const ExpansionPanel3 = props => {
         <Terms open={termOpen} onClose={handleTermsClose} />
         <div>
           <InputLabel>網上購買汽車保險</InputLabel>
-          <Fab size="medium" variant="extended" onClick={handleTermsClick} >了解更多</Fab>
+          <Fab className={classes.comprehendFab} size="medium" variant="extended" onClick={handleTermsClick} >了解更多</Fab>
           <TextField
             fullWidth
             select
@@ -73,12 +74,18 @@ const ExpansionPanel3 = props => {
             InputLabelProps={InputLabelProps}
             label="全保投保額(HK$) #"
           />
-          <Fab variant="extended" onClick={props.prev}>
-            <Typography>上一步</Typography>
-          </Fab>
-          <Fab variant="extended" onClick={props.next}>
-            <Typography>下一步</Typography>
-          </Fab>
+          <Grid container>
+            <Grid item xs={6}>
+              <Fab className={classes.PrevButton} variant="extended" onClick={props.prev}>
+                <Typography>上一步</Typography>
+              </Fab>
+            </Grid>
+            <Grid item xs={6}>
+              <Fab className={classes.NextButton} variant="extended" onClick={props.next}>
+                <Typography>下一步</Typography>
+              </Fab>
+            </Grid>
+          </Grid>
         </div>
       </ExpansionPanelDetails>
     </ExpansionPanel>
