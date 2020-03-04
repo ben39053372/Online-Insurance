@@ -1,16 +1,43 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  ExpansionPanelDetails:{
+  ExpansionPanelDetails: {
     width: '100%'
   },
-  dateSelect:{
-    width: '95%'
+  dateSelect: {
+    width: '95%',
+    paddingLeft: '5px',
+    root: {
+      padding: '5px'
+    }
   },
-  MuiSelect:{
+  mainGrid: {
+    marginTop: '10px',
+    marginBottom: '10px'
+  },
+  leftGrid: {
+    backgroundColor: '#DDD',
+    padding: '10px',
+    border: '1px solid #999',
+    minHeight: '90px'
+  },
+  rightButton: {
+    float: 'right'
+  },
+  rightGrid: {
+    // border: '1px solid #666'
+    border: '1px solid #999',
+    padding: '10px',
+    minHeight: '90px'
+  },
+  tabGrid: {
+    padding: '8px',
+    border: '1px solid #EEE'
+  },
+  MuiSelect: {
     width: '10px'
   },
-  NextButton:{
+  NextButton: {
     margin: '10px',
     backgroundColor: '#800',
     color: '#FFF',
@@ -18,7 +45,7 @@ const useStyles = makeStyles({
     fontWeight: 'bold',
     boxShadow: 'None'
   },
-  PrevButton:{
+  PrevButton: {
     margin: '10px',
     backgroundColor: '#FFF',
     color: '#000',
@@ -43,7 +70,7 @@ const useStyles = makeStyles({
     boxShadow: 'None',
     backgroundColor: '#CCC',
   },
-  ".MuiTextField-root":{
+  ".MuiTextField-root": {
     backgroundColor: '#000'
   }
 })

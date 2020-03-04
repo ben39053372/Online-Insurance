@@ -38,14 +38,14 @@ export default props => {
   const [planTypeList, setPlanTypeList] = useState([])
   useEffect(() => {
     getCompanyList().then(res => {
-      if(res.status === 200){
+      if (res.status === 200) {
         setCompanyList(res.data.companyList)
       } else {
         console.log(res.data.error)
       }
     })
     getPlanList().then(res => {
-      if(res.status === 200){
+      if (res.status === 200) {
         setPlanTypeList(res.data.planTypeList)
       } else {
         console.log(res.data.error)
@@ -72,71 +72,71 @@ export default props => {
       <Grid container direction="row">
         <Grid item xs={6} container direction="column">
           {setting.map((array, i) => (
-            <Grid container item key={i} alignItems="center">
+            <Grid container item key={i} className={classes.leftGrid} alignItems="center">
               {(array).map((arr, j) => (
                 <Typography key={arr} display="block">{arr}</Typography>
               ))}
             </Grid>
           ))}
-          <Grid item xs={6} container direction="column">
-            {Object.keys(inputData).map((item, i) => (
-              <Grid container item key={i} alignItems="center">
-                {item === "planCompanyId" ? (
-                  <TextField
-                    fullWidth
-                    select
-                    value={inputData[item]}
-                    onChange={e => onInputChange(e, item)}
-                    type="number"
-                  >
-                    {companyList.map( item => (
-                      <MenuItem key={item.nameEn} value={item.id}>
-                        {item.nameEn || item.nameCht}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                ): item === "insurancePlanTypeId"? (
-                  <TextField
-                    fullWidth
-                    select
-                    value={inputData[item]}
-                    onChange={e => onInputChange(e, item)}
-                    type="number"
-                  >
-                    {planTypeList.map( item=> (
-                      <MenuItem key={item.nameEn} value={item.id}>
-                        {item.nameEn || item.nameCht}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                ) : (
-                  <TextField
+        </Grid>
+        <Grid item xs={6} container direction="column">
+          {Object.keys(inputData).map((item, i) => (
+            <Grid container item key={i} className={classes.rightGrid} alignItems="center">
+              {item === "planCompanyId" ? (
+                <TextField
                   fullWidth
+                  select
                   value={inputData[item]}
                   onChange={e => onInputChange(e, item)}
                   type="number"
-                />
-                )}
-                
-              </Grid>
-            ))}
-          </Grid>
+                >
+                  {companyList.map(item => (
+                    <MenuItem key={item.nameEn} value={item.id}>
+                      {item.nameEn || item.nameCht}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              ) : item === "insurancePlanTypeId" ? (
+                <TextField
+                  fullWidth
+                  select
+                  value={inputData[item]}
+                  onChange={e => onInputChange(e, item)}
+                  type="number"
+                >
+                  {planTypeList.map(item => (
+                    <MenuItem key={item.nameEn} value={item.id}>
+                      {item.nameEn || item.nameCht}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              ) : (
+                    <TextField
+                      fullWidth
+                      value={inputData[item]}
+                      onChange={e => onInputChange(e, item)}
+                      type="number"
+                    />
+                  )}
+
+            </Grid>
+          ))}
         </Grid>
       </Grid>
       <div>
         <Typography display="inline">車主資料</Typography>
-          {props.data.isUserInterested === 0 ? (
-            <Typography>未授權顯示</Typography>
-          ) : (
-              <Typography>{props.data.customerPhoneNumber || 'None'}</Typography>
-            )}
+        {props.data.isUserInterested === 0 ? (
+          <Typography>未授權顯示</Typography>
+        ) : (
+            <Typography>{props.data.customerPhoneNumber || 'None'}</Typography>
+          )}
       </div>
       <div>
-      <Typography display="inline">你的報價將會即時電郵給車主</Typography>
+        <Typography display="inline">你的報價將會即時電郵給車主</Typography>
         <Button variant="contained" onClick={onSubmit} color="primary">
           提交報價
           </Button>
-        
+
       </div>
     </div>
   )

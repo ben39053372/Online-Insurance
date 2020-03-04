@@ -9,15 +9,15 @@ export default props => {
   const history = useHistory()
   const setting = [
     { '保險公司': props.item.insuranceCompanyNameEn || props.item.insuranceCompanyNameCht },
-    { '投保「全保」 (包括第三者責任保險)': props.item.insurancePlanTypeEn || props.item.insurancePlanTypeCht },
+    { '投保「全保」 * (包括第三者責任保險)': props.item.insurancePlanTypeEn || props.item.insurancePlanTypeCht },
     { '特惠一年保養': props.item.oneYearInsuranceFee },
-    { 'General Excess 自身車輛財物損毀': props.item.generalExcess },
-    { 'Theft Loss Excess 全車被盗': props.item.theftLossExcess },
-    { 'Parking 自身車輛財物損毀 於停泊時': props.item.parking },
-    { 'TPPD 第三者財物損失-投保人': props.item.TPPD },
-    { 'TPPD-Y 財物損失-低於25歲之司機': props.item.TPPDY },
-    { 'TPPD-I 財物損失-少於2年駕駛經驗': props.item.TPPDI },
-    { 'TPPD-U 財物損失-不記名司機': props.item.TPPDU }
+    { 'General Excess * 自身車輛財物損毀': props.item.generalExcess },
+    { 'Theft Loss Excess * 全車被盗': props.item.theftLossExcess },
+    { 'Parking * 自身車輛財物損毀 * 於停泊時': props.item.parking },
+    { 'TPPD * 第三者財物損失-投保人': props.item.TPPD },
+    { 'TPPD-Y * 財物損失-低於25歲之司機': props.item.TPPDY },
+    { 'TPPD-I * 財物損失-少於2年駕駛經驗': props.item.TPPDI },
+    { 'TPPD-U * 財物損失-不記名司機': props.item.TPPDU }
   ]
   const interested = () => {
     putInterested(props.item.quotationId).then(res => {
@@ -50,15 +50,15 @@ export default props => {
   }
   return (
     <>
-      <Grid container >
+      <Grid container className={classes.mainGrid}>
         {setting.map((item, i) => (
-          <React.Fragment key={item + i}>
-            <Grid item xs={6}>
-              {Object.keys(item)[0].split(' ').map(string => (
+          <React.Fragment key={i}>
+            <Grid item xs={6} className={classes.leftGrid}>
+              {Object.keys(item)[0].split('*').map(string => (
                 <Typography key={string}>{string}</Typography>
               ))}
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6} className={classes.rightGrid}>
               <Typography>{Object.values(item)[0]}</Typography>
             </Grid>
           </React.Fragment>
@@ -66,24 +66,24 @@ export default props => {
       </Grid>
       {!interestedState ? (
         <div>
-          <Button variant="contained" onClick={interested} color="primary" >
+          <Button variant="contained" className={classes.rightButton} onClick={interested} color="primary" >
             請顯示
-        </Button>
+          </Button>
           <Typography>step 1</Typography>
           <Typography>我有興趣，請顯示雙方聯絡
         </Typography>
         </div>
-      ):(
-        <div>
-          <Typography>對方聯絡:</Typography>
-          <Typography>{props.item.brokerPhoneNumber}</Typography>
-        </div>
-      )}
+      ) : (
+          <div>
+            <Typography>對方聯絡:</Typography>
+            <Typography>{props.item.brokerPhoneNumber}</Typography>
+          </div>
+        )}
       <div>
-        <Button variant="contained" disabled={uploadButtonDisable} onClick={uploadInvoice} color="primary">
+        <Button variant="contained" className={classes.rightButton} disabled={uploadButtonDisable} onClick={uploadInvoice} color="primary">
           換領禮品
         </Button>
-        <input type="file" id="file" ref={fileUploader} onChange={onFileChange} />
+        <input type="file" id="file" style={{ display: 'none' }} ref={fileUploader} onChange={onFileChange} />
         <Typography>step 2</Typography>
         <Typography>請上載保單主頁以換領禮品</Typography>
       </div>

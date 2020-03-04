@@ -5,7 +5,7 @@ import useStyles from '../../../style/style'
 const DriverInfoTab = props => {
   const classes = useStyles()
   const data = [
-    { title: '出生日期', contentEn: props.data.driverBirthday, contentCht: props.data.driverBirthday },
+    { title: '出生日期', contentEn: props.data.driverBirthday, contentCht: props.data.driverBirthday},
     { title: '所屬行業', contentEn: props.data.jobIndustryNameEn, contentCht: props.data.jobIndustryNameCht },
     { title: '職業', contentEn: props.data.ocupationNameEn, contentCht: props.data.ocupationNameEn },
     { title: '駕駛經驗(年)', contentEn: props.data.drivingExpInYear, contentCht: props.data.drivingExpInYear },
@@ -16,9 +16,9 @@ const DriverInfoTab = props => {
     <Grid container>
       {data.map((obj,index) => {
         return (
-          <Grid item xs={4} key={index+"DriverInfoTab"}>
+          <Grid item xs={4} key={index+"DriverInfoTab"} className={classes.tabGrid}>
             <Typography color="textSecondary" gutterBottom>{obj.title}</Typography>
-            <Typography align="center">{obj.contentEn || obj.contentCht || 'None'}</Typography>
+            <Typography align="left">{obj.contentEn || obj.contentCht || 'None'}</Typography>
           </Grid>
         )
       })}

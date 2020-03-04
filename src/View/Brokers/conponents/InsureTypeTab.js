@@ -14,9 +14,9 @@ const InsureTypeTab = props => {
     <Grid container>
       {data.map((obj,index) => {
         return (
-          <Grid item xs={4} key={index+"InsureTypeTab"}>
+          <Grid item xs={4} key={index+"InsureTypeTab"} className={classes.tabGrid}>
             <Typography color="textSecondary" gutterBottom>{obj.title}</Typography>
-            <Typography align="center">{obj.contentEn || obj.contentCht || 'None'}</Typography>
+            <Typography align="left">{obj.contentEn || obj.contentCht || 'None'}</Typography>
           </Grid>
         )
       })}
