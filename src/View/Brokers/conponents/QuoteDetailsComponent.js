@@ -74,7 +74,7 @@ export default props => {
           {setting.map((array, i) => (
             <Grid container item key={i} className={classes.leftGrid} alignItems="center">
               {(array).map((arr, j) => (
-                <Typography key={arr} display="block">{arr}</Typography>
+                <Typography key={arr} className={classes.GridText} variant="body2" display="block">{arr}</Typography>
               ))}
             </Grid>
           ))}
@@ -85,6 +85,10 @@ export default props => {
               {item === "planCompanyId" ? (
                 <TextField
                   fullWidth
+                  className={classes.quoteTextField}
+                  inputProps={{
+                    className: classes.quoteTextField.input
+                  }}
                   select
                   value={inputData[item]}
                   onChange={e => onInputChange(e, item)}
@@ -99,6 +103,7 @@ export default props => {
               ) : item === "insurancePlanTypeId" ? (
                 <TextField
                   fullWidth
+                  className={classes.quoteTextField}
                   select
                   value={inputData[item]}
                   onChange={e => onInputChange(e, item)}
@@ -113,6 +118,7 @@ export default props => {
               ) : (
                     <TextField
                       fullWidth
+                      className={classes.quoteTextField}
                       value={inputData[item]}
                       onChange={e => onInputChange(e, item)}
                       type="number"

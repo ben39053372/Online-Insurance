@@ -3,19 +3,34 @@ import { createMuiTheme } from '@material-ui/core/styles';
 export default createMuiTheme({
   overrides: {
     // Style sheet name ⚛️
+    MuiAppBar: {
+      root: {
+        background: '#00f'
+      }
+    },
     MuiTextField: {
       // Name of the rule
       root: {
         // Some CSS
-        margin: '10px 0px',
-        borderRadius: '50px',
+        margin: '5px 0px',
+        borderRadius: '10px',
         backgroundColor: '#FFF',
       },
+    },
+    MuiExpansionPanelSummary: {
+      root: {
+        background: '#eee'
+      }
     },
     MuiExpansionPanelDetails: {
       root: {
         backgroundColor: '#EEE',
         width: '100%'
+      }
+    },
+    MuiFormLabel: {
+      root: {
+        fontSize: '1.1rem'
       }
     },
     // MuiInput-underline:hover:not(.Mui-disabled):before
@@ -76,7 +91,7 @@ export default createMuiTheme({
       },
       selectMenu: {
         backgroundColor: 'rgba(0,0,0,0)',
-        borderRadius: '50px'
+        borderRadius: '5px'
       },
       select: {
         '&:focus': {

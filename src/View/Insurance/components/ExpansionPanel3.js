@@ -8,10 +8,12 @@ import {
   Fab,
   MenuItem,
   InputLabel,
-  Grid
+  Grid,
+  Collapse
 } from '@material-ui/core'
 import Terms from './TermsAndCondition'
 import useStyles from '../../../style/style'
+import Alert from '@material-ui/lab/Alert';
 
 const InputLabelProps = {
   shrink: true,
@@ -26,19 +28,29 @@ const insureType = [
 
 const ExpansionPanel3 = props => {
   const classes = useStyles()
+  const [ErrorOpen, setErrorOpen] = useState(false)
+  const [errorState, seterrorState] = useState(false)
+  const [commited, setCommited] = useState(false)
   const [termOpen, setTermOpen] = useState(false)
-  useEffect(() => {
-
-  }, [])
   const handleTermsClick = () => {
     setTermOpen(true)
   }
-
   const handleTermsClose = () => {
     setTermOpen(false)
   }
+  const valid = () => {
+    setCommited(true)
+    if (props.state.insuredAmount === '') {
+      seterrorState('請輸入全保投保額(HK$)')
+      setErrorOpen(true)
+    } else {
+      seterrorState('')
+      setErrorOpen(false)
+      props.next()
+    }
+  }
   return (
-    <ExpansionPanel expanded={props.open === 3 + props.offset}>
+    <ExpansionPanel expanded={props.open === 3}>
       <ExpansionPanelSummary>
         <Typography>投保類別</Typography>
       </ExpansionPanelSummary>
@@ -63,6 +75,7 @@ const ExpansionPanel3 = props => {
           </TextField>
           <TextField
             fullWidth
+            error={commited && props.state.insuredAmount === ''}
             value={props.state.insuredAmount}
             type="number"
             onChange={(e) => {
@@ -74,6 +87,11 @@ const ExpansionPanel3 = props => {
             InputLabelProps={InputLabelProps}
             label="全保投保額(HK$) #"
           />
+          <Collapse in={ErrorOpen}>
+            <Alert onClose={() => setErrorOpen(false)} severity="error">
+              {errorState.toString()}
+            </Alert>
+          </Collapse>
           <Grid container>
             <Grid item xs={6}>
               <Fab className={classes.PrevButton} variant="extended" onClick={props.prev}>
@@ -81,7 +99,12 @@ const ExpansionPanel3 = props => {
               </Fab>
             </Grid>
             <Grid item xs={6}>
-              <Fab className={classes.NextButton} variant="extended" onClick={props.next}>
+              <Fab 
+                className={classes.NextButton} 
+                variant="extended" 
+                // onClick={props.next}
+                onClick={valid} 
+              >
                 <Typography>下一步</Typography>
               </Fab>
             </Grid>

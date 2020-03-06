@@ -8,7 +8,8 @@ import {
   InputLabel,
   Checkbox,
   Select,
-  Divider
+  Divider,
+  FormControl
 } from '@material-ui/core'
 import {
   getJobIndustryList,
@@ -25,6 +26,7 @@ const ExpansionPanel2 = props => {
   const classes = useStyles()
   const [jobIndustryList, setJobIndustryList] = useState([])
   const [ocupationList, setOcupationList] = useState([])
+  
   useEffect(() => {
     let x = async () => {
       let result = await getOcupationList(props.state[props.index].industry)
@@ -44,60 +46,77 @@ const ExpansionPanel2 = props => {
   useEffect(() => {
     console.log(props)
   }, [props])
+  const [days, setDays] = useState(30)
+  useEffect(() => {
+    if(props.state[props.index].dateOfBirth.year && props.state[props.index].dateOfBirth.month !== ''){
+      let d = new Date(props.state[props.index].dateOfBirth.year,props.state[props.index].dateOfBirth.month,0)
+      setDays(d.getDate())
+    }
+  },[props.state[props.index].dateOfBirth.year,props.state[props.index].dateOfBirth.month])
   return (
     <div className={classes.ExpansionPanelDetails}>
       <Typography variant="subtitle1">駕駛者{props.index + 1}</Typography>
-      <Grid container justify='space-around'>
-        <Grid item xs={4} >
-          <InputLabel>Year</InputLabel>
-          <Select
-            className={classes.dateSelect}
-            value={props.state[props.index].dateOfBirth.year}
-            onChange={(e) => {
-              let temp = props.state
-              temp[props.index].dateOfBirth.year = e.target.value
-              props.setState([...temp])
-            }}
-          >
-            {[...Array(80)].map((e, i) => {
-              return <MenuItem key={i + "year"} value={new Date().getFullYear() - 18 - i}>{(new Date().getFullYear() - 18) - i}</MenuItem>
-            })}
-          </Select>
+
+      <InputLabel shrink className={classes.DateInputShrink}>出生日期</InputLabel>
+      <Grid container justify='space-around' style={{backgroundColor: '#FFF',margin: '5px auto',borderRadius: '10px'}}>
+        <Grid item xs={4}>
+          
+          <FormControl error={props.commited && props.state[props.index].dateOfBirth.year === ''} className={classes.formControl}>
+            <InputLabel shrink className={classes.DateInputShrink}>Year</InputLabel>
+            <Select
+              className={classes.dateSelect}
+              value={props.state[props.index].dateOfBirth.year}
+              onChange={(e) => {
+                let temp = [...props.state]
+                temp[props.index].dateOfBirth.year = e.target.value.toString()
+                props.setState(JSON.parse(JSON.stringify(temp)))
+              }}
+            >
+              {[...Array(80)].map((e, i) => {
+                return <MenuItem key={i + "year"} value={new Date().getFullYear() - 18 - i}>{(new Date().getFullYear() - 18) - i}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
         </Grid>
         <Grid item xs={4}>
-          <InputLabel>Month</InputLabel>
-          <Select
-            className={classes.dateSelect}
-            value={props.state[props.index].dateOfBirth.month}
-            onChange={(e) => {
-              let temp = props.state
-              temp[props.index].dateOfBirth.month = e.target.value
-              props.setState([...temp])
-            }}
-          >
-            {[...Array(12)].map((e, i) => {
-              return <MenuItem key={i + "month"} value={i + 1}>{i + 1}</MenuItem>
-            })}
-          </Select>
+          <FormControl error={props.commited && props.state[props.index].dateOfBirth.month === ''} className={classes.formControl}>
+            <InputLabel shrink className={classes.DateInputShrink}>Month</InputLabel>
+            <Select
+              className={classes.dateSelect}
+              value={props.state[props.index].dateOfBirth.month}
+              onChange={(e) => {
+                let temp = props.state
+                temp[props.index].dateOfBirth.month = e.target.value.toString()
+                props.setState(JSON.parse(JSON.stringify(temp)))
+              }}
+            >
+              {[...Array(12)].map((e, i) => {
+                return <MenuItem key={i + "month"} value={i + 1}>{i + 1}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
         </Grid>
         <Grid item xs={4}>
-          <InputLabel>Date</InputLabel>
-          <Select
-            className={classes.dateSelect}
-            value={props.state[props.index].dateOfBirth.date}
-            onChange={(e) => {
-              let temp = props.state
-              temp[props.index].dateOfBirth.date = e.target.value
-              props.setState([...temp])
-            }}
-          >
-            {[...Array(31)].map((e, i) => {
-              return <MenuItem key={i + "month"} value={i + 1}>{i + 1}</MenuItem>
-            })}
-          </Select>
+          <FormControl error={props.commited && props.state[props.index].dateOfBirth.date === ''} className={classes.formControl}>
+            <InputLabel shrink className={classes.DateInputShrink}>Date</InputLabel>
+            <Select
+              className={classes.dateSelect}
+              value={props.state[props.index].dateOfBirth.date}
+              onChange={(e) => {
+                let temp = props.state
+                temp[props.index].dateOfBirth.date = e.target.value.toString()
+                props.setState(JSON.parse(JSON.stringify(temp)))
+              }}
+            >
+              {[...Array(days)].map((e, i) => {
+                return <MenuItem key={i + "day"} value={i + 1}>{i + 1}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
         </Grid>
       </Grid>
       <TextField
+        error={props.commited && props.state[props.index].industry === ''}
         fullWidth
         select
         value={props.state[props.index].industry}
@@ -117,11 +136,14 @@ const ExpansionPanel2 = props => {
       </TextField>
       <TextField
         fullWidth
+        error={props.commited && props.state[props.index].drivingExperience === ''}
         type="number"
         value={props.state[props.index].drivingExperience}
         onChange={(e) => {
           let temp = props.state
-          temp[props.index].drivingExperience = e.target.value
+          let value = e.target.value
+          if(value  > (new Date().getFullYear() - props.state[props.index].dateOfBirth.year - 18)) value = (new Date().getFullYear() - props.state[props.index].dateOfBirth.year - 18) 
+          temp[props.index].drivingExperience = value
           props.setState([...temp])
         }}
         InputLabelProps={InputLabelProps}
@@ -130,6 +152,7 @@ const ExpansionPanel2 = props => {
       <TextField
         fullWidth
         select
+        error={props.commited && props.state[props.index].position === ''}
         value={props.state[props.index].position}
         onChange={(e) => {
           let temp = props.state

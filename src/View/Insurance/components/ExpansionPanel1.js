@@ -7,7 +7,8 @@ import {
   TextField,
   MenuItem,
   Fab,
-  Grid
+  Grid,
+  Collapse,
 } from '@material-ui/core'
 
 import {
@@ -18,6 +19,8 @@ import {
 } from '../../../api/api/car'
 
 import useStyles from '../../../style/style'
+import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
+import Alert from '@material-ui/lab/Alert';
 
 const InputLabelProps = {
   shrink: true,
@@ -30,6 +33,36 @@ const ExpansionPanel1 = props => {
   const [brandList, setBrandList] = useState([])
   const [manufactureYearList, setManufactureYearList] = useState([])
   const [bodyTypeList, setBodyTypeList] = useState([])
+  const [commited, setCommited] = useState(false)
+  const valid = () => {
+    setCommited(true)
+    if (props.state.regisType === '') {
+      seterrorState('請選擇登記類別')
+      setErrorOpen(true)
+    } else if (props.state.depotName === '') {
+      seterrorState('請選擇車廠名稱')
+      setErrorOpen(true)
+    } else if (props.state.manufactureYear === '') {
+      seterrorState('請選擇出廠年份')
+      setErrorOpen(true)
+    } else if (props.state.model === '') {
+      seterrorState('請輸入型號')
+      setErrorOpen(true)
+    } else if (props.state.engineCapacity === '') {
+      seterrorState('請輸入引擎容量')
+      setErrorOpen(true)
+    } else if (props.state.licensePlate === '') {
+      seterrorState('請輸入車牌號碼')
+      setErrorOpen(true)
+    } else if (props.state.carBodyType === '') {
+      seterrorState('請選擇車身類型')
+      setErrorOpen(true)
+    } else {
+      seterrorState('')
+      setErrorOpen(false)
+      props.next()
+    }
+  }
 
   useEffect(() => {
     const x = async () => {
@@ -46,14 +79,19 @@ const ExpansionPanel1 = props => {
     }
     x()
   }, [])
+  const [ErrorOpen, setErrorOpen] = useState(false)
+  const [errorState, seterrorState] = useState(false)
   return (
     <ExpansionPanel className={classes.ExpansionPanel} expanded={props.open === 0}>
       <ExpansionPanelSummary>
-        <Typography>車輛資料</Typography>
+        <DirectionsCarIcon />
+        <Typography> 車輛資料</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails >
+
         <div className={classes.ExpansionPanelDetails}>
           <TextField
+            error={commited && props.state.regisType === ''}
             fullWidth
             select
             value={props.state.regisType}
@@ -70,6 +108,7 @@ const ExpansionPanel1 = props => {
             ))}
           </TextField>
           <TextField
+            error={commited && props.state.depotName === ''}
             value={props.state.depotName}
             onChange={(e) => props.setState(state => ({
               ...state, depotName: e.target.value
@@ -86,6 +125,7 @@ const ExpansionPanel1 = props => {
             ))}
           </TextField>
           <TextField
+            error={commited && props.state.manufactureYear === ''}
             fullWidth
             value={props.state.manufactureYear}
             onChange={(e) => props.setState(state => ({
@@ -103,6 +143,7 @@ const ExpansionPanel1 = props => {
           </TextField>
           <TextField
             fullWidth
+            error={commited && props.state.model === ''}
             value={props.state.model}
             onChange={(e) => {
               let value = e.target.value
@@ -115,10 +156,15 @@ const ExpansionPanel1 = props => {
           />
           <TextField
             fullWidth
+            error={commited && props.state.engineCapacity === ''}
             value={props.state.engineCapacity}
             type="number"
             onChange={(e) => {
               let value = e.target.value
+              console.log(value)
+              if (value > 10000) {
+                value = 9999
+              }
               props.setState(state => ({
                 ...state, engineCapacity: value
               }))
@@ -128,6 +174,7 @@ const ExpansionPanel1 = props => {
           />
           <TextField
             fullWidth
+            error={commited && props.state.licensePlate === ''}
             value={props.state.licensePlate}
             onChange={(e) => {
               let value = e.target.value
@@ -141,6 +188,7 @@ const ExpansionPanel1 = props => {
           <TextField
             fullWidth
             select
+            error={commited && props.state.carBodyType === ''}
             value={props.state.carBodyType}
             onChange={(e) => props.setState(state => ({
               ...state, carBodyType: e.target.value
@@ -154,8 +202,19 @@ const ExpansionPanel1 = props => {
               </MenuItem>
             ))}
           </TextField>
+          <Collapse in={ErrorOpen}>
+            <Alert onClose={() => setErrorOpen(false)} severity="error">
+              {errorState.toString()}
+            </Alert>
+          </Collapse>
           <Grid container item xs={12} justify="center" alignContent="center">
-            <Fab className={classes.NextButton} variant="extended" onClick={props.next} alignItems="center">
+            <Fab
+              className={classes.NextButton}
+              variant="extended"
+              onClick={valid} 
+              // onClick={props.next}
+              alignItems="center"
+            >
               <Typography>下一步</Typography>
             </Fab>
           </Grid>

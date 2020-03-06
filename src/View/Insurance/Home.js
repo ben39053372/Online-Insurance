@@ -6,16 +6,16 @@ import Exp4 from './components/ExpansionPanel4'
 import Exp5 from './components/ExpansionPanel5'
 import { postQuotationRequest } from '../../api/api/quotation'
 
-import { Snackbar, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography, Grid, Fab } from '@material-ui/core'
+import { Snackbar, ExpansionPanel, Collapse, ExpansionPanelSummary, ExpansionPanelDetails, Typography, Grid, Fab } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert';
 import { useHistory } from "react-router-dom";
 import useStyles from '../../style/style'
 
 const ownerStateTemp = {
   dateOfBirth: {
-    year: "2000",
-    month: "1",
-    date: "1"
+    year: "",
+    month: "",
+    date: ""
   },
   industry: '',
   drivingExperience: '',
@@ -33,17 +33,17 @@ const InputForm = props => {
     setOpen(open - 1)
   }
   const addDrivers = () => {
-    console.log('before:', ownerState)
     setDrivers(drivers + 1)
-    setOwnerState([...ownerState].concat({ ...ownerStateTemp }))
-    setOpen(ownerState.length + 2)
-    console.log('after:', ownerState)
+    setCommited(false)
+    let temp = [...ownerState]
+    ownerStateTemp.dateOfBirth.year = ''
+    setOwnerState([...temp, Object.assign({}, ownerStateTemp)])
+    console.log(ownerState)
   }
   const removeDrivers = index => {
     console.log(index)
     setDrivers(drivers - 1)
-    setOpen(open - 1)
-    ownerState.splice(index + 1, 1)
+    ownerState.splice(index, 1)
     setOwnerState(ownerState)
   }
   const finish = () => {
@@ -119,9 +119,9 @@ const InputForm = props => {
   })
   const [ownerState, setOwnerState] = useState([{
     dateOfBirth: {
-      year: "2000",
-      month: "1",
-      date: "1"
+      year: "",
+      month: "",
+      date: ""
     },
     industry: '',
     drivingExperience: '',
@@ -141,6 +141,38 @@ const InputForm = props => {
   const handleClose = () => {
     setErrorOpen(false)
   }
+  const [commited, setCommited] = useState(false)
+  const [ErrorOpen2, setErrorOpen2] = useState(false)
+  const [errorState2, seterrorState2] = useState(false)
+  const valid = async () => {
+    setCommited(true)
+    for (let i = 0; i < ownerState.length; i++) {
+      if (ownerState[i].dateOfBirth.year === '' || ownerState[i].dateOfBirth.month === '' || ownerState[i].dateOfBirth.date === '') {
+        seterrorState2('請輸入生日日期')
+        setErrorOpen2(true)
+        break
+      } else if (ownerState[i].industry === '') {
+        seterrorState2('請選擇所屬行業')
+        setErrorOpen2(true)
+        break
+      } else if (ownerState[i].drivingExperience === '') {
+        seterrorState2('請選擇駕駛經驗')
+        setErrorOpen2(true)
+        break
+      } else if (ownerState[i].position === '') {
+        seterrorState2('請輸入職位')
+        setErrorOpen2(true)
+        break
+      } else if (ErrorOpen2 === false && errorState2 === '' && i === ownerState.length - 1) {
+          seterrorState2('')
+          setErrorOpen2(false)
+          next()
+      } else {
+        seterrorState2('')
+        setErrorOpen2(false)
+      }
+    }
+  }
   return (
     <>
       <Snackbar open={ErrorOpen} autoHideDuration={4000} onClose={handleClose}>
@@ -150,7 +182,7 @@ const InputForm = props => {
       </Snackbar>
       <Exp1 open={open} next={next} state={carState} setState={setCarState} />
       <Exp5 open={open} prev={prev} next={next} state={ownerState_head} setState={setOwnerState_head} />
-      <ExpansionPanel expanded={open === 2 + drivers}>
+      <ExpansionPanel expanded={open === 2}>
         <ExpansionPanelSummary>
           <Typography>駕駛者資料</Typography>
         </ExpansionPanelSummary>
@@ -163,16 +195,25 @@ const InputForm = props => {
                 open={open}
                 prev={prev}
                 next={next}
+                commited={commited}
+                setErrorOpen={setErrorOpen2}
+                setErrorState={seterrorState2}
                 state={ownerState}
                 setState={setOwnerState}
                 offset={drivers}
                 add={addDrivers}
-                remove={(i) => removeDrivers}
+                remove={() => removeDrivers}
               />
             ))}
+
             <Fab className={classes.DriverButton} variant="extended" onClick={addDrivers}>
               <Typography>新增車主</Typography>
             </Fab>
+            <Collapse in={ErrorOpen2}>
+              <Alert onClose={() => setErrorOpen2(false)} severity="error">
+                {errorState2.toString()}
+              </Alert>
+            </Collapse>
             <Grid container>
               <Grid item xs={6}>
                 <Fab className={classes.PrevButton} variant="extended" onClick={prev}>
@@ -180,7 +221,7 @@ const InputForm = props => {
                 </Fab>
               </Grid>
               <Grid item xs={6}>
-                <Fab className={classes.NextButton} variant="extended" onClick={next}>
+                <Fab className={classes.NextButton} variant="extended" onClick={valid}>
                   <Typography>下一步</Typography>
                 </Fab>
               </Grid>
