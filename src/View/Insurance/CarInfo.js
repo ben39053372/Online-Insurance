@@ -23,13 +23,14 @@ const CarInfo = () => {
   return (
     <>
       <InsureCarInfo data={latestQuotationRequest}/>
-      {Quotation.length === 0 ? (
+      <QuoteDetails data={Quotation}/>
+      {/* {Quotation.length === 0 ? (
         <QuoteDetailsEmpty />
         // <QuoteDetails data={Quotation}/>
       ) : (
-        <QuoteDetails data={Quotation}/>
+        
         // <QuoteDetailsEmpty />
-      )}
+      )} */}
     </>
   )
 }

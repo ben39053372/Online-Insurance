@@ -11,7 +11,8 @@ const useStyles = makeStyles(theme => ({
     width: '99%',
     background: '#FFF',
     borderRadius: '5px',
-    margin: '0px auto'
+    margin: '0px auto',
+    fontSize: '0.75rem'
   },
   DateInputShrink: {
     top: '0px',
@@ -95,7 +96,14 @@ const useStyles = makeStyles(theme => ({
   },
   GridText: {
     'word-break': 'break-all'
+  },
+  listPrimary: {
+
+  },
+  listSecondary: {
+    float: 'right'
   }
+
 }))
 
 export default useStyles;

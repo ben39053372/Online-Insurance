@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import {
   ExpansionPanel,
   ExpansionPanelSummary,
@@ -49,7 +49,7 @@ const ExpansionPanel4 = props => {
           <Typography>只差一步!</Typography>
           <Typography>請提供您的聯絡資料方便我們即時提供報價消息!</Typography>
           <TextField
-            error={commited && ( props.state.email === '' || !re.test(props.state.email) )}
+            error={commited && (props.state.email === '' || !re.test(props.state.email))}
             vaule={props.state.email}
             type="email"
             InputLabelProps={InputLabelProps}
@@ -63,7 +63,7 @@ const ExpansionPanel4 = props => {
             label="您的電郵"
           />
           <TextField
-            error={commited && props.state.mobile === ''}
+            error={commited && (props.state.mobile === '' || ( props.state.mobile.length > 8 && props.state.mobile.length <= 20) )}
             value={props.state.mobile}
             type="number"
             InputLabelProps={InputLabelProps}
@@ -95,11 +95,11 @@ const ExpansionPanel4 = props => {
               </Fab>
             </Grid>
             <Grid item xs={6}>
-              <Fab 
-                className={classes.NextButton} 
-                variant="extended" 
+              <Fab
+                className={classes.NextButton}
+                variant="extended"
                 // onClick={props.finish}
-                onClick={valid} 
+                onClick={valid}
               >
                 <Typography>完成</Typography>
               </Fab>

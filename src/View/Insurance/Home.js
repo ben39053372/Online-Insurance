@@ -147,29 +147,30 @@ const InputForm = props => {
   const valid = async () => {
     setCommited(true)
     for (let i = 0; i < ownerState.length; i++) {
+      seterrorState2('')
+      setErrorOpen2(false)
+      console.log('1')
       if (ownerState[i].dateOfBirth.year === '' || ownerState[i].dateOfBirth.month === '' || ownerState[i].dateOfBirth.date === '') {
         seterrorState2('請輸入生日日期')
         setErrorOpen2(true)
-        break
+        console.log('2')
       } else if (ownerState[i].industry === '') {
         seterrorState2('請選擇所屬行業')
         setErrorOpen2(true)
-        break
+        console.log('3')
       } else if (ownerState[i].drivingExperience === '') {
         seterrorState2('請選擇駕駛經驗')
         setErrorOpen2(true)
-        break
+        console.log('4')
       } else if (ownerState[i].position === '') {
         seterrorState2('請輸入職位')
         setErrorOpen2(true)
-        break
+        console.log('5')
       } else if (ErrorOpen2 === false && errorState2 === '' && i === ownerState.length - 1) {
-          seterrorState2('')
-          setErrorOpen2(false)
-          next()
-      } else {
+        console.log('6')
         seterrorState2('')
         setErrorOpen2(false)
+        next()
       }
     }
   }
