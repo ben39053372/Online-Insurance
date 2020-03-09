@@ -6,12 +6,20 @@ export default createMuiTheme({
     MuiList: {
       root: {
         background: '#F2F2F2',
-        margin: '8px 5px',
-        borderRadius: '10px'
+        margin: '8px 0px',
+        borderRadius: '10px',
+        width: '100%'
       },
       padding: {
         paddingTop: '0px',
         paddingBottom: '0px'
+      }
+    },
+    MuiDialogTitle: {
+      root: {
+        padding: '10px 10px',
+        background: '#922',
+        color: '#FFF',
       }
     },
     MuiListSubheader: {
@@ -26,7 +34,10 @@ export default createMuiTheme({
     },
     MuiAppBar: {
       root: {
-        background: '#00f'
+        backgroundColor: '#229'
+      },
+      colorPrimary: {
+        backgroundColor: '#229'
       }
     },
     MuiTextField: {

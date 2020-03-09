@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Paper, Typography, LinearProgress, List, ListSubheader } from '@material-ui/core'
 import SwipeableViews from 'react-swipeable-views'
 import QuoteDetailsComponent from './QuoteDetailsComponent'
 import useStyles from '../../../style/style'
 
+
 const QuoteDetail = props => {
-  const classes = useStyles()
-  useEffect(() => {
-    console.log(props)
-  }, [])
   const [index, setIndex] = useState(0)
   const handleChangeIndex = index => {
     setIndex(index)
   }
   return (
-    <Paper elevation={0}>
+    <Paper elevation={0} id="QuoteDetails">
       {props.data.length !== 0 &&
-        <Typography align='center'>
+        <Typography align='center' style={{padding: '5px 0'}}>
           報價{index + 1 + '/' + props.data.length}
         </Typography>
       }

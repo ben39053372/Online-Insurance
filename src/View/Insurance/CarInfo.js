@@ -1,36 +1,75 @@
-import React,{useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import InsureCarInfo from './components/insureCarInfo'
 import QuoteDetails from './components/QuoteDetails'
-import QuoteDetailsEmpty from './components/QuoteDetailsEmpty'
 import { getQuotationRequestSummary } from '../../api/api/quotation'
 import useStyles from '../../style/style'
+import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Fab } from '@material-ui/core'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const CarInfo = () => {
   const classes = useStyles()
-  const [ latestQuotationRequest, setLatestQuotationRequest] = useState({})
-  const [ Quotation, setQuotation ] = useState([])
+  const [latestQuotationRequest, setLatestQuotationRequest] = useState({})
+  const [Quotation, setQuotation] = useState([])
+  const [dialog, setDialog] = useState(true)
 
-  useEffect(()=>{
+  useEffect(() => {
     getQuotationRequestSummary().then(res => {
       console.log(res)
       setLatestQuotationRequest(res.data.latestQuotationRequest)
       setQuotation(res.data.Quotation)
     })
-    .catch(err => {
-      console.log(err)
-    })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
+  const [scrollView, setScrollView] = useState(true)
+  const handleScroll = (e) => {
+    if(document.documentElement.scrollTop < document.body.scrollHeight*0.25) {
+      setScrollView(true)
+    }else {
+      setScrollView(false)
+    }
+  }
+  useEffect(()=> {
+    window.addEventListener('scroll', handleScroll);
   },[])
+  const scrollToAnchor = name => {
+    if(name){
+      console.log(name)
+      let element = document.getElementById(name)
+      console.log(element)
+      if(element){
+        element.scrollIntoView({block:'start', behavior: 'smooth'})
+      }
+    }
+  }
   return (
     <>
-      <InsureCarInfo data={latestQuotationRequest}/>
-      <QuoteDetails data={Quotation}/>
-      {/* {Quotation.length === 0 ? (
-        <QuoteDetailsEmpty />
-        // <QuoteDetails data={Quotation}/>
-      ) : (
-        
-        // <QuoteDetailsEmpty />
-      )} */}
+      <Dialog open={dialog} onClose={() => setDialog(false)} fullWidth>
+        <DialogTitle className={classes.DialogTitle}>
+          最新報價狀態
+        </DialogTitle>
+        <DialogContent>
+          <Typography>剩餘時間(小時)</Typography>
+          <DialogContentText>
+            <Typography align="right">{latestQuotationRequest.countDownHour}</Typography>
+          </DialogContentText>
+          <Typography>已收到報價</Typography>
+          <DialogContentText>
+            <Typography align="right">{Quotation.length}</Typography>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={()=>setDialog(false)} color="primary" autoFocus>
+            確認
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <InsureCarInfo data={latestQuotationRequest} />
+      <QuoteDetails data={Quotation} />
+      {scrollView && (
+        <Fab variant="extended" onClick={() => scrollToAnchor('QuoteDetails')} style={{position: 'fixed', bottom: '5%', right: '5%', background: '#922', color: '#FFF'}}><ExpandMoreIcon/>查看報價</Fab>
+      )}
     </>
   )
 }

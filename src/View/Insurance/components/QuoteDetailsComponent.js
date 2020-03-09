@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button, Typography, Grid, List, ListSubheader, ListItem, ListItemText, Divider } from '@material-ui/core'
 import { putInterested, postClosing } from '../../../api/api/quotation'
 import { useHistory } from 'react-router-dom'
@@ -7,18 +7,6 @@ import useStyles from '../../../style/style'
 export default props => {
   const classes = useStyles()
   const history = useHistory()
-  const setting = [
-    { '保險公司': props.item.insuranceCompanyNameEn || props.item.insuranceCompanyNameCht },
-    { '投保「全保」 * (包括第三者責任保險)': props.item.insurancePlanTypeEn || props.item.insurancePlanTypeCht },
-    { '特惠一年保養': props.item.oneYearInsuranceFee },
-    { 'General Excess * 自身車輛財物損毀': props.item.generalExcess },
-    { 'Theft Loss Excess * 全車被盗': props.item.theftLossExcess },
-    { 'Parking * 自身車輛財物損毀 * 於停泊時': props.item.parking },
-    { 'TPPD * 第三者財物損失-投保人': props.item.TPPD },
-    { 'TPPD-Y * 財物損失-低於25歲之司機': props.item.TPPDY },
-    { 'TPPD-I * 財物損失-少於2年駕駛經驗': props.item.TPPDI },
-    { 'TPPD-U * 財物損失-不記名司機': props.item.TPPDU }
-  ]
   const setting2 = [
     { title: '保險公司', content: props.item.insuranceCompanyNameEn || props.item.insuranceCompanyNameCht },
     { title: '投保「全保」 * (包括第三者責任保險)', content: props.item.insurancePlanTypeEn || props.item.insurancePlanTypeCht },
@@ -62,9 +50,10 @@ export default props => {
       })
     }
   }
+
   return (
-    <>
-      <List dense>
+    <div style={{margin: '0 3px'}}>
+      <List dense >
         <ListSubheader disableSticky style={{background: '#922'}}>報價詳情</ListSubheader>
         {setting2.map((item, index) => (
           <React.Fragment key={'carList'+index}>
@@ -76,7 +65,7 @@ export default props => {
                 secondary={<Typography className={classes.listSecondary}>{item.content}</Typography>}
               />
             </ListItem>
-            {index !== setting.length-1 && <Divider /> }
+            {index !== setting2.length-1 && <Divider /> }
           </React.Fragment>
         ))}
       </List>
@@ -97,7 +86,6 @@ export default props => {
           </div>
         )}
       <div style={{position: 'relative',padding: '0 11px'}}>
-        
         <input type="file" id="file" style={{ display: 'none' }} ref={fileUploader} onChange={onFileChange} />
         <Typography>step 2</Typography>
         <Typography>請上載保單主頁</Typography>
@@ -106,6 +94,6 @@ export default props => {
           換領禮品
         </Button>
       </div>
-    </>
+    </div>
   )
 }

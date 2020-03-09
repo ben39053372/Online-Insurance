@@ -143,34 +143,43 @@ const InputForm = props => {
   }
   const [commited, setCommited] = useState(false)
   const [ErrorOpen2, setErrorOpen2] = useState(false)
-  const [errorState2, seterrorState2] = useState(false)
+  const [errorState2, seterrorState2] = useState('')
   const valid = async () => {
     setCommited(true)
+    await seterrorState2('')
+    await setErrorOpen2(false)
     for (let i = 0; i < ownerState.length; i++) {
-      seterrorState2('')
-      setErrorOpen2(false)
+      console.log('i:', i)
+      console.log('ownerState.length:', ownerState.length)
+      console.log('ErrorOpen2:', ErrorOpen2)
+      console.log('errorState2:', errorState2)
       console.log('1')
       if (ownerState[i].dateOfBirth.year === '' || ownerState[i].dateOfBirth.month === '' || ownerState[i].dateOfBirth.date === '') {
-        seterrorState2('請輸入生日日期')
-        setErrorOpen2(true)
+        await seterrorState2('請輸入生日日期')
+        await setErrorOpen2(true)
         console.log('2')
+        break
       } else if (ownerState[i].industry === '') {
-        seterrorState2('請選擇所屬行業')
-        setErrorOpen2(true)
+        await seterrorState2('請選擇所屬行業')
+        await setErrorOpen2(true)
         console.log('3')
+        break
       } else if (ownerState[i].drivingExperience === '') {
-        seterrorState2('請選擇駕駛經驗')
-        setErrorOpen2(true)
+        await seterrorState2('請選擇駕駛經驗')
+        await setErrorOpen2(true)
         console.log('4')
+        break
       } else if (ownerState[i].position === '') {
-        seterrorState2('請輸入職位')
-        setErrorOpen2(true)
+        await seterrorState2('請輸入職位')
+        await setErrorOpen2(true)
         console.log('5')
-      } else if (ErrorOpen2 === false && errorState2 === '' && i === ownerState.length - 1) {
+        break
+      } else if (ErrorOpen2 === false && i === (ownerState.length - 1)) {
         console.log('6')
-        seterrorState2('')
-        setErrorOpen2(false)
+        await seterrorState2('')
+        await setErrorOpen2(false)
         next()
+        break
       }
     }
   }
@@ -210,7 +219,7 @@ const InputForm = props => {
             <Fab className={classes.DriverButton} variant="extended" onClick={addDrivers}>
               <Typography>新增車主</Typography>
             </Fab>
-            <Collapse in={ErrorOpen2}>
+            <Collapse in={ErrorOpen2} style={{ width: '100%' }}>
               <Alert onClose={() => setErrorOpen2(false)} severity="error">
                 {errorState2.toString()}
               </Alert>

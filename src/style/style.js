@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   PrevButton: {
-    margin: '10px',
+    margin: '10px auto',
     backgroundColor: '#FFF',
     color: '#000',
     width: '90%',
@@ -102,6 +102,12 @@ const useStyles = makeStyles(theme => ({
   },
   listSecondary: {
     float: 'right'
+  },
+  DialogTitle: {
+    '& h2': {
+      fontWeight: 'bold',
+      fontSize: '1.3rem'
+    }
   }
 
 }))
