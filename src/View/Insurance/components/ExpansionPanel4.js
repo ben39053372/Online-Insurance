@@ -25,6 +25,7 @@ const ExpansionPanel4 = props => {
   const [commited, setCommited] = useState(false)
   const [ErrorOpen, setErrorOpen] = useState(false)
   const [errorState, seterrorState] = useState(false)
+  
   const valid = () => {
     setCommited(true)
     if (props.state.email === '' || !re.test(props.state.email)) {
@@ -45,7 +46,7 @@ const ExpansionPanel4 = props => {
         <Typography>完成報價</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        <div>
+        <div className={classes.ExpansionPanelDetails}>
           <Typography>只差一步!</Typography>
           <Typography>請提供您的聯絡資料方便我們即時提供報價消息!</Typography>
           <TextField

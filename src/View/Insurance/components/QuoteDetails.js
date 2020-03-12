@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { Paper, Typography, LinearProgress, List, ListSubheader } from '@material-ui/core'
 import SwipeableViews from 'react-swipeable-views'
 import QuoteDetailsComponent from './QuoteDetailsComponent'
-import useStyles from '../../../style/style'
-
 
 const QuoteDetail = props => {
   const [index, setIndex] = useState(0)
@@ -27,7 +25,6 @@ const QuoteDetail = props => {
 
         </List>
       )}
-      
       <SwipeableViews index={index} onChangeIndex={handleChangeIndex} style={{ padding: '0 10px' }}>
         {props.data.map((item, index) => (
           <QuoteDetailsComponent key={item + index} item={item} index={index} />

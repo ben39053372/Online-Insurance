@@ -7,12 +7,6 @@ const QuoteDetail = props => {
   const classes = useStyles()
   return (
     <Paper elevation={0}>
-      <Typography
-        align="center"
-        variant="subtitle1"
-      >
-        報價詳情
-      </Typography>
       <QuoteDetailComponent data={props.data} />
     </Paper>
   )

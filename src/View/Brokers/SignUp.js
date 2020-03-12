@@ -99,9 +99,6 @@ const SignUp = () => {
   }
   return (
     <>
-      <div>
-        Banner
-      </div>
       <Snackbar
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         key={`top,center`}
@@ -148,21 +145,23 @@ const SignUp = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            我記得密碼了
+            返回
           </Button>
           <Button onClick={submitForgot} color="primary">
             重設密碼
           </Button>
         </DialogActions>
       </Dialog>
-      <Paper>
-        <Typography>
-          登入
+      <Paper className={classes.paper}>
+        <Typography variant="h3" align='center'>
+          Broker登入
         </Typography>
         <TextField
           id="input-with-icon-textfield"
           label="Broker ID"
           value={userName}
+          className={classes.loginPageInput}
+          fullWidth
           onChange={e => setUserName(e.target.value)}
           InputProps={{
             startAdornment: (
@@ -176,7 +175,9 @@ const SignUp = () => {
           id="input-with-icon-textfield"
           label="Password"
           value={password}
+          className={classes.loginPageInput}
           type="password"
+          fullWidth
           onChange={e => setPassword(e.target.value)}
           InputProps={{
             startAdornment: (
@@ -207,6 +208,7 @@ const SignUp = () => {
         <Grid container alignItems="center" justify="center">
           <Grid container item xs={6}>
             <Fab
+              className={classes.forgotButton}
               variant="extended"
               size="medium"
               color="primary"
@@ -218,6 +220,7 @@ const SignUp = () => {
           </Grid>
           <Grid container item xs={6}>
             <Fab
+              className={classes.loginButton}
               variant="extended"
               size="medium"
               color="primary"

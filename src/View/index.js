@@ -6,11 +6,11 @@ import {CssBaseline, Container} from '@material-ui/core'
 const Index = ({route}) => {
 
   return (
-    <Container>
+    <>
       <CssBaseline />
       {/* <BreadcrumbBar/> */}
       {renderRoutes(route.routes)}
-    </Container>
+    </>
   )
 }
 

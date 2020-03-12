@@ -3,9 +3,19 @@ import { createMuiTheme } from '@material-ui/core/styles';
 export default createMuiTheme({
   overrides: {
     // Style sheet name ⚛️
+    MuiPaper: {
+      elevation1: {
+        boxShadow: 'none'
+      }
+    },
+    MuiContainer: {
+      root: {
+        margin: '20px 0'
+      }
+    },
     MuiList: {
       root: {
-        background: '#F2F2F2',
+        background: '#FFFFef',
         margin: '8px 0px',
         borderRadius: '10px',
         width: '100%'
@@ -104,15 +114,15 @@ export default createMuiTheme({
     MuiInputBase: {
       root: {
         color: 'rgba(0,0,0,1)',
-        fontSize: '0.8rem',
+        fontSize: '0.9rem',
 
       }
     },
     MuiInputLabel: {
       shrink: {
-        transform: "translate(0, 1.5px) scale(0.75)",
+        transform: "translate(-3px, 1.0px) scale(0.75)",
         transformOrigin: "top left",
-        left: '10px',
+        left: '5px',
         top: '5px'
       }
     },

@@ -4,6 +4,13 @@ const useStyles = makeStyles(theme => ({
   ExpansionPanelDetails: {
     width: '100%'
   },
+  buttonProgress: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
   formControl: {
     width: '95%'
   },
@@ -103,11 +110,47 @@ const useStyles = makeStyles(theme => ({
   listSecondary: {
     float: 'right'
   },
+  listInputSecondary: {
+    float: 'right',
+    width: '50%'
+  },
   DialogTitle: {
     '& h2': {
       fontWeight: 'bold',
       fontSize: '1.3rem'
     }
+  },
+  loginButton: {
+    backgroundColor: '#229',
+    margin: '5px auto'
+  },
+  forgotButton: {
+    backgroundColor: '#922',
+    margin: '20px auto'
+    
+  },
+  loginPageInput: {
+    width: '80%',
+    margin: '10px auto',
+    background:'#EEE'
+  },
+  paper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  requestListDataGrid: {
+    background: '#EEE',
+    padding: '8px'
+  },
+  ball: {
+    height: '1.2rem',
+    width: '1.2rem',
+    borderRadius: '50px',
+    float: 'left',
+    marginTop: '6px',
+    marginRight: '10px',
+    border: "1px solid #555"
   }
 
 }))

@@ -5,6 +5,7 @@ import { getQuotationRequestList } from '../../api/api/broker'
 import useStyles from '../../style/style'
 
 const RequestList = () => {
+  const [list_temp,setList_temp] = useState([])
   const classes = useStyles()
   const [list, setList] = useState([])
   useEffect(() => {
@@ -12,6 +13,10 @@ const RequestList = () => {
       if(res.status === 200) {
         console.log(res.data)
         setList(res.data.QuotationRequests)
+        setList_temp(res.data.QuotationRequests)
+        console.log(list_temp)
+      }else if(res.status === 403) {
+        localStorage.removeItem('jwt2')
       } else {
         console.log(res.data.error)
       }
@@ -28,15 +33,44 @@ const RequestList = () => {
     })
   }
   const [tabValue, setTabValue] = useState(0)
+  useEffect(()=>{
+    console.log(tabValue)
+    if(tabValue === 0) {
+      setList(list_temp)
+    }else if (tabValue === 1) {
+      setList(list_temp.filter(item => {
+        if(parseInt((new Date() - new Date(item.requestTimestamp))/1000/60/60) < 6) return true
+        else return false
+      }))
+    }else if (tabValue === 2) {
+      setList(list_temp.filter(item => {
+        if(item.isQuoted === 1 && item.isInterested === 0 && item.isDeleted === 0) return true
+        else return false
+      }))
+    }else if (tabValue === 3) {
+      setList(list_temp.filter(item => {
+        if(item.isInterested === 1 && item.isDeleted === 0) return true
+        else return false
+      }))
+    }else if (tabValue === 4) {
+      setList(list_temp.filter(item => {
+        if(item.isDeleted === 1) return true
+        else return false
+      }))
+    }else {
+      setList(list_temp)
+    }
+  },[tabValue])
   return (
     <Paper elevation={0}>
       <div>
-        <TextField fullWidth label="搜尋報價編號或電話車牌" onChange={onSearchChange} />
+        <TextField fullWidth variant="filled" label="搜尋報價編號或電話車牌" onChange={onSearchChange} />
       </div>
       <Tabs
         value={tabValue}
         onChange={(e, value) => setTabValue(value)}
-        variant="fullWidth"
+        variant="scrollable"
+        scrollButtons="auto"
         indicatorColor="primary"
         textColor="primary"
       >

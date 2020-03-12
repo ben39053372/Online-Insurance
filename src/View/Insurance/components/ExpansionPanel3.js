@@ -56,7 +56,7 @@ const ExpansionPanel3 = props => {
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <Terms open={termOpen} onClose={handleTermsClose} />
-        <div>
+        <div className={classes.ExpansionPanelDetails}>
           <InputLabel>網上購買汽車保險</InputLabel>
           <Fab className={classes.comprehendFab} size="medium" variant="extended" onClick={handleTermsClick} >了解更多</Fab>
           <TextField

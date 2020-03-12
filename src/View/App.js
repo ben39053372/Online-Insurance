@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Toolbar,IconButton, Typography, CssBaseline } from '@material-ui/core'
+import { AppBar, Toolbar,IconButton, Typography, CssBaseline, Container } from '@material-ui/core'
 import { renderRoutes } from 'react-router-config'
 import routes from '../router/routes'
 import useStyles from '../style/style'
@@ -30,9 +30,9 @@ const App = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <main style={{padding: '10px 0'}}>
+      <Container maxWidth="md">
         {renderRoutes(routes)}
-      </main>
+      </Container>
     </ThemeProvider>
   )
 }

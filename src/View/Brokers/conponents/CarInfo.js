@@ -1,44 +1,78 @@
 import React, { useState } from 'react'
-import { Paper, Typography, Tabs, Tab, Button } from '@material-ui/core'
-import SwipeableViews from 'react-swipeable-views'
-import Tab1 from './CarInfoTab'
-import Tab2 from './DriverInfoTab'
-import Tab3 from './InsureTypeTab'
+import { Paper, Typography, List, ListSubheader, ListItem, ListItemText, Button, Divider } from '@material-ui/core'
 import useStyles from '../../../style/style'
 
 const CarInfo = props => {
   const classes = useStyles()
-  const [tabSelected, setTabSelected] = useState(0)
-  const handleChange = (event, newValue) => {
-    setTabSelected(newValue);
-  };
-  const handleChangeIndex = index => {
-    setTabSelected(index);
-  };
+  const car = [
+    { title: '登記類別', contentCht: props.data.carRegisterTypeNameCht },
+    { title: '車廠名稱', contentCht: props.data.carBrandNameCht },
+    { title: '型號', contentCht: props.data.carModel },
+    { title: '出廠年份', contentCht: props.data.carManufactureYear },
+    { title: '引擎容量(c.c)', contentCht: props.data.carCylinderCapacity },
+    { title: '車身類型', contentCht: props.data.carBodyTypeCht },
+    // {title: '車牌',content: },
+    { title: '保險類別', contentCht: props.data.insuranceTypeCht },
+  ]
+  const driver = [
+    { title: '出生日期', contentEn: props.data.driverBirthday, contentCht: props.data.driverBirthday },
+    { title: '所屬行業', contentEn: props.data.jobIndustryNameEn, contentCht: props.data.jobIndustryNameCht },
+    { title: '職業', contentEn: props.data.ocupationNameEn, contentCht: props.data.ocupationNameEn },
+    { title: '駕駛經驗(年)', contentEn: props.data.drivingExpInYear, contentCht: props.data.drivingExpInYear },
+    { title: '現有車輛數目', contentEn: props.data.ownCarsCount, contentCht: props.data.ownCarsCount },
+    { title: '車身類型', contentEn: props.data.carBodyTypeEn, contentCht: props.data.carBodyTypeCht },
+  ]
+  const insurance = [
+    { title: '保險類別', contentEn: props.data.insuranceTypeEn, contentCht: props.data.insuranceTypeCht },
+    { title: '投保額', contentEn: props.data.insuredAmount, contentCht: props.data.insuredAmount },
+    { title: '投保身份', contentEn: props.data.driverRoleEn, contentCht: props.data.driverRoleCht },
+    { title: '無索償折扣(NCD)', contentEn: props.data.noClaimDiscount, contentCht: props.data.noClaimDiscount }
+  ]
   return (
     <Paper elevation={0}>
       <Typography align="center" variant="subtitle1">報價車款資料</Typography>
-      <div>
-        <div />
-        <Button variant="outlined" disabled>列印資料</Button>
-      </div>
-      <Tabs
-        value={tabSelected}
-        indicatorColor="primary"
-        textColor="primary"
-        variant="fullWidth"
-        onChange={handleChange}
-        aria-label="disabled tabs example"
-      >
-        <Tab label="車輛資料" />
-        <Tab label="車主資料" />
-        <Tab label="投保類別" />
-      </Tabs>
-      <SwipeableViews index={tabSelected} onChangeIndex={handleChangeIndex}>
-        <Tab1 data={props.data}/>
-        <Tab2 data={props.data}/>
-        <Tab3 data={props.data}/>
-      </SwipeableViews>
+      <List dense>
+        <ListSubheader disableSticky>車輛資料</ListSubheader>
+        {car.map((item, index) => (
+          <React.Fragment key={'carList'+index}>
+            <ListItem>
+              <ListItemText
+                primary={<Typography className={classes.listPrimary} display="inline">{item.title}</Typography>}
+                secondary={<Typography className={classes.listSecondary}>{item.contentCht}</Typography>}
+              />
+            </ListItem>
+            {index !== car.length-1 && <Divider /> }
+          </React.Fragment>
+        ))}
+      </List>
+      <List dense>
+        <ListSubheader disableSticky>車主資料</ListSubheader>
+        {driver.map((item, index) => (
+          <React.Fragment key={'dirver'+index}>
+            <ListItem>
+              <ListItemText
+                primary={<Typography className={classes.listPrimary} display="inline">{item.title}</Typography>}
+                secondary={<Typography className={classes.listSecondary}>{item.contentCht}</Typography>}
+              />
+            </ListItem>
+            {index !== driver.length-1 && <Divider /> }
+          </React.Fragment>
+        ))}
+      </List>
+      <List dense>
+        <ListSubheader disableSticky>投保類別</ListSubheader>
+        {insurance.map((item, index) => (
+          <React.Fragment key={'insuranceList'+index}>
+            <ListItem>
+              <ListItemText
+                primary={<Typography className={classes.listPrimary} display="inline">{item.title}</Typography>}
+                secondary={<Typography className={classes.listSecondary}>{item.contentCht}</Typography>}
+              />
+            </ListItem>
+            {index !== insurance.length-1 && <Divider /> }
+          </React.Fragment>
+        ))}
+      </List>
     </Paper>
   )
 }
