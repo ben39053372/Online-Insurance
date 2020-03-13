@@ -3,10 +3,8 @@ import { useHistory } from "react-router-dom";
 import { Paper, TextField, Typography, Button } from '@material-ui/core';
 import queryString from 'query-string';
 import { resetPassword } from '../../api/api/broker'
-import useStyles from '../../style/style'
 
 export default props => {
-  const classes = useStyles()
   const history = useHistory();
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('')

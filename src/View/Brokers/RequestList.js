@@ -2,7 +2,6 @@ import React, { useState,useEffect } from 'react'
 import { TextField, Tabs, Tab, Typography, Paper } from '@material-ui/core';
 import RequestListComponent from './conponents/RequestListComponent'
 import { getQuotationRequestList } from '../../api/api/broker'
-import useStyles from '../../style/style'
 
 const RequestList = () => {
   const [list_temp,setList_temp] = useState([])
@@ -19,6 +18,7 @@ const RequestList = () => {
         console.log(res.data.error)
       }
     })
+    // eslint-disable-next-line
   }, [])
   const onSearchChange = (e)  => {
     getQuotationRequestList(e.target.value).then(res => {
@@ -58,6 +58,7 @@ const RequestList = () => {
     }else {
       setList(list_temp)
     }
+    // eslint-disable-next-line
   },[tabValue])
   return (
     <Paper elevation={0}>

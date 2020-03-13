@@ -25,6 +25,7 @@ const InputLabelProps = {
 export default props => {
   const [commited, setCommited] = useState(false)
   const valid = () => {
+    setCommited(true)
     if (props.state.insuredIdentity === '') {
       seterrorState('請選擇投保身份')
       setErrorOpen(true)

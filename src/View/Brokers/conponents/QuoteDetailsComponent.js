@@ -38,7 +38,7 @@ export default props => {
         console.log(res.data.error)
       }
     })
-
+  // eslint-disable-next-line
   }, [])
   useEffect(() => {
     setInputData({
@@ -53,7 +53,6 @@ export default props => {
       TPPDI: props.data.TPPDI,
       TPPDU: props.data.TPPDU
     })
-    console.log('companylist:', companyList)
   }, [props.data])
   const onInputChange = (e, name) => {
     console.log(name)

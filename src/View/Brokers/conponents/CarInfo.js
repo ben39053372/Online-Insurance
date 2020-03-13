@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Paper, Typography, List, ListSubheader, ListItem, ListItemText, Button, Divider } from '@material-ui/core'
 import useStyles from '../../../style/style'
+import { delQuotation } from '../../../api/api/broker'
 
 const CarInfo = props => {
   const classes = useStyles()
@@ -30,10 +31,7 @@ const CarInfo = props => {
   ]
   return (
     <Paper elevation={0}>
-      <Typography align="center" variant="subtitle1">報價車款資料</Typography>
-      <Button variant="contained" color="inherit">
-        刪除
-      </Button>
+      
       <List dense>
         <ListSubheader disableSticky>車輛資料</ListSubheader>
         {car.map((item, index) => (

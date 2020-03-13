@@ -52,6 +52,7 @@ const ExpansionPanel2 = props => {
       let d = new Date(props.state[props.index].dateOfBirth.year,props.state[props.index].dateOfBirth.month,0)
       setDays(d.getDate())
     }
+    // eslint-disable-next-line
   },[props.state[props.index].dateOfBirth.year,props.state[props.index].dateOfBirth.month])
   return (
     <div className={classes.ExpansionPanelDetails}>

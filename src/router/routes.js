@@ -21,7 +21,7 @@ const routes = [
         path: '/Brokers/Login',
         component: SignUp,
         exact: false,
-        render: () => ishaveTokenTwo() ? <Redirect to='/Brokers/RequestList'/> : <SignUp />
+        render: () => !ishaveTokenTwo() ? <SignUp /> : <Redirect to='/Brokers/RequestList'/>
       },
       {
         name: 'Reset Password',

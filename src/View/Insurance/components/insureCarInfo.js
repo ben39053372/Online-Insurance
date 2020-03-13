@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Paper, Typography, Tabs, Divider, Tab, List, ListItem, ListItemText, ListSubheader } from '@material-ui/core'
+import React, { useEffect } from 'react'
+import { Paper, Typography, Divider, List, ListItem, ListItemText, ListSubheader } from '@material-ui/core'
 import useStyles from '../../../style/style'
 
 const CarInfo = props => {
