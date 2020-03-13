@@ -5,19 +5,6 @@ import { useParams, useHistory } from 'react-router-dom'
 import { getCompanyList, getPlanList } from '../../../api/api/broker'
 import useStyles from '../../../style/style'
 
-const setting = [
-  ['保險公司'],
-  ['投保「全保」', '(包括第三者責任保險)'],
-  ['特惠一年保養'],
-  ['General Excess', '自身車輛財物損毀'],
-  ['Theft Loss Excess', '全車被盗'],
-  ['Parking', '自身車輛財物損毀', '於停泊時'],
-  ['TPPD', '第三者財物損失-投保人'],
-  ['TPPD-Y', '財物損失-低於25歲之司機'],
-  ['TPPD-I', '財物損失-少於2年駕駛經驗'],
-  ['TPPD-U', '財物損失-不記名司機']
-]
-
 export default props => {
   const classes = useStyles()
   let { id } = useParams()
@@ -34,30 +21,6 @@ export default props => {
     TPPDI: '',
     TPPDU: ''
   })
-  const setting2 = [
-    { title: '保險公司', content: props.data.insuranceCompanyNameEn || props.data.insuranceCompanyNameCht },
-    { title: '投保「全保」 * (包括第三者責任保險)', content: props.data.insurancePlanTypeEn || props.data.insurancePlanTypeCht },
-    { title: '特惠一年保養', content: props.data.oneYearInsuranceFee },
-    { title: 'General Excess * 自身車輛財物損毀', content: props.data.generalExcess },
-    { title: 'Theft Loss Excess * 全車被盗', content: props.data.theftLossExcess },
-    { title: 'Parking * 自身車輛財物損毀 * 於停泊時', content: props.data.parking },
-    { title: 'TPPD * 第三者財物損失 * 投保人', content: props.data.TPPD },
-    { title: 'TPPD-Y * 財物損失 * 低於25歲之司機', content: props.data.TPPDY },
-    { title: 'TPPD-I * 財物損失 * 少於2年駕駛經驗', content: props.data.TPPDI },
-    { title: 'TPPD-U * 財物損失 * 不記名司機', content: props.data.TPPDU }
-  ]
-  const title = [
-    { title: '保險公司', value: inputData.planCompanyId },
-    { title: '投保「全保」 * (包括第三者責任保險)', value: inputData.insurancePlanTypeId },
-    { title: '特惠一年保養', value: inputData.oneYearInsuranceFee },
-    { title: 'General Excess * 自身車輛財物損毀', value: inputData.generalExcess },
-    { title: 'Theft Loss Excess * 全車被盗', value: inputData.theftLossExcess },
-    { title: 'Parking * 自身車輛財物損毀 * 於停泊時', value: inputData.parking },
-    { title: 'TPPD * 第三者財物損失 * 投保人', value: inputData.TPPD },
-    { title: 'TPPD-Y * 財物損失 * 低於25歲之司機', value: inputData.TPPDY },
-    { title: 'TPPD-I * 財物損失 * 少於2年駕駛經驗', value: inputData.TPPDI },
-    { title: 'TPPD-U * 財物損失 * 不記名司機', value: inputData.TPPDU }
-  ]
   const [companyList, setCompanyList] = useState([])
   const [planTypeList, setPlanTypeList] = useState([])
   useEffect(() => {

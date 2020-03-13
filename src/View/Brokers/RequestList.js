@@ -6,7 +6,6 @@ import useStyles from '../../style/style'
 
 const RequestList = () => {
   const [list_temp,setList_temp] = useState([])
-  const classes = useStyles()
   const [list, setList] = useState([])
   useEffect(() => {
     getQuotationRequestList().then(res => {
@@ -14,7 +13,6 @@ const RequestList = () => {
         console.log(res.data)
         setList(res.data.QuotationRequests)
         setList_temp(res.data.QuotationRequests)
-        console.log(list_temp)
       }else if(res.status === 403) {
         localStorage.removeItem('jwt2')
       } else {
@@ -39,22 +37,22 @@ const RequestList = () => {
       setList(list_temp)
     }else if (tabValue === 1) {
       setList(list_temp.filter(item => {
-        if(parseInt((new Date() - new Date(item.requestTimestamp))/1000/60/60) < 6) return true
+        if(item.statusCode === 'within6Hr') return true
         else return false
       }))
     }else if (tabValue === 2) {
       setList(list_temp.filter(item => {
-        if(item.isQuoted === 1 && item.isInterested === 0 && item.isDeleted === 0) return true
+        if(item.statusCode === 'quoted') return true
         else return false
       }))
     }else if (tabValue === 3) {
       setList(list_temp.filter(item => {
-        if(item.isInterested === 1 && item.isDeleted === 0) return true
+        if(item.statusCode === 'userInterested') return true
         else return false
       }))
     }else if (tabValue === 4) {
       setList(list_temp.filter(item => {
-        if(item.isDeleted === 1) return true
+        if(item.statusCode === 'deleted') return true
         else return false
       }))
     }else {

@@ -31,6 +31,9 @@ const CarInfo = props => {
   return (
     <Paper elevation={0}>
       <Typography align="center" variant="subtitle1">報價車款資料</Typography>
+      <Button variant="contained" color="inherit">
+        刪除
+      </Button>
       <List dense>
         <ListSubheader disableSticky>車輛資料</ListSubheader>
         {car.map((item, index) => (

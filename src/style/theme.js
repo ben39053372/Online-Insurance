@@ -8,6 +8,11 @@ export default createMuiTheme({
         boxShadow: 'none'
       }
     },
+    MuiCardContent: {
+      root: {
+        padding: 0
+      }
+    },
     MuiContainer: {
       root: {
         margin: '20px 0'

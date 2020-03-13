@@ -81,3 +81,13 @@ export const putQuotationRequest = (requestId,data) => {
     }
   })
 }
+
+export const delQuotation = (quoteId) => {
+  return apiBroker({
+    url: `/v1/broker/quote/${quoteId}`,
+    method: 'DELETE',
+    headers: {
+      "Authorization": 'Bearer ' +localStorage.getItem('jwt2')
+    }
+  })
+}

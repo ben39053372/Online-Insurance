@@ -140,8 +140,16 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   requestListDataGrid: {
-    background: '#EEE',
-    padding: '8px'
+    background: '#F9F9F9',
+    padding: '2px',
+  },
+  requestListDataGrid_Title: {
+    fontSize: '0.8rem',
+    color: '#888'
+  },
+  requestListDataGrid_Content: {
+    fontSize: '0.9rem',
+    fontWeight: 'bold'
   },
   ball: {
     height: '1.2rem',
@@ -150,9 +158,8 @@ const useStyles = makeStyles(theme => ({
     float: 'left',
     marginTop: '6px',
     marginRight: '10px',
-    border: "1px solid #555"
+    border: "1px solid #CCC"
   }
-
 }))
 
 export default useStyles;

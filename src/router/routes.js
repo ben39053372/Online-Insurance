@@ -32,6 +32,7 @@ const routes = [
         name: 'RequestListDetail',
         path: '/Brokers/RequestListDetail/:id',
         component: RequestListDetail,
+        render: () => ishaveTokenTwo() ? <RequestListDetail /> : <Redirect to="/Brokers/Login" />,
         exact: false
       },
       {
