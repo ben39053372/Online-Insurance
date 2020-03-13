@@ -6,16 +6,16 @@ export default React.memo(props => {
   const [data, setData] = useState({})
   useEffect(() => {
     getTermsANdCondition(1).then(res => {
-      console.log(res)
+      // console.log(res)
       setData(res.data.termsAndConditions)
     })
   }, [])
 
   return (
     <Dialog open={props.open} onClose={props.onClose}>
-      <DialogTitle>{data.titleEn || data.titleCht}</DialogTitle>
+      <DialogTitle>{data.titleCht || data.titleEn}</DialogTitle>
       <DialogContent>
-        {data.contentEn || data.contentCht}
+        {data.contentCht || data.contentEn}
       </DialogContent>
       <DialogActions>
         <Button autoFocus onClick={props.onClose} color="primary">

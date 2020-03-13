@@ -38,10 +38,8 @@ const InputForm = props => {
     let temp = [...ownerState]
     ownerStateTemp.dateOfBirth.year = ''
     setOwnerState([...temp, Object.assign({}, ownerStateTemp)])
-    console.log(ownerState)
   }
   const removeDrivers = index => {
-    console.log(index)
     setDrivers(drivers - 1)
     ownerState.splice(index, 1)
     setOwnerState(ownerState)
@@ -85,9 +83,9 @@ const InputForm = props => {
       noClaimDiscountId: ownerState_head.discount,
       isNewApply: 1
     }
-    console.log(data)
+    // console.log(data)
     postQuotationRequest(data).then(res => {
-      console.log(res)
+      // console.log(res)
       if (res.status === 200) {
         localStorage.setItem('jwt1', res.data.jwt)
         history.push("/Customers/CarInfo");
@@ -149,33 +147,33 @@ const InputForm = props => {
     await seterrorState2('')
     await setErrorOpen2(false)
     for (let i = 0; i < ownerState.length; i++) {
-      console.log('i:', i)
-      console.log('ownerState.length:', ownerState.length)
-      console.log('ErrorOpen2:', ErrorOpen2)
-      console.log('errorState2:', errorState2)
-      console.log('1')
+      // console.log('i:', i)
+      // console.log('ownerState.length:', ownerState.length)
+      // console.log('ErrorOpen2:', ErrorOpen2)
+      // console.log('errorState2:', errorState2)
+      // console.log('1')
       if (ownerState[i].dateOfBirth.year === '' || ownerState[i].dateOfBirth.month === '' || ownerState[i].dateOfBirth.date === '') {
         await seterrorState2('請輸入生日日期')
         await setErrorOpen2(true)
-        console.log('2')
+        // console.log('2')
         break
       } else if (ownerState[i].industry === '') {
         await seterrorState2('請選擇所屬行業')
         await setErrorOpen2(true)
-        console.log('3')
+        // console.log('3')
         break
       } else if (ownerState[i].drivingExperience === '') {
         await seterrorState2('請選擇駕駛經驗')
         await setErrorOpen2(true)
-        console.log('4')
+        // console.log('4')
         break
       } else if (ownerState[i].position === '') {
         await seterrorState2('請輸入職位')
         await setErrorOpen2(true)
-        console.log('5')
+        // console.log('5')
         break
       } else if (ErrorOpen2 === false && i === (ownerState.length - 1)) {
-        console.log('6')
+        // console.log('6')
         await seterrorState2('')
         await setErrorOpen2(false)
         next()

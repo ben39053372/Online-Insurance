@@ -43,9 +43,6 @@ const ExpansionPanel2 = props => {
     x()
     // eslint-disable-next-line
   }, [])
-  useEffect(() => {
-    console.log(props)
-  }, [props])
   const [days, setDays] = useState(30)
   useEffect(() => {
     if(props.state[props.index].dateOfBirth.year && props.state[props.index].dateOfBirth.month !== ''){

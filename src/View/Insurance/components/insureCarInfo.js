@@ -28,9 +28,9 @@ const CarInfo = props => {
     { title: '投保身份', contentEn: props.data.driverRoleEn, contentCht: props.data.driverRoleCht },
     { title: '無索償折扣(NCD)', contentEn: props.data.noClaimDiscount, contentCht: props.data.noClaimDiscount }
   ]
-  useEffect(() => {
-    console.log('insureCarInfo:', props.data)
-  }, [props])
+  // useEffect(() => {
+  //   console.log('insureCarInfo:', props.data)
+  // }, [props])
   return (
     <Paper elevation={0}>
       <Typography align="center" variant="subtitle1">報價車款資料</Typography>

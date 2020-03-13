@@ -1,6 +1,5 @@
 import React from 'react'
 import { Paper, Typography, Grid, Divider } from '@material-ui/core'
-import useStyles from '../../../style/style'
 
 const setting = [
   ['投保「全保」', '(包括第三者責任保險)'],
@@ -15,7 +14,6 @@ const setting = [
 ]
 
 const QuoteDetail = () => {
-  const classes = useStyles()
   return (
     <Paper elevation={0}>
       <Typography align="center" variant="subtitle1" >

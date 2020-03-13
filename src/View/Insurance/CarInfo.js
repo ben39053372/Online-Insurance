@@ -14,7 +14,7 @@ const CarInfo = () => {
 
   useEffect(() => {
     getQuotationRequestSummary().then(res => {
-      console.log(res)
+      // console.log(res)
       setLatestQuotationRequest(res.data.latestQuotationRequest)
       setQuotation(res.data.Quotation)
     })
@@ -35,9 +35,9 @@ const CarInfo = () => {
   },[])
   const scrollToAnchor = name => {
     if(name){
-      console.log(name)
+      // console.log(name)
       let element = document.getElementById(name)
-      console.log(element)
+      // console.log(element)
       if(element){
         element.scrollIntoView({block:'start', behavior: 'smooth'})
       }

@@ -21,12 +21,12 @@ export default props => {
   ]
   const interested = () => {
     putInterested(props.item.quotationId).then(res => {
-      console.log(res)
+      // console.log(res)
     })
     setInterestedState(true)
   }
   const uploadInvoice = () => {
-    console.log('upload')
+    // console.log('upload')
     fileUploader.current.click()
   }
   const [interestedState, setInterestedState] = useState(props.item.isUserInterested)
@@ -38,16 +38,16 @@ export default props => {
     setUploadButtonDisable(true)
     var file = event.target.files[0];
     if (file !== undefined) {
-      console.log(file)
+      // console.log(file)
       postClosing(props.item.quotationId, file).then(res => {
-        console.log(res)
+        // console.log(res)
         if (res.status === 200 || res.error === 'Closing record exists already.') {
           setUploadButtonDisable(false)
           localStorage.removeItem('jwt1')
           history.push('/Customers/home')
         }
       }).catch(err => {
-        console.log(err)
+        // console.log(err)
         setUploadButtonDisable(false)
       })
     }

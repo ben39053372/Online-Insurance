@@ -42,8 +42,8 @@ export default props => {
   }, [])
   useEffect(() => {
     setInputData({
-      planCompanyId: props.data.insuranceCompanyNameCht,
-      insurancePlanTypeId: props.data.insurancePlanTypeCht,
+      planCompanyId: props.data.insuranceCompanyId,
+      insurancePlanTypeId: props.data.insurancePlanTypeId,
       oneYearInsuranceFee: props.data.oneYearInsuranceFee,
       generalExcess: props.data.generalExcess,
       theftLossExcess: props.data.theftLossExcess,

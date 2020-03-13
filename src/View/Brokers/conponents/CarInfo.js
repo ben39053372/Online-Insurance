@@ -1,7 +1,6 @@
 import React from 'react'
-import { Paper, Typography, List, ListSubheader, ListItem, ListItemText, Button, Divider } from '@material-ui/core'
+import { Paper, Typography, List, ListSubheader, ListItem, ListItemText, Divider } from '@material-ui/core'
 import useStyles from '../../../style/style'
-import { delQuotation } from '../../../api/api/broker'
 
 const CarInfo = props => {
   const classes = useStyles()
