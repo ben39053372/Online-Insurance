@@ -25,6 +25,7 @@ const ExpansionPanel4 = props => {
   const [commited, setCommited] = useState(false)
   const [ErrorOpen, setErrorOpen] = useState(false)
   const [errorState, seterrorState] = useState(false)
+  const [agree, setAgree] = useState(true)
   
   const valid = () => {
     setCommited(true)
@@ -33,6 +34,9 @@ const ExpansionPanel4 = props => {
       setErrorOpen(true)
     } else if (props.state.mobile === '' || props.state.mobile.length < 8 || props.state.mobile.length > 20) {
       seterrorState('請輸入正確電話號碼')
+      setErrorOpen(true)
+    } else if (agree === false){
+      seterrorState('請勾選我已閱讀條項與細則')
       setErrorOpen(true)
     } else {
       seterrorState('')
@@ -79,6 +83,8 @@ const ExpansionPanel4 = props => {
           />
           <Checkbox
             defaultChecked
+            checked={agree}
+            onChange={(e)=>setAgree(e.target.checked)}
             value="secondary"
             color="primary"
           />

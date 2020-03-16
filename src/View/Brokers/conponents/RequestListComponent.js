@@ -25,7 +25,7 @@ export default props => {
                 <Grid item xs={6} sm={3}>
                   <div className={classes.requestListDataGrid}>
                     <Typography className={classes.requestListDataGrid_Title}>車廠名稱</Typography>
-                    <Typography className={classes.requestListDataGrid_Content}>{props.item.brandEn || props.item.brandCht || 'None'}</Typography>
+                    <Typography className={classes.requestListDataGrid_Content}>{props.item.brandCht || props.item.brandEn || 'None'}</Typography>
                   </div>
                 </Grid>
                 <Grid item xs={6} sm={3}>
