@@ -48,3 +48,10 @@ export const postClosing = (quoteId,file) => {
     data: fd
   })
 }
+
+export const giveaway = () => {
+  return api({
+    url: '/v1/gift/latest',
+    method: 'get'
+  })
+}

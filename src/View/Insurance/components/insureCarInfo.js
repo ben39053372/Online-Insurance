@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Paper, Typography, Divider, List, ListItem, ListItemText, ListSubheader } from '@material-ui/core'
 import useStyles from '../../../style/style'
 

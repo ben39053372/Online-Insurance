@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Typography, Button, TextField, List, ListSubheader, ListItem, ListItemText, Divider, MenuItem } from '@material-ui/core'
+import { Typography, Button, Collapse, TextField, List, ListSubheader, ListItem, ListItemText, Divider, MenuItem } from '@material-ui/core'
 import { putQuotationRequest } from '../../../api/api/broker'
 import { useParams, useHistory } from 'react-router-dom'
 import { getCompanyList, getPlanList } from '../../../api/api/broker'
 import useStyles from '../../../style/style'
+import Alert from '@material-ui/lab/Alert';
 
 export default props => {
   const classes = useStyles()
@@ -23,6 +24,7 @@ export default props => {
   })
   const [companyList, setCompanyList] = useState([])
   const [planTypeList, setPlanTypeList] = useState([])
+  const [commited, setCommited] = useState(false)
   useEffect(() => {
     getCompanyList().then(res => {
       if (res.status === 200) {
@@ -38,7 +40,7 @@ export default props => {
         console.log(res.data.error)
       }
     })
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [])
   useEffect(() => {
     setInputData({
@@ -65,10 +67,49 @@ export default props => {
   const onSubmit = () => {
     putQuotationRequest(id, inputData).then(res => {
       console.log(res)
+      setCommited(true)
+      vaild()
       if (res.status === 200) {
         history.push('/Brokers/RequestList')
       }
     })
+  }
+  const [ErrorOpen, setErrorOpen] = useState(false)
+  const [errorState, setErrorState] = useState('')
+  const vaild = () => {
+    if (commited && inputData.planCompanyId === null) {
+      setErrorState('請選擇保險公司')
+      setErrorOpen(true)
+    } else if (commited && inputData.insurancePlanTypeId === null) {
+      setErrorState('請選擇投保組合')
+      setErrorOpen(true)
+    } else if (commited && (inputData.oneYearInsuranceFee === null || inputData.oneYearInsuranceFee === '')) {
+      setErrorState('請輸入特惠一年保養金額')
+      setErrorOpen(true)
+    } else if (commited && (inputData.generalExcess === null || inputData.generalExcess === '')) {
+      setErrorState('請輸入自身車輛財物損毀金額')
+      setErrorOpen(true)
+    } else if (commited && (inputData.theftLossExcess === null || inputData.theftLossExcess === '')) {
+      setErrorState('請輸入全車被盗金額')
+      setErrorOpen(true)
+    } else if (commited && (inputData.parking === null || inputData.parking === '')) {
+      setErrorState('請輸入自身車輛財物損毀金額')
+      setErrorOpen(true)
+    } else if (commited && (inputData.TPPD === null || inputData.TPPD === '')) {
+      setErrorState('請輸入TPPD金額')
+      setErrorOpen(true)
+    } else if (commited && (inputData.TPPDY === null || inputData.TPPDY === '')) {
+      setErrorState('請輸入TPPD-Y金額')
+      setErrorOpen(true)
+    } else if (commited && (inputData.TPPDI === null || inputData.TPPDI === '')) {
+      setErrorState('請輸入TPPD-I金額')
+      setErrorOpen(true)
+    } else if (commited && (inputData.TPPDU === null || inputData.TPPDU === '')) {
+      setErrorState('請輸入TPPD-U金額')
+      setErrorOpen(true)
+    } else {
+      setErrorOpen(false)
+    }
   }
   return (
     <div>
@@ -86,6 +127,7 @@ export default props => {
             secondary={
               <TextField
                 select
+                error={commited && inputData.planCompanyId === null}
                 className={classes.listInputSecondary}
                 value={inputData.planCompanyId}
                 onChange={(e) => onInputChange(e, 'planCompanyId')}
@@ -114,6 +156,7 @@ export default props => {
             secondary={
               <TextField
                 select
+                error={commited && inputData.insurancePlanTypeId === null}
                 className={classes.listInputSecondary}
                 value={inputData.insurancePlanTypeId}
                 onChange={(e) => onInputChange(e, 'insurancePlanTypeId')}
@@ -141,6 +184,8 @@ export default props => {
             ))}
             secondary={
               <TextField
+                type="number"
+                error={commited && (inputData.oneYearInsuranceFee === null || inputData.oneYearInsuranceFee === '')}
                 className={classes.listInputSecondary}
                 value={inputData.oneYearInsuranceFee}
                 onChange={(e) => onInputChange(e, 'oneYearInsuranceFee')}
@@ -161,7 +206,13 @@ export default props => {
               </Typography>
             ))}
             secondary={
-              <TextField className={classes.listInputSecondary} value={inputData.generalExcess} onChange={(e) => onInputChange(e, 'generalExcess')} />
+              <TextField
+                type="number"
+                error={commited && (inputData.generalExcess === null || inputData.generalExcess === '')}
+                className={classes.listInputSecondary}
+                value={inputData.generalExcess}
+                onChange={(e) => onInputChange(e, 'generalExcess')}
+              />
             }
           />
         </ListItem>
@@ -175,7 +226,13 @@ export default props => {
                 display="inline"> {text}<br /></Typography>
             ))}
             secondary={
-              <TextField className={classes.listInputSecondary} value={inputData.theftLossExcess} onChange={(e) => onInputChange(e, 'theftLossExcess')} />
+              <TextField
+                type="number"
+                error={commited && (inputData.theftLossExcess === null || inputData.theftLossExcess === '')}
+                className={classes.listInputSecondary}
+                value={inputData.theftLossExcess}
+                onChange={(e) => onInputChange(e, 'theftLossExcess')}
+              />
             }
           />
         </ListItem>
@@ -186,7 +243,13 @@ export default props => {
               <Typography key={text} className={classes.listPrimary} display="inline"> {text}<br /></Typography>
             ))}
             secondary={
-              <TextField className={classes.listInputSecondary} value={inputData.parking} onChange={(e) => onInputChange(e, 'parking')} />
+              <TextField
+                type="number"
+                error={commited && (inputData.parking === null || inputData.parking === '')}
+                className={classes.listInputSecondary}
+                value={inputData.parking}
+                onChange={(e) => onInputChange(e, 'parking')}
+              />
             }
           />
         </ListItem>
@@ -197,7 +260,13 @@ export default props => {
               <Typography key={text} className={classes.listPrimary} display="inline"> {text}<br /></Typography>
             ))}
             secondary={
-              <TextField className={classes.listInputSecondary} value={inputData.TPPD} onChange={(e) => onInputChange(e, 'TPPD')} />
+              <TextField
+                type="number"
+                error={commited && (inputData.TPPD === null || inputData.TPPD === '')}
+                className={classes.listInputSecondary}
+                value={inputData.TPPD}
+                onChange={(e) => onInputChange(e, 'TPPD')}
+              />
             }
           />
         </ListItem>
@@ -208,7 +277,13 @@ export default props => {
               <Typography key={text} className={classes.listPrimary} display="inline"> {text}<br /></Typography>
             ))}
             secondary={
-              <TextField className={classes.listInputSecondary} value={inputData.TPPDY} onChange={(e) => onInputChange(e, 'TPPDY')} />
+              <TextField
+                type="number"
+                error={commited && (inputData.TPPDY === null || inputData.TPPDY === '')}
+                className={classes.listInputSecondary}
+                value={inputData.TPPDY}
+                onChange={(e) => onInputChange(e, 'TPPDY')}
+              />
             }
           />
         </ListItem>
@@ -219,7 +294,13 @@ export default props => {
               <Typography key={text} className={classes.listPrimary} display="inline"> {text}<br /></Typography>
             ))}
             secondary={
-              <TextField className={classes.listInputSecondary} value={inputData.TPPDI} onChange={(e) => onInputChange(e, 'TPPDI')} />
+              <TextField
+                type="number"
+                error={commited && (inputData.TPPDI === null || inputData.TPPDI === '')}
+                className={classes.listInputSecondary}
+                value={inputData.TPPDI}
+                onChange={(e) => onInputChange(e, 'TPPDI')}
+              />
             }
           />
         </ListItem>
@@ -230,14 +311,24 @@ export default props => {
               <Typography key={text} className={classes.listPrimary} display="inline"> {text}<br /></Typography>
             ))}
             secondary={
-              <TextField className={classes.listInputSecondary} value={inputData.TPPDU} onChange={(e) => onInputChange(e, 'TPPDU')} />
+              <TextField
+                type="number"
+                error={commited && (inputData.TPPDU === null || inputData.TPPDU === '')}
+                className={classes.listInputSecondary}
+                value={inputData.TPPDU}
+                onChange={(e) => onInputChange(e, 'TPPDU')}
+              />
             }
           />
         </ListItem>
         <Divider />
       </List>
 
-
+      <Collapse in={ErrorOpen}>
+        <Alert onClose={() => setErrorOpen(false)} severity="error">
+          {errorState.toString()}
+        </Alert>
+      </Collapse>
 
       <div>
         <Typography display="inline">車主資料</Typography>
@@ -251,7 +342,7 @@ export default props => {
       </div>
       <div>
         <Typography display="inline">你的報價將會即時電郵給車主</Typography>
-        <div style={{float: 'right'}}>
+        <div style={{ float: 'right' }}>
           <Button variant="contained" onClick={onSubmit} color="primary">
             提交報價
           </Button>

@@ -23,7 +23,8 @@ export default createMuiTheme({
         background: '#FFFFef',
         margin: '8px 0px',
         borderRadius: '10px',
-        width: '100%'
+        width: '100%',
+        border: '1px solid #DFDFDF'
       },
       padding: {
         paddingTop: '0px',

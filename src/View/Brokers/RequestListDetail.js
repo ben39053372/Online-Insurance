@@ -21,7 +21,7 @@ export default () => {
   }, [id])
   const print = () => {
     let dom = document.getElementById('print');
-    dom2img.toJpeg(dom, { quality: 0.8 })
+    dom2img.toJpeg(dom, { quality: 1 })
       .then((dataUrl) => {
         let link = document.createElement('a');
         link.download = `quote_id${id}.jpeg`;

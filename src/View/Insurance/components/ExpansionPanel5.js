@@ -113,7 +113,7 @@ export default props => {
             onChange={(e) => {
               let value = e.target.value
               if (value > 9999) value = 9999
-              if (value > 1) {
+              if (value >= 0) {
                 props.setState(state => ({
                   ...state, numberOfExistingVehicles: value
                 }))

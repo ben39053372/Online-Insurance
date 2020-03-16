@@ -1,10 +1,17 @@
-import React, { useState, useRef } from 'react';
-import { Button, Typography, CircularProgress, List, ListSubheader, ListItem, ListItemText, Divider } from '@material-ui/core'
-import { putInterested, postClosing } from '../../../api/api/quotation'
+import React, { useState, useRef, useEffect } from 'react';
+import { Button, Typography, CircularProgress, List, ListSubheader, ListItem, ListItemText, Divider, Link } from '@material-ui/core'
+import { putInterested, postClosing, giveaway } from '../../../api/api/quotation'
 import { useHistory } from 'react-router-dom'
 import useStyles from '../../../style/style'
 
 export default props => {
+  const [link , setLink] = useState('')
+  useEffect(() => {
+    giveaway().then( res => {
+      console.log(res.data.giftLink.giftImageLink)
+      setLink(res.data.giftLink.giftImageLink)
+    })
+  },[])
   const classes = useStyles()
   const history = useHistory()
   const setting2 = [
@@ -92,6 +99,9 @@ export default props => {
         <Typography>step 2</Typography>
         <Typography>請上載保單主頁</Typography>
         <Typography display="inline">以換領禮品</Typography>
+        <Typography>
+          <Link target="_blank" href={link}>禮品詳情</Link>
+        </Typography>
         <div>
           <Button variant="contained" className={classes.rightButton} disabled={uploadButtonDisable} onClick={uploadInvoice} color="primary">
             換領禮品
