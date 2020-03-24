@@ -1,14 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## rebuild docker image
+## proxy server setting
+`blob:https://web.whatsapp.com/a5a1e6d0-f97d-4919-a007-678c8417591cc8c27`
 
-docker stop insurance-nginx
-
-docker rm insurance-nginx
-
-docker build -t insurance-nginx .
-
-docker run -p 8080:80 -d --name insurance-nginx insurance-nginx
 
 
 ## Available Scripts
