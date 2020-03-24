@@ -16,6 +16,7 @@ import {
   getOcupationList,
 } from '../../../api/api/driver'
 import useStyles from '../../../style/style'
+import { useSelector } from 'react-redux'
 
 const InputLabelProps = {
   shrink: true,
@@ -23,6 +24,7 @@ const InputLabelProps = {
 }
 
 const ExpansionPanel2 = props => {
+  const lang = useSelector(state => state.lang)
   const classes = useStyles()
   const [jobIndustryList, setJobIndustryList] = useState([])
   const [ocupationList, setOcupationList] = useState([])
@@ -53,14 +55,14 @@ const ExpansionPanel2 = props => {
   },[props.state[props.index].dateOfBirth.year,props.state[props.index].dateOfBirth.month])
   return (
     <div className={classes.ExpansionPanelDetails}>
-      <Typography variant="subtitle1">駕駛者{props.index + 1}</Typography>
+      <Typography variant="subtitle1">{lang==='eng'? '' : "駕駛者"}{props.index + 1}</Typography>
 
-      <InputLabel shrink className={classes.DateInputShrink}>出生日期</InputLabel>
+      <InputLabel shrink className={classes.DateInputShrink}>{lang==='eng'? '' : "出生日期"}</InputLabel>
       <Grid container justify='space-around' style={{backgroundColor: '#FFF',margin: '5px auto',borderRadius: '10px'}}>
         <Grid item xs={4}>
           
           <FormControl error={props.commited && props.state[props.index].dateOfBirth.year === ''} className={classes.formControl}>
-            <InputLabel shrink className={classes.DateInputShrink}>Year</InputLabel>
+            <InputLabel shrink className={classes.DateInputShrink}>{lang==='eng'? 'Year' : "年"}</InputLabel>
             <Select
               className={classes.dateSelect}
               value={props.state[props.index].dateOfBirth.year}
@@ -78,7 +80,7 @@ const ExpansionPanel2 = props => {
         </Grid>
         <Grid item xs={4}>
           <FormControl error={props.commited && props.state[props.index].dateOfBirth.month === ''} className={classes.formControl}>
-            <InputLabel shrink className={classes.DateInputShrink}>Month</InputLabel>
+            <InputLabel shrink className={classes.DateInputShrink}>{lang==='eng'? 'Month' : "月"}</InputLabel>
             <Select
               className={classes.dateSelect}
               value={props.state[props.index].dateOfBirth.month}
@@ -96,7 +98,7 @@ const ExpansionPanel2 = props => {
         </Grid>
         <Grid item xs={4}>
           <FormControl error={props.commited && props.state[props.index].dateOfBirth.date === ''} className={classes.formControl}>
-            <InputLabel shrink className={classes.DateInputShrink}>Date</InputLabel>
+            <InputLabel shrink className={classes.DateInputShrink}>{lang==='eng'? 'Date' : "日"}</InputLabel>
             <Select
               className={classes.dateSelect}
               value={props.state[props.index].dateOfBirth.date}
@@ -124,11 +126,11 @@ const ExpansionPanel2 = props => {
           props.setState([...temp])
         }}
         InputLabelProps={InputLabelProps}
-        label="所屬行業"
+        label={lang==='eng'?'':'所屬行業'}
       >
         {jobIndustryList.map((item, i) => (
           <MenuItem key={`option${i}${item.nameEN}`} value={item.id}>
-            {item.nameCht}
+            {lang==='eng'?item.nameEn: item.nameCht}
           </MenuItem>
         ))}
       </TextField>
@@ -145,7 +147,7 @@ const ExpansionPanel2 = props => {
           props.setState([...temp])
         }}
         InputLabelProps={InputLabelProps}
-        label="駕駛經驗(年)"
+        label={lang==='eng'?'':'駕駛經驗(年)'}
       />
       <TextField
         fullWidth
@@ -158,11 +160,11 @@ const ExpansionPanel2 = props => {
           props.setState([...temp])
         }}
         InputLabelProps={InputLabelProps}
-        label="職位"
+        label={lang==='eng'?'':"職位"}
       >
         {ocupationList.map((item, i) => (
           <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
-            {item.nameCht}
+            {lang==='eng'?item.nameEn: item.nameCht}
           </MenuItem>
         ))}
       </TextField>
@@ -179,13 +181,13 @@ const ExpansionPanel2 = props => {
         }}
         color="primary"
       />
-      <Typography variant='inherit'>主要車主</Typography>
+      <Typography variant='inherit'>{lang==='eng'?'':'主要車主'}</Typography>
       <br />
 
       {props.index !== 0 && (
         <Grid container item xs={12} alignItems="center">
           <Fab className={classes.DriverButton} variant="extended" onClick={props.remove(props.index)}>
-            <Typography >移除車主</Typography>
+            <Typography >{lang==='eng'?'':'移除車主'}</Typography>
           </Fab>
         </Grid>
       )}

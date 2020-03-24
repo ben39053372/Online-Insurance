@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core'
 import useStyles from '../../../style/style'
 import Alert from '@material-ui/lab/Alert';
+import { useSelector } from 'react-redux'
 
 const InputLabelProps = {
   shrink: true,
@@ -22,6 +23,7 @@ var re = /\S+@\S+\.\S+/;
 
 const ExpansionPanel4 = props => {
   const classes = useStyles()
+  const lang = useSelector(state=>state.lang)
   const [commited, setCommited] = useState(false)
   const [ErrorOpen, setErrorOpen] = useState(false)
   const [errorState, seterrorState] = useState(false)
@@ -47,12 +49,12 @@ const ExpansionPanel4 = props => {
   return (
     <ExpansionPanel expanded={props.open === 4}>
       <ExpansionPanelSummary>
-        <Typography>完成報價</Typography>
+        <Typography>{lang==='eng'?'':'完成報價'}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <div className={classes.ExpansionPanelDetails}>
-          <Typography>只差一步!</Typography>
-          <Typography>請提供您的聯絡資料方便我們即時提供報價消息!</Typography>
+          <Typography>{lang==='eng'?'':'只差一步!'}</Typography>
+          <Typography>{lang==='eng'?'':'請提供您的聯絡資料方便我們即時提供報價消息!'}</Typography>
           <TextField
             error={commited && (props.state.email === '' || !re.test(props.state.email))}
             vaule={props.state.email}
@@ -65,7 +67,7 @@ const ExpansionPanel4 = props => {
               }))
             }}
             fullWidth
-            label="您的電郵"
+            label={lang==='eng'?'':'您的電郵'}
           />
           <TextField
             error={commited && (props.state.mobile === '' || ( props.state.mobile.length > 8 && props.state.mobile.length <= 20) )}
@@ -79,7 +81,7 @@ const ExpansionPanel4 = props => {
               }))
             }}
             fullWidth
-            label="您的手提號碼"
+            label={lang==='eng'?'':'您的手提號碼'}
           />
           <Checkbox
             defaultChecked
@@ -88,7 +90,7 @@ const ExpansionPanel4 = props => {
             value="secondary"
             color="primary"
           />
-          <Typography variant='inherit'>我已閱讀條項與細則</Typography>
+          <Typography variant='inherit'>{lang==='eng'?'':'我已閱讀條項與細則'}</Typography>
           <br />
           <Collapse in={ErrorOpen}>
             <Alert onClose={() => setErrorOpen(false)} severity="error">
@@ -98,7 +100,7 @@ const ExpansionPanel4 = props => {
           <Grid container>
             <Grid item xs={6}>
               <Fab className={classes.PrevButton} variant="extended" onClick={props.prev}>
-                <Typography>上一步</Typography>
+                <Typography>{lang==='eng'?'':'上一步'}</Typography>
               </Fab>
             </Grid>
             <Grid item xs={6}>
@@ -108,7 +110,7 @@ const ExpansionPanel4 = props => {
                 // onClick={props.finish}
                 onClick={valid}
               >
-                <Typography>完成</Typography>
+                <Typography>{lang==='eng'?'':'完成'}</Typography>
               </Fab>
             </Grid>
           </Grid>
