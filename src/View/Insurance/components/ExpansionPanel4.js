@@ -102,7 +102,7 @@ const ExpansionPanel4 = props => {
           {/* client 6Lf-HucUAAAAADMwL3X8UePqMjUmAyx3wEEHVLPd */}
           {/* server 6Lf-HucUAAAAAEuuiW-Zpt28LADYllrM5o0bRyGM */}
           <ReCAPTCHA
-            sitekey="6Lf-HucUAAAAAEuuiW-Zpt28LADYllrM5o0bRyGM"
+            sitekey="6Lf-HucUAAAAADMwL3X8UePqMjUmAyx3wEEHVLPd"
             onChange={onRecaptchaChange}
           />
           <br />
