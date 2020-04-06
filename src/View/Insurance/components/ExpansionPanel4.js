@@ -122,7 +122,7 @@ const ExpansionPanel4 = props => {
             </Grid>
             <Grid item xs={6}>
               <Fab
-                // disabled={recaptcha === ''}
+                disabled={recaptcha === ''}
                 className={classes.NextButton}
                 variant="extended"
                 // onClick={props.finish}
