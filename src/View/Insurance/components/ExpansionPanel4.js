@@ -99,10 +99,10 @@ const ExpansionPanel4 = props => {
           />
           <Typography variant='inherit'>{lang === 'eng' ? 'I have read the terms and conditions' : '我已閱讀條項與細則'}</Typography>
           <br />
-          {/* client 6Lf-HucUAAAAADMwL3X8UePqMjUmAyx3wEEHVLPd */}
-          {/* server 6Lf-HucUAAAAAEuuiW-Zpt28LADYllrM5o0bRyGM */}
+          {/* client 6Ld0IecUAAAAAFuJm2gJhYDeiWe7ZQrw9M-amgc1 */}
+          {/* server 6Ld0IecUAAAAADgyIX9aGUol070iy_A8YUB1egpi */}
           <ReCAPTCHA
-            sitekey="6Lf-HucUAAAAADMwL3X8UePqMjUmAyx3wEEHVLPd"
+            sitekey="6Ld0IecUAAAAAFuJm2gJhYDeiWe7ZQrw9M-amgc1"
             onChange={onRecaptchaChange}
           />
           <br />
