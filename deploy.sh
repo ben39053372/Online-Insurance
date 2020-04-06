@@ -1,4 +1,5 @@
 git pull
+yarn build
 docker stop insurance-nginx
 docker rm insurance-nginx
 docker build -t insurance-nginx .
