@@ -8,13 +8,14 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const App = () => {
   const history = useHistory()
   const classes = useStyles()
   const dispatch = useDispatch()
   const [anchorEl, setAnchorEl] = useState(null);
+  const lang = useSelector(s=>s.lang)
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -51,7 +52,7 @@ const App = () => {
             </IconButton>
           )}
           <Typography align="center" className={classes.header} variant="h4" href="/Customers/home" component='a'>
-            HeSheCar
+            {lang==='eng'?'HeSheCar Online Insurance Platform':'HeSheCar 網上汽車保險平台'}
           </Typography>
           <IconButton edge="end" onClick={handleClick} className={classes.menuButton} color="inherit" aria-label="menu">
             <MoreVertIcon style={{ fontSize: 30 }} />

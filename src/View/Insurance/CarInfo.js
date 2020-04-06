@@ -48,21 +48,21 @@ const CarInfo = () => {
     <>
       <Dialog open={dialog} onClose={() => setDialog(false)} fullWidth>
         <DialogTitle className={classes.DialogTitle}>
-        {lang==='eng'?'':'最新報價狀態'}
+        {lang==='eng'?'Latest quotation status':'最新報價狀態'}
         </DialogTitle>
         <DialogContent>
-          <Typography>{lang==='eng'?'':'剩餘時間(小時)'}</Typography>
+          <Typography>{lang==='eng'?'Time remaining(hour)':'剩餘時間(小時)'}</Typography>
           <DialogContentText>
             <Typography align="right">{latestQuotationRequest.countDownHour}</Typography>
           </DialogContentText>
-          <Typography>{lang==='eng'?'':'已收到報價'}</Typography>
+          <Typography>{lang==='eng'?'Quotation received':'已收到報價'}</Typography>
           <DialogContentText>
             <Typography align="right">{Quotation.length}</Typography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={()=>setDialog(false)} color="primary" autoFocus>
-            {lang==='eng'?'':'確認'}
+            {lang==='eng'?'Confirm':'確認'}
           </Button>
         </DialogActions>
       </Dialog>
@@ -81,7 +81,7 @@ const CarInfo = () => {
           }}
         >
           <ExpandMoreIcon/>
-          {lang==='eng'?'':'查看報價'}
+          {lang==='eng'?'Check Quotation':'查看報價'}
         </Fab>
       )}
     </>

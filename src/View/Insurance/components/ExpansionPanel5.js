@@ -29,13 +29,16 @@ export default props => {
   const valid = () => {
     setCommited(true)
     if (props.state.insuredIdentity === '') {
-      seterrorState('請選擇投保身份')
+      // seterrorState('請選擇投保身份')
+      lang==='eng'?seterrorState('Please Input all info'):seterrorState('請選擇投保身份')
       setErrorOpen(true)
     } else if (props.state.discount === '') {
-      seterrorState('請選擇無索償折扣(NCD)')
+      // seterrorState('請選擇無索償折扣(NCD)')
+      lang==='eng'?seterrorState('Please Input all info'):seterrorState('請選擇無索償折扣(NCD)')
       setErrorOpen(true)
     } else if (props.state.numberOfExistingVehicles === '') {
-      seterrorState('請輸入現有車輛數目')
+      // seterrorState('請輸入現有車輛數目')
+      lang==='eng'?seterrorState('Please Input all info'):seterrorState('請輸入現有車輛數目')
       setErrorOpen(true)
     } else {
       seterrorState('')
@@ -63,7 +66,7 @@ export default props => {
   return (
     <ExpansionPanel expanded={props.open === 1}>
       <ExpansionPanelSummary>
-        <Typography>{lang==='eng'?'':'投保者資料'}</Typography>
+        <Typography>{lang==='eng'?'Insurant Information':'投保者資料'}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <div className={classes.ExpansionPanelDetails}>
@@ -79,7 +82,7 @@ export default props => {
               }))
             }}
             InputLabelProps={InputLabelProps}
-            label={lang==='eng'?'':'投保身份'}
+            label={lang==='eng'?'Role':'投保身份'}
           >
             {roleList.map((item, i) => (
               <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
@@ -99,7 +102,7 @@ export default props => {
               }))
             }}
             InputLabelProps={InputLabelProps}
-            label={lang==='eng'?'':'無索償折扣(NCD)'}
+            label={lang==='eng'?'No claim discount':'無索償折扣(NCD)'}
           >
             {noClaimDiscountList.map((item, i) => (
               <MenuItem key={`option${i}${item.discount}`} value={item.id}>
@@ -122,7 +125,7 @@ export default props => {
               }
             }}
             InputLabelProps={InputLabelProps}
-            label={lang==='eng'?'':'現有車輛數目'}
+            label={lang==='eng'?'Cars owned':'現有車輛數目'}
           />
           <Collapse in={ErrorOpen}>
             <Alert onClose={() => setErrorOpen(false)} severity="error">
@@ -132,7 +135,7 @@ export default props => {
           <Grid container>
             <Grid item xs={6}>
               <Fab className={classes.PrevButton} variant="extended" onClick={props.prev}>
-                <Typography>{lang==='eng'?'':'上一步'}</Typography>
+                <Typography>{lang==='eng'?'Previous step':'上一步'}</Typography>
               </Fab>
             </Grid>
             <Grid item xs={6}>
@@ -142,7 +145,7 @@ export default props => {
                 onClick={valid}
               // onClick={props.next}
               >
-                <Typography>{lang==='eng'?'':'下一步'}</Typography>
+                <Typography>{lang==='eng'?'Next step':'下一步'}</Typography>
               </Fab>
             </Grid>
           </Grid>

@@ -146,8 +146,8 @@ const InputForm = props => {
   const [errorState2, seterrorState2] = useState('')
   const valid = async () => {
     setCommited(true)
-    await seterrorState2('')
-    await setErrorOpen2(false)
+    seterrorState2('')
+    setErrorOpen2(false)
     for (let i = 0; i < ownerState.length; i++) {
       // console.log('i:', i)
       // console.log('ownerState.length:', ownerState.length)
@@ -155,29 +155,33 @@ const InputForm = props => {
       // console.log('errorState2:', errorState2)
       // console.log('1')
       if (ownerState[i].dateOfBirth.year === '' || ownerState[i].dateOfBirth.month === '' || ownerState[i].dateOfBirth.date === '') {
-        await seterrorState2('請輸入生日日期')
-        await setErrorOpen2(true)
+        // seterrorState2('請輸入生日日期')
+        lang==='eng'?seterrorState2('Please Input all info'):seterrorState2('請輸入生日日期')
+        setErrorOpen2(true)
         // console.log('2')
         break
       } else if (ownerState[i].industry === '') {
-        await seterrorState2('請選擇所屬行業')
-        await setErrorOpen2(true)
+        // seterrorState2('請選擇所屬行業')
+        lang==='eng'?seterrorState2('Please Input all info'):seterrorState2('請選擇所屬行業')
+        setErrorOpen2(true)
         // console.log('3')
         break
       } else if (ownerState[i].drivingExperience === '') {
-        await seterrorState2('請選擇駕駛經驗')
-        await setErrorOpen2(true)
+        // seterrorState2('請選擇駕駛經驗')
+        lang==='eng'?seterrorState2('Please Input all info'):seterrorState2('請選擇駕駛經驗')
+        setErrorOpen2(true)
         // console.log('4')
         break
       } else if (ownerState[i].position === '') {
-        await seterrorState2('請輸入職位')
-        await setErrorOpen2(true)
+        // seterrorState2('請輸入職位')
+        lang==='eng'?seterrorState2('Please Input all info'):seterrorState2('請輸入職位')
+        setErrorOpen2(true)
         // console.log('5')
         break
       } else if (ErrorOpen2 === false && i === (ownerState.length - 1)) {
         // console.log('6')
-        await seterrorState2('')
-        await setErrorOpen2(false)
+        seterrorState2('')
+        setErrorOpen2(false)
         next()
         break
       }
@@ -217,7 +221,7 @@ const InputForm = props => {
             ))}
 
             <Fab className={classes.DriverButton} variant="extended" onClick={addDrivers}>
-              <Typography>{lang==='eng'?'':'新增車主'}</Typography>
+              <Typography>{lang==='eng'?'Add driver':'新增車主'}</Typography>
             </Fab>
             <Collapse in={ErrorOpen2} style={{ width: '100%' }}>
               <Alert onClose={() => setErrorOpen2(false)} severity="error">
@@ -227,12 +231,12 @@ const InputForm = props => {
             <Grid container>
               <Grid item xs={6}>
                 <Fab className={classes.PrevButton} variant="extended" onClick={prev}>
-                  <Typography>{lang==='eng'?'':'上一步'}</Typography>
+                  <Typography>{lang==='eng'?'Previous step':'上一步'}</Typography>
                 </Fab>
               </Grid>
               <Grid item xs={6}>
                 <Fab className={classes.NextButton} variant="extended" onClick={valid}>
-                  <Typography>{lang==='eng'?'':'下一步'}</Typography>
+                  <Typography>{lang==='eng'?'Next step':'下一步'}</Typography>
                 </Fab>
               </Grid>
             </Grid>

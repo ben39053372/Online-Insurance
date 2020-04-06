@@ -55,9 +55,9 @@ const ExpansionPanel2 = props => {
   },[props.state[props.index].dateOfBirth.year,props.state[props.index].dateOfBirth.month])
   return (
     <div className={classes.ExpansionPanelDetails}>
-      <Typography variant="subtitle1">{lang==='eng'? '' : "駕駛者"}{props.index + 1}</Typography>
+      <Typography variant="subtitle1">{lang==='eng'? 'Driver' : "駕駛者"}{props.index + 1}</Typography>
 
-      <InputLabel shrink className={classes.DateInputShrink}>{lang==='eng'? '' : "出生日期"}</InputLabel>
+      <InputLabel shrink className={classes.DateInputShrink}>{lang==='eng'? 'Date of birth' : "出生日期"}</InputLabel>
       <Grid container justify='space-around' style={{backgroundColor: '#FFF',margin: '5px auto',borderRadius: '10px'}}>
         <Grid item xs={4}>
           
@@ -126,7 +126,7 @@ const ExpansionPanel2 = props => {
           props.setState([...temp])
         }}
         InputLabelProps={InputLabelProps}
-        label={lang==='eng'?'':'所屬行業'}
+        label={lang==='eng'?'Job industry':'所屬行業'}
       >
         {jobIndustryList.map((item, i) => (
           <MenuItem key={`option${i}${item.nameEN}`} value={item.id}>
@@ -147,7 +147,7 @@ const ExpansionPanel2 = props => {
           props.setState([...temp])
         }}
         InputLabelProps={InputLabelProps}
-        label={lang==='eng'?'':'駕駛經驗(年)'}
+        label={lang==='eng'?'Driving experience(yr)':'駕駛經驗(年)'}
       />
       <TextField
         fullWidth
@@ -160,7 +160,7 @@ const ExpansionPanel2 = props => {
           props.setState([...temp])
         }}
         InputLabelProps={InputLabelProps}
-        label={lang==='eng'?'':"職位"}
+        label={lang==='eng'?'Occupation':"職位"}
       >
         {ocupationList.map((item, i) => (
           <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
@@ -181,13 +181,13 @@ const ExpansionPanel2 = props => {
         }}
         color="primary"
       />
-      <Typography variant='inherit'>{lang==='eng'?'':'主要車主'}</Typography>
+      <Typography variant='inherit'>{lang==='eng'?'(Main driver)':'主要車主'}</Typography>
       <br />
 
       {props.index !== 0 && (
         <Grid container item xs={12} alignItems="center">
           <Fab className={classes.DriverButton} variant="extended" onClick={props.remove(props.index)}>
-            <Typography >{lang==='eng'?'':'移除車主'}</Typography>
+            <Typography >{lang==='eng'?'Remove Driver':'移除車主'}</Typography>
           </Fab>
         </Grid>
       )}

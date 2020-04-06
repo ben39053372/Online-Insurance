@@ -7,28 +7,29 @@ const CarInfo = props => {
   const classes = useStyles()
   const lang = useSelector(state=>state.lang)
   const car = [
-    { titleCht: '登記類別', titleEn: '', contentCht: props.data.carRegisterTypeNameCht },
-    { titleCht: '車廠名稱', titleEn: '', contentCht: props.data.carBrandNameCht },
-    { titleCht: '型號', titleEn: '', contentCht: props.data.carModel },
-    { titleCht: '出廠年份', titleEn: '', contentCht: props.data.carManufactureYear },
-    { titleCht: '引擎容量(c.c)', titleEn: '', contentCht: props.data.carCylinderCapacity },
-    { titleCht: '車身類型', titleEn: '', contentCht: props.data.carBodyTypeCht },
+    { titleCht: '登記類別', titleEn: 'Registration Type', contentCht: props.data.carRegisterTypeNameCht },
+    { titleCht: '車廠名稱', titleEn: 'Car brand', contentCht: props.data.carBrandNameCht },
+    { titleCht: '型號', titleEn: 'Model', contentCht: props.data.carModel },
+    { titleCht: '出廠年份', titleEn: 'Manufacture year', contentCht: props.data.carManufactureYear },
+    { titleCht: '引擎容量(c.c)', titleEn: 'Cylinder capacity', contentCht: props.data.carCylinderCapacity },
+    { titleCht: '車身類型', titleEn: 'Car body type', contentCht: props.data.carBodyTypeCht },
     // {titleCht: '車牌',content: },
-    { titleCht: '保險類別', titleEn: '', contentCht: props.data.insuranceTypeCht },
+    { titleCht: '車牌', titleEn: 'license plate number', contentCht: props.data.carLicense },
+    { titleCht: '保險類別', titleEn: 'Insurance type', contentCht: props.data.insuranceTypeCht },
   ]
   const driver = [
-    { titleCht: '出生日期', titleEn: '', contentEn: props.data.driverBirthday, contentCht: props.data.driverBirthday },
-    { titleCht: '所屬行業', titleEn: '', contentEn: props.data.jobIndustryNameEn, contentCht: props.data.jobIndustryNameCht },
-    { titleCht: '職業', titleEn: '', contentEn: props.data.ocupationNameEn, contentCht: props.data.ocupationNameCht },
-    { titleCht: '駕駛經驗(年)', titleEn: '', contentEn: props.data.drivingExpInYear, contentCht: props.data.drivingExpInYear },
-    { titleCht: '現有車輛數目', titleEn: '', contentEn: props.data.ownCarsCount, contentCht: props.data.ownCarsCount },
-    { titleCht: '車身類型', titleEn: '', contentEn: props.data.carBodyTypeEn, contentCht: props.data.carBodyTypeCht },
+    { titleCht: '出生日期', titleEn: 'Date of birth', contentEn: props.data.driverBirthday, contentCht: props.data.driverBirthday },
+    { titleCht: '所屬行業', titleEn: 'Job industry', contentEn: props.data.jobIndustryNameEn, contentCht: props.data.jobIndustryNameCht },
+    { titleCht: '職業', titleEn: 'Occupation', contentEn: props.data.ocupationNameEn, contentCht: props.data.ocupationNameCht },
+    { titleCht: '駕駛經驗(年)', titleEn: 'Driving experience(yr)', contentEn: props.data.drivingExpInYear, contentCht: props.data.drivingExpInYear },
+    { titleCht: '現有車輛數目', titleEn: 'Cars owned', contentEn: props.data.ownCarsCount, contentCht: props.data.ownCarsCount },
+    { titleCht: '車身類型', titleEn: 'Car body type', contentEn: props.data.carBodyTypeEn, contentCht: props.data.carBodyTypeCht },
   ]
   const insurance = [
-    { titleCht: '保險類別', titleEn: '', contentEn: props.data.insuranceTypeEn, contentCht: props.data.insuranceTypeCht },
-    { titleCht: '投保額', titleEn: '', contentEn: props.data.insuredAmount, contentCht: props.data.insuredAmount },
-    { titleCht: '投保身份', titleEn: '', contentEn: props.data.driverRoleEn, contentCht: props.data.driverRoleCht },
-    { titleCht: '無索償折扣(NCD)', titleEn: '', contentEn: props.data.noClaimDiscount, contentCht: props.data.noClaimDiscount }
+    { titleCht: '保險類別', titleEn: 'Insurance type', contentEn: props.data.insuranceTypeEn, contentCht: props.data.insuranceTypeCht },
+    { titleCht: '投保額', titleEn: 'Insured amount(HK$)', contentEn: props.data.insuredAmount, contentCht: props.data.insuredAmount },
+    { titleCht: '投保身份', titleEn: 'Role', contentEn: props.data.driverRoleEn, contentCht: props.data.driverRoleCht },
+    { titleCht: '無索償折扣(NCD)', titleEn: 'No claim discount', contentEn: props.data.noClaimDiscount, contentCht: props.data.noClaimDiscount }
   ]
 
   return (
@@ -36,7 +37,7 @@ const CarInfo = props => {
       <Typography align="center" variant="subtitle1">{lang==='eng'?'':'報價車款資料'}</Typography>
 
       <List dense>
-        <ListSubheader disableSticky>{lang==='eng'?'':'車輛資料'}</ListSubheader>
+        <ListSubheader disableSticky>{lang==='eng'?'Car information':'車輛資料'}</ListSubheader>
         {car.map((item, index) => (
           <React.Fragment key={'carList'+index}>
             <ListItem>
@@ -50,7 +51,7 @@ const CarInfo = props => {
         ))}
       </List>
       <List dense>
-        <ListSubheader disableSticky>車主資料</ListSubheader>
+        <ListSubheader disableSticky>{lang==='eng'?'Driver information':'車主資料'}</ListSubheader>
         {driver.map((item, index) => (
           <React.Fragment key={'dirver'+index}>
             <ListItem>
@@ -64,7 +65,7 @@ const CarInfo = props => {
         ))}
       </List>
       <List dense>
-        <ListSubheader disableSticky>{lang==='eng'?'':'投保類別'}</ListSubheader>
+        <ListSubheader disableSticky>{lang==='eng'?'Insurance type':'投保類別'}</ListSubheader>
         {insurance.map((item, index) => (
           <React.Fragment key={'insuranceList'+index}>
             <ListItem>

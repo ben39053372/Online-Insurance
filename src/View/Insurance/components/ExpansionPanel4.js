@@ -13,6 +13,7 @@ import {
 import useStyles from '../../../style/style'
 import Alert from '@material-ui/lab/Alert';
 import { useSelector } from 'react-redux'
+import ReCAPTCHA from "react-google-recaptcha";
 
 const InputLabelProps = {
   shrink: true,
@@ -23,22 +24,25 @@ var re = /\S+@\S+\.\S+/;
 
 const ExpansionPanel4 = props => {
   const classes = useStyles()
-  const lang = useSelector(state=>state.lang)
+  const lang = useSelector(state => state.lang)
   const [commited, setCommited] = useState(false)
   const [ErrorOpen, setErrorOpen] = useState(false)
   const [errorState, seterrorState] = useState(false)
   const [agree, setAgree] = useState(true)
-  
+
   const valid = () => {
     setCommited(true)
     if (props.state.email === '' || !re.test(props.state.email)) {
-      seterrorState('請輸入正確電郵')
+      // seterrorState('請輸入正確電郵')
+      lang === 'eng' ? seterrorState('Please Input all info') : seterrorState('請輸入正確電郵')
       setErrorOpen(true)
     } else if (props.state.mobile === '' || props.state.mobile.length < 8 || props.state.mobile.length > 20) {
-      seterrorState('請輸入正確電話號碼')
+      // seterrorState('請輸入正確電話號碼')
+      lang === 'eng' ? seterrorState('Please Input all info') : seterrorState('請輸入正確電話號碼')
       setErrorOpen(true)
-    } else if (agree === false){
-      seterrorState('請勾選我已閱讀條項與細則')
+    } else if (agree === false) {
+      // seterrorState('請勾選我已閱讀條項與細則')
+      lang === 'eng' ? seterrorState('Please Input all info') : seterrorState('請勾選我已閱讀條項與細則')
       setErrorOpen(true)
     } else {
       seterrorState('')
@@ -46,15 +50,18 @@ const ExpansionPanel4 = props => {
       props.finish()
     }
   }
+  const onRecaptchaChange = (value) => {
+    console.log(value)
+  }
   return (
     <ExpansionPanel expanded={props.open === 4}>
       <ExpansionPanelSummary>
-        <Typography>{lang==='eng'?'':'完成報價'}</Typography>
+        <Typography>{lang === 'eng' ? 'Last step' : '完成報價'}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <div className={classes.ExpansionPanelDetails}>
-          <Typography>{lang==='eng'?'':'只差一步!'}</Typography>
-          <Typography>{lang==='eng'?'':'請提供您的聯絡資料方便我們即時提供報價消息!'}</Typography>
+          <Typography>{lang === 'eng' ? 'One more step to go!' : '只差一步!'}</Typography>
+          <Typography>{lang === 'eng' ? 'Please provide your contact for sending you the quotations!' : '請提供您的聯絡資料方便我們即時提供報價消息!'}</Typography>
           <TextField
             error={commited && (props.state.email === '' || !re.test(props.state.email))}
             vaule={props.state.email}
@@ -67,10 +74,10 @@ const ExpansionPanel4 = props => {
               }))
             }}
             fullWidth
-            label={lang==='eng'?'':'您的電郵'}
+            label={lang === 'eng' ? 'Email' : '您的電郵'}
           />
           <TextField
-            error={commited && (props.state.mobile === '' || ( props.state.mobile.length > 8 && props.state.mobile.length <= 20) )}
+            error={commited && (props.state.mobile === '' || (props.state.mobile.length > 8 && props.state.mobile.length <= 20))}
             value={props.state.mobile}
             type="number"
             InputLabelProps={InputLabelProps}
@@ -81,17 +88,25 @@ const ExpansionPanel4 = props => {
               }))
             }}
             fullWidth
-            label={lang==='eng'?'':'您的手提號碼'}
+            label={lang === 'eng' ? 'Phone number' : '您的手提號碼'}
           />
           <Checkbox
             defaultChecked
             checked={agree}
-            onChange={(e)=>setAgree(e.target.checked)}
+            onChange={(e) => setAgree(e.target.checked)}
             value="secondary"
             color="primary"
           />
-          <Typography variant='inherit'>{lang==='eng'?'':'我已閱讀條項與細則'}</Typography>
+          <Typography variant='inherit'>{lang === 'eng' ? 'I have read the terms and conditions' : '我已閱讀條項與細則'}</Typography>
           <br />
+          {/* client 6Lf-HucUAAAAADMwL3X8UePqMjUmAyx3wEEHVLPd */}
+          {/* server 6Lf-HucUAAAAAEuuiW-Zpt28LADYllrM5o0bRyGM */}
+          <ReCAPTCHA
+            sitekey="6Lf-HucUAAAAAEuuiW-Zpt28LADYllrM5o0bRyGM"
+            onChange={onRecaptchaChange}
+          />
+          <br />
+
           <Collapse in={ErrorOpen}>
             <Alert onClose={() => setErrorOpen(false)} severity="error">
               {errorState.toString()}
@@ -100,7 +115,7 @@ const ExpansionPanel4 = props => {
           <Grid container>
             <Grid item xs={6}>
               <Fab className={classes.PrevButton} variant="extended" onClick={props.prev}>
-                <Typography>{lang==='eng'?'':'上一步'}</Typography>
+                <Typography>{lang === 'eng' ? 'Previous step' : '上一步'}</Typography>
               </Fab>
             </Grid>
             <Grid item xs={6}>
@@ -110,7 +125,7 @@ const ExpansionPanel4 = props => {
                 // onClick={props.finish}
                 onClick={valid}
               >
-                <Typography>{lang==='eng'?'':'完成'}</Typography>
+                <Typography>{lang === 'eng' ? 'Submit' : '完成'}</Typography>
               </Fab>
             </Grid>
           </Grid>
