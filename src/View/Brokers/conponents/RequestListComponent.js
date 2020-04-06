@@ -22,28 +22,34 @@ export default props => {
             </div>
             <Grid container direction="row">
               <Grid container item spacing={0} xs={11} direction="row">
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={4} sm={2}>
                   <div className={classes.requestListDataGrid}>
                     <Typography className={classes.requestListDataGrid_Title}>車廠名稱</Typography>
                     <Typography className={classes.requestListDataGrid_Content}>{props.item.brandCht || props.item.brandEn || 'None'}</Typography>
                   </div>
                 </Grid>
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={4} sm={2}>
                   <div className={classes.requestListDataGrid}>
                     <Typography className={classes.requestListDataGrid_Title}>型號</Typography>
                     <Typography className={classes.requestListDataGrid_Content}>{props.item.carModel || 'None'}</Typography>
                   </div>
                 </Grid>
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={4} sm={2}>
                   <div className={classes.requestListDataGrid}>
                     <Typography className={classes.requestListDataGrid_Title} >出廠年份</Typography>
                     <Typography className={classes.requestListDataGrid_Content}>{props.item.manufactureYear || 'None'}</Typography>
                   </div>
                 </Grid>
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={4} sm={2}>
                   <div className={classes.requestListDataGrid}>
                     <Typography className={classes.requestListDataGrid_Title}>車輛數目</Typography>
                     <Typography className={classes.requestListDataGrid_Content}>{props.item.ownCarsCount || 'None'}</Typography>
+                  </div>
+                </Grid>
+                <Grid item xs={4} sm={2}>
+                  <div className={classes.requestListDataGrid}>
+                    <Typography className={classes.requestListDataGrid_Title}>車牌</Typography>
+                    <Typography className={classes.requestListDataGrid_Content}>{props.item.carLicense || 'None'}</Typography>
                   </div>
                 </Grid>
               </Grid>

@@ -11,7 +11,7 @@ const CarInfo = props => {
     { title: '出廠年份', contentCht: props.data.carManufactureYear },
     { title: '引擎容量(c.c)', contentCht: props.data.carCylinderCapacity },
     { title: '車身類型', contentCht: props.data.carBodyTypeCht },
-    // {title: '車牌',content: },
+    {title: '車牌', contentCht: props.data.carLicense},
     { title: '保險類別', contentCht: props.data.insuranceTypeCht },
   ]
   const driver = [

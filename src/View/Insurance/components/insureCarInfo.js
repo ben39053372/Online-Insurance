@@ -7,15 +7,15 @@ const CarInfo = props => {
   const classes = useStyles()
   const lang = useSelector(state=>state.lang)
   const car = [
-    { titleCht: '登記類別', titleEn: 'Registration Type', contentCht: props.data.carRegisterTypeNameCht },
-    { titleCht: '車廠名稱', titleEn: 'Car brand', contentCht: props.data.carBrandNameCht },
-    { titleCht: '型號', titleEn: 'Model', contentCht: props.data.carModel },
-    { titleCht: '出廠年份', titleEn: 'Manufacture year', contentCht: props.data.carManufactureYear },
-    { titleCht: '引擎容量(c.c)', titleEn: 'Cylinder capacity', contentCht: props.data.carCylinderCapacity },
-    { titleCht: '車身類型', titleEn: 'Car body type', contentCht: props.data.carBodyTypeCht },
+    { titleCht: '登記類別', titleEn: 'Registration Type',contentEn: props.data.carRegisterTypeNameEn, contentCht: props.data.carRegisterTypeNameCht },
+    { titleCht: '車廠名稱', titleEn: 'Car brand',contentEn: props.data.carBrandNameEn, contentCht: props.data.carBrandNameCht },
+    { titleCht: '型號', titleEn: 'Model',contentEn: props.data.carModel, contentCht: props.data.carModel },
+    { titleCht: '出廠年份', titleEn: 'Manufacture year',contentEn: props.data.carManufactureYear, contentCht: props.data.carManufactureYear },
+    { titleCht: '引擎容量(c.c)', titleEn: 'Cylinder capacity',contentEn: props.data.carCylinderCapacity, contentCht: props.data.carCylinderCapacity },
+    { titleCht: '車身類型', titleEn: 'Car body type',contentEn: props.data.carBodyTypeEn, contentCht: props.data.carBodyTypeCht },
     // {titleCht: '車牌',content: },
-    { titleCht: '車牌', titleEn: 'license plate number', contentCht: props.data.carLicense },
-    { titleCht: '保險類別', titleEn: 'Insurance type', contentCht: props.data.insuranceTypeCht },
+    { titleCht: '車牌', titleEn: 'license plate number',contentEn: props.data.carLicense, contentCht: props.data.carLicense },
+    { titleCht: '保險類別', titleEn: 'Insurance type',contentEn: props.data.insuranceTypeEn, contentCht: props.data.insuranceTypeCht },
   ]
   const driver = [
     { titleCht: '出生日期', titleEn: 'Date of birth', contentEn: props.data.driverBirthday, contentCht: props.data.driverBirthday },
