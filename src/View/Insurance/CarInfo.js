@@ -5,13 +5,14 @@ import { getQuotationRequestSummary } from '../../api/api/quotation'
 import useStyles from '../../style/style'
 import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Typography, Fab } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { useSelector } from 'react-redux'
 
 const CarInfo = () => {
   const classes = useStyles()
   const [latestQuotationRequest, setLatestQuotationRequest] = useState({})
   const [Quotation, setQuotation] = useState([])
   const [dialog, setDialog] = useState(true)
-
+  const lang = useSelector(s=>s.lang)
   useEffect(() => {
     getQuotationRequestSummary().then(res => {
       // console.log(res)
@@ -47,28 +48,41 @@ const CarInfo = () => {
     <>
       <Dialog open={dialog} onClose={() => setDialog(false)} fullWidth>
         <DialogTitle className={classes.DialogTitle}>
-          最新報價狀態
+        {lang==='eng'?'':'最新報價狀態'}
         </DialogTitle>
         <DialogContent>
-          <Typography>剩餘時間(小時)</Typography>
+          <Typography>{lang==='eng'?'':'剩餘時間(小時)'}</Typography>
           <DialogContentText>
             <Typography align="right">{latestQuotationRequest.countDownHour}</Typography>
           </DialogContentText>
-          <Typography>已收到報價</Typography>
+          <Typography>{lang==='eng'?'':'已收到報價'}</Typography>
           <DialogContentText>
             <Typography align="right">{Quotation.length}</Typography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={()=>setDialog(false)} color="primary" autoFocus>
-            確認
+            {lang==='eng'?'':'確認'}
           </Button>
         </DialogActions>
       </Dialog>
       <InsureCarInfo data={latestQuotationRequest} />
       <QuoteDetails data={Quotation} />
       {scrollView && (
-        <Fab variant="extended" onClick={() => scrollToAnchor('QuoteDetails')} style={{position: 'fixed', bottom: '5%', right: '5%', background: '#922', color: '#FFF'}}><ExpandMoreIcon/>查看報價</Fab>
+        <Fab 
+          variant="extended" 
+          onClick={() => scrollToAnchor('QuoteDetails')} 
+          style={{
+            position: 'fixed', 
+            bottom: '5%', 
+            right: '5%', 
+            background: '#922', 
+            color: '#FFF'
+          }}
+        >
+          <ExpandMoreIcon/>
+          {lang==='eng'?'':'查看報價'}
+        </Fab>
       )}
     </>
   )

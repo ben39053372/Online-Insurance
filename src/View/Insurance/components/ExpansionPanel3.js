@@ -14,6 +14,7 @@ import {
 import Terms from './TermsAndCondition'
 import useStyles from '../../../style/style'
 import Alert from '@material-ui/lab/Alert';
+import { useSelector } from 'react-redux'
 
 const InputLabelProps = {
   shrink: true,
@@ -24,10 +25,9 @@ const insureType = [
   { id: 2, nameCht: '三保', nameEN: 'Three' }
 ]
 
-
-
 const ExpansionPanel3 = props => {
   const classes = useStyles()
+  const lang = useSelector(state => state.lang)
   const [ErrorOpen, setErrorOpen] = useState(false)
   const [errorState, seterrorState] = useState(false)
   const [commited, setCommited] = useState(false)
@@ -52,13 +52,13 @@ const ExpansionPanel3 = props => {
   return (
     <ExpansionPanel expanded={props.open === 3}>
       <ExpansionPanelSummary>
-        <Typography>投保類別</Typography>
+        <Typography>{lang==='eng'?'':'投保類別'}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <Terms open={termOpen} onClose={handleTermsClose} />
         <div className={classes.ExpansionPanelDetails}>
-          <InputLabel>網上購買汽車保險</InputLabel>
-          <Fab className={classes.comprehendFab} size="medium" variant="extended" onClick={handleTermsClick} >了解更多</Fab>
+          <InputLabel>{lang==='eng'?'':'網上購買汽車保險'}</InputLabel>
+          <Fab className={classes.comprehendFab} size="medium" variant="extended" onClick={handleTermsClick} >{lang==='eng'?'':'了解更多'}</Fab>
           <TextField
             fullWidth
             select
@@ -67,10 +67,12 @@ const ExpansionPanel3 = props => {
               ...state, insureType: e.target.value
             }))}
             InputLabelProps={InputLabelProps}
-            label="請選擇保險類別"
+            label={lang==='eng'?'':'請選擇保險類別'}
           >
             {insureType.map((item, i) => (
-              <MenuItem key={item.nameCht} value={item.id}>{item.nameCht}</MenuItem>
+              <MenuItem key={item.nameCht} value={item.id}>
+                {lang==='eng'?item.nameEn: item.nameCht}
+              </MenuItem>
             ))}
           </TextField>
           <TextField
@@ -85,7 +87,7 @@ const ExpansionPanel3 = props => {
               }))
             }}
             InputLabelProps={InputLabelProps}
-            label="全保投保額(HK$) #"
+            label={lang==='eng'?'':'全保投保額(HK$) #'}
           />
           <Collapse in={ErrorOpen}>
             <Alert onClose={() => setErrorOpen(false)} severity="error">
@@ -95,7 +97,7 @@ const ExpansionPanel3 = props => {
           <Grid container>
             <Grid item xs={6}>
               <Fab className={classes.PrevButton} variant="extended" onClick={props.prev}>
-                <Typography>上一步</Typography>
+                <Typography>{lang==='eng'?'':'上一步'}</Typography>
               </Fab>
             </Grid>
             <Grid item xs={6}>
@@ -105,7 +107,7 @@ const ExpansionPanel3 = props => {
                 // onClick={props.next}
                 onClick={valid} 
               >
-                <Typography>下一步</Typography>
+                <Typography>{lang==='eng'?'':'下一步'}</Typography>
               </Fab>
             </Grid>
           </Grid>

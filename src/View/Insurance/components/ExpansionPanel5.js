@@ -16,6 +16,7 @@ import {
   getNoClaimDiscountList
 } from '../../../api/api/driver'
 import useStyles from '../../../style/style'
+import { useSelector } from 'react-redux'
 
 const InputLabelProps = {
   shrink: true,
@@ -23,6 +24,7 @@ const InputLabelProps = {
 }
 
 export default props => {
+  const lang = useSelector(state=>state.lang)
   const [commited, setCommited] = useState(false)
   const valid = () => {
     setCommited(true)
@@ -61,7 +63,7 @@ export default props => {
   return (
     <ExpansionPanel expanded={props.open === 1}>
       <ExpansionPanelSummary>
-        <Typography>投保者資料</Typography>
+        <Typography>{lang==='eng'?'':'投保者資料'}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <div className={classes.ExpansionPanelDetails}>
@@ -77,11 +79,11 @@ export default props => {
               }))
             }}
             InputLabelProps={InputLabelProps}
-            label="投保身份"
+            label={lang==='eng'?'':'投保身份'}
           >
             {roleList.map((item, i) => (
               <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
-                {item.nameCht}
+                {lang==='eng'?item.nameEn: item.nameCht}
               </MenuItem>
             ))}
           </TextField>
@@ -97,7 +99,7 @@ export default props => {
               }))
             }}
             InputLabelProps={InputLabelProps}
-            label="無索償折扣(NCD)"
+            label={lang==='eng'?'':'無索償折扣(NCD)'}
           >
             {noClaimDiscountList.map((item, i) => (
               <MenuItem key={`option${i}${item.discount}`} value={item.id}>
@@ -120,7 +122,7 @@ export default props => {
               }
             }}
             InputLabelProps={InputLabelProps}
-            label="現有車輛數目"
+            label={lang==='eng'?'':'現有車輛數目'}
           />
           <Collapse in={ErrorOpen}>
             <Alert onClose={() => setErrorOpen(false)} severity="error">
@@ -130,7 +132,7 @@ export default props => {
           <Grid container>
             <Grid item xs={6}>
               <Fab className={classes.PrevButton} variant="extended" onClick={props.prev}>
-                <Typography>上一步</Typography>
+                <Typography>{lang==='eng'?'':'上一步'}</Typography>
               </Fab>
             </Grid>
             <Grid item xs={6}>
@@ -140,7 +142,7 @@ export default props => {
                 onClick={valid}
               // onClick={props.next}
               >
-                <Typography>下一步</Typography>
+                <Typography>{lang==='eng'?'':'下一步'}</Typography>
               </Fab>
             </Grid>
           </Grid>

@@ -21,6 +21,7 @@ import {
 import useStyles from '../../../style/style'
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import Alert from '@material-ui/lab/Alert';
+import { useSelector } from 'react-redux'
 
 const InputLabelProps = {
   shrink: true,
@@ -34,28 +35,30 @@ const ExpansionPanel1 = props => {
   const [manufactureYearList, setManufactureYearList] = useState([])
   const [bodyTypeList, setBodyTypeList] = useState([])
   const [commited, setCommited] = useState(false)
+  const lang = useSelector(state => state.lang)
+  
   const valid = () => {
     setCommited(true)
     if (props.state.regisType === '') {
-      seterrorState('請選擇登記類別')
+      lang==='eng'?seterrorState('Please Input'):seterrorState('請選擇登記類別')
       setErrorOpen(true)
     } else if (props.state.depotName === '') {
-      seterrorState('請選擇車廠名稱')
+      lang==='eng'?seterrorState('Please Input'):seterrorState('請選擇車廠名稱')
       setErrorOpen(true)
     } else if (props.state.manufactureYear === '') {
-      seterrorState('請選擇出廠年份')
+      lang==='eng'?seterrorState('Please Input'):seterrorState('請選擇出廠年份')
       setErrorOpen(true)
     } else if (props.state.model === '') {
-      seterrorState('請輸入型號')
+      lang==='eng'?seterrorState('Please Input'):seterrorState('請輸入型號')
       setErrorOpen(true)
     } else if (props.state.engineCapacity === '') {
-      seterrorState('請輸入引擎容量')
+      lang==='eng'?seterrorState('Please Input'):seterrorState('請輸入引擎容量')
       setErrorOpen(true)
     } else if (props.state.licensePlate === '') {
-      seterrorState('請輸入車牌號碼')
+      lang==='eng'?seterrorState('Please Input'):seterrorState('請輸入車牌號碼')
       setErrorOpen(true)
     } else if (props.state.carBodyType === '') {
-      seterrorState('請選擇車身類型')
+      lang==='eng'?seterrorState('Please Input'):seterrorState('請選擇車身類型')
       setErrorOpen(true)
     } else {
       seterrorState('')
@@ -85,7 +88,7 @@ const ExpansionPanel1 = props => {
     <ExpansionPanel className={classes.ExpansionPanel} expanded={props.open === 0}>
       <ExpansionPanelSummary>
         <DirectionsCarIcon />
-        <Typography> 車輛資料</Typography>
+        <Typography>{lang==='eng'? 'Car Information' : '車輛資料'}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails >
 
@@ -99,11 +102,11 @@ const ExpansionPanel1 = props => {
               ...state, regisType: e.target.value
             }))}
             InputLabelProps={InputLabelProps}
-            label="登記類別"
+            label={lang==='eng'? '' : '登記類別'}
           >
             {registerTypeList.map((item, i) => (
               <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
-                {item.nameCht}
+                {lang==='eng'?item.nameEn: item.nameCht}
               </MenuItem>
             ))}
           </TextField>
@@ -113,14 +116,14 @@ const ExpansionPanel1 = props => {
             onChange={(e) => props.setState(state => ({
               ...state, depotName: e.target.value
             }))}
-            label="車廠名稱"
+            label={lang==='eng'? '' : "車廠名稱"}
             select
             fullWidth
             InputLabelProps={InputLabelProps}
           >
             {brandList.map((item, i) => (
               <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
-                {item.nameCht}
+                {lang==='eng'?item.nameEn: item.nameCht}
               </MenuItem>
             ))}
           </TextField>
@@ -133,7 +136,7 @@ const ExpansionPanel1 = props => {
             }))}
             select
             InputLabelProps={InputLabelProps}
-            label="出廠年份"
+            label={lang==='eng'? '' : "出廠年份"}
           >
             {manufactureYearList.map((item, i) => (
               <MenuItem key={`option${i}${item.year}`} value={item.id}>
@@ -152,7 +155,7 @@ const ExpansionPanel1 = props => {
               }))
             }}
             InputLabelProps={InputLabelProps}
-            label="型號"
+            label={lang==='eng'? '' : "型號"}
           />
           <TextField
             fullWidth
@@ -170,7 +173,7 @@ const ExpansionPanel1 = props => {
               }))
             }}
             InputLabelProps={InputLabelProps}
-            label="引擎容量(c.c)"
+            label={lang==='eng'? '' : "引擎容量(c.c)"}
           />
           <TextField
             fullWidth
@@ -183,7 +186,7 @@ const ExpansionPanel1 = props => {
               }))
             }}
             InputLabelProps={InputLabelProps}
-            label="車牌號碼"
+            label={lang==='eng'? '' : "車牌號碼"}
           />
           <TextField
             fullWidth
@@ -194,11 +197,11 @@ const ExpansionPanel1 = props => {
               ...state, carBodyType: e.target.value
             }))}
             InputLabelProps={InputLabelProps}
-            label="車身類型"
+            label={lang==='eng'? '' : "車身類型"}
           >
             {bodyTypeList.map((item, i) => (
               <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
-                {item.nameCht}
+                {lang==='eng'?item.nameEn: item.nameCht}
               </MenuItem>
             ))}
           </TextField>
@@ -215,7 +218,7 @@ const ExpansionPanel1 = props => {
               // onClick={props.next}
               alignItems="center"
             >
-              <Typography>下一步</Typography>
+              <Typography>{lang === 'eng'? 'NEXT' : '下一步' }</Typography>
             </Fab>
           </Grid>
         </div>

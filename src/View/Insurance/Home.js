@@ -10,6 +10,7 @@ import { Snackbar, ExpansionPanel, Collapse, ExpansionPanelSummary, ExpansionPan
 import Alert from '@material-ui/lab/Alert';
 import { useHistory } from "react-router-dom";
 import useStyles from '../../style/style'
+import { useSelector } from 'react-redux'
 
 const ownerStateTemp = {
   dateOfBirth: {
@@ -23,6 +24,7 @@ const ownerStateTemp = {
   isMainDriver: false
 }
 const InputForm = props => {
+  const lang = useSelector(s=>s.lang)
   const classes = useStyles()
   const history = useHistory();
   const [open, setOpen] = useState(0)
@@ -192,7 +194,7 @@ const InputForm = props => {
       <Exp5 open={open} prev={prev} next={next} state={ownerState_head} setState={setOwnerState_head} />
       <ExpansionPanel expanded={open === 2}>
         <ExpansionPanelSummary>
-          <Typography>駕駛者資料</Typography>
+          <Typography>{lang==='eng'?'':'駕駛者資料'}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Grid container direction="row">
@@ -215,7 +217,7 @@ const InputForm = props => {
             ))}
 
             <Fab className={classes.DriverButton} variant="extended" onClick={addDrivers}>
-              <Typography>新增車主</Typography>
+              <Typography>{lang==='eng'?'':'新增車主'}</Typography>
             </Fab>
             <Collapse in={ErrorOpen2} style={{ width: '100%' }}>
               <Alert onClose={() => setErrorOpen2(false)} severity="error">
@@ -225,12 +227,12 @@ const InputForm = props => {
             <Grid container>
               <Grid item xs={6}>
                 <Fab className={classes.PrevButton} variant="extended" onClick={prev}>
-                  <Typography>上一步</Typography>
+                  <Typography>{lang==='eng'?'':'上一步'}</Typography>
                 </Fab>
               </Grid>
               <Grid item xs={6}>
                 <Fab className={classes.NextButton} variant="extended" onClick={valid}>
-                  <Typography>下一步</Typography>
+                  <Typography>{lang==='eng'?'':'下一步'}</Typography>
                 </Fab>
               </Grid>
             </Grid>

@@ -20,7 +20,7 @@ export default createMuiTheme({
     },
     MuiList: {
       root: {
-        background: '#FFFFef',
+        background: '#EEE',
         margin: '8px 0px',
         borderRadius: '10px',
         width: '100%',
