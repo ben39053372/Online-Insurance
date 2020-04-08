@@ -36,7 +36,7 @@ const ExpansionPanel2 = props => {
     }
     x()
     // eslint-disable-next-line
-  }, [])
+  }, [props.state[props.index].industry])
   useEffect(() => {
     let x = async () => {
       let result = await getJobIndustryList()

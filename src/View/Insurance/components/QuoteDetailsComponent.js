@@ -117,7 +117,7 @@ export default props => {
           <Link target="_blank" href={link}>{lang==='eng'?'Gift detail':'禮品詳情'}</Link>
         </Typography>
         <div>
-          <Button variant="contained" className={classes.rightButton} disabled={uploadButtonDisable} onClick={uploadInvoice} color="primary">
+          <Button disabled={!interestedState} variant="contained" className={classes.rightButton} onClick={uploadInvoice} color="primary">
           {lang==='eng'?'Upload and redeem':'換領禮品'}
           </Button>
           {uploadButtonDisable && <CircularProgress size={24} className={classes.buttonProgress} />}
