@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './View/App';
+import 'react-app-polyfill/ie11'
+import 'react-app-polyfill/stable'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as BRouter } from 'react-router-dom'
 import { CssBaseline } from '@material-ui/core'
