@@ -6,10 +6,12 @@ import { useParams } from 'react-router-dom'
 import { Button, Typography, Grid, Dialog, DialogActions, DialogTitle} from '@material-ui/core'
 import dom2img from 'dom-to-image'
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 export default () => {
   let { id } = useParams()
   const history = useHistory()
+  const lang = useSelector(state=>state.lang)
   const [quotationRequest, setQuotationRequest] = useState({})
   const [quote, setQuote] = useState({})
   useEffect(() => {
@@ -49,17 +51,17 @@ export default () => {
         <DialogTitle id="alert-dialog-title">{"確認刪除?"}</DialogTitle>
         <DialogActions>
           <Button onClick={() => setOpen(false)} color="primary">
-            取消
+            {lang==='eng'?'Cancel':'取消'}
           </Button>
           <Button onClick={DelAction} color="primary" autoFocus>
-            確認
+            {lang==='eng'?'Confirm':'確認'}
           </Button>
         </DialogActions>
       </Dialog>
       <Grid container justify="center" alignItems="center">
 
         <Grid item xs={12}>
-          <Typography align="center">報價車款資料</Typography>
+          <Typography align="center">{lang==='eng'?'Request car information':'報價車款資料'}</Typography>
         </Grid>
         <Grid container item xs={6} justify="center">
           <Button
@@ -69,13 +71,13 @@ export default () => {
             onClick={print}
           >
             <Typography>
-              列印資料
+              {lang==='eng'?'Print Data':'列印資料'}
             </Typography>
           </Button>
         </Grid>
         <Grid container item xs={6} justify="center">
           <Button onClick={()=> setOpen(true)} style={{backgroundColor: '#F00'}} color="secondary" variant="contained">
-            <Typography>刪除</Typography>
+            <Typography>{lang==='eng'?'Deleted':'刪除'}</Typography>
           </Button>
         </Grid>
 

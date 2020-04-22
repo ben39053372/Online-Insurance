@@ -34,7 +34,7 @@ const CarInfo = props => {
 
   return (
     <Paper elevation={0}>
-      <Typography align="center" variant="subtitle1">{lang==='eng'?'':'報價車款資料'}</Typography>
+      <Typography align="center" variant="subtitle1">{lang==='eng'?'Request car information':'報價車款資料'}</Typography>
 
       <List dense>
         <ListSubheader disableSticky>{lang==='eng'?'Car information':'車輛資料'}</ListSubheader>

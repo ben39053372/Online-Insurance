@@ -1,9 +1,11 @@
 import React from 'react'
 import { Paper, Typography, List, ListSubheader, ListItem, ListItemText, Divider } from '@material-ui/core'
 import useStyles from '../../../style/style'
+import { useSelector } from 'react-redux'
 
 const CarInfo = props => {
   const classes = useStyles()
+  const lang = useSelector(state=>state.lang)
   const car = [
     { title: '登記類別', contentCht: props.data.carRegisterTypeNameCht },
     { title: '車廠名稱', contentCht: props.data.carBrandNameCht },
@@ -32,7 +34,7 @@ const CarInfo = props => {
     <Paper elevation={0}>
       
       <List dense>
-        <ListSubheader disableSticky>車輛資料</ListSubheader>
+        <ListSubheader disableSticky>{lang==='eng'?'Car Information':'車輛資料'}</ListSubheader>
         {car.map((item, index) => (
           <React.Fragment key={'carList'+index}>
             <ListItem>
@@ -46,7 +48,7 @@ const CarInfo = props => {
         ))}
       </List>
       <List dense>
-        <ListSubheader disableSticky>車主資料</ListSubheader>
+        <ListSubheader disableSticky>{lang==='eng'?'Driver Information':'車主資料'}</ListSubheader>
         {driver.map((item, index) => (
           <React.Fragment key={'dirver'+index}>
             <ListItem>
@@ -60,10 +62,10 @@ const CarInfo = props => {
         ))}
       </List>
       <List dense>
-        <ListSubheader disableSticky>投保類別</ListSubheader>
+        <ListSubheader disableSticky>{lang==='eng'?'Insurance Type':'投保類別'}</ListSubheader>
         {insurance.map((item, index) => (
           <React.Fragment key={'insuranceList'+index}>
-            <ListItem>
+            <ListItem>{lang==='eng'?'Insurance Type':'投保類別'}
               <ListItemText
                 primary={<Typography className={classes.listPrimary} display="inline">{item.title}</Typography>}
                 secondary={<Typography className={classes.listSecondary}>{item.contentCht}</Typography>}

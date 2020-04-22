@@ -24,10 +24,12 @@ import md5 from 'md5'
 import { useHistory } from 'react-router-dom'
 import { login, forgotPassword} from '../../api/api/broker'
 import useStyles from '../../style/style'
+import { useSelector } from 'react-redux'
 
 const SignUp = () => {
   const classes = useStyles()
   const history = useHistory();
+  const lang = useSelector(state=>state.lang)
   const [open, setOpen] = useState(false);
   const [loginState, setLoginState] = useState('Error')
   const [userName, setUserName] = useState('')
@@ -109,11 +111,11 @@ const SignUp = () => {
       />
       <Dialog open={dialogOpen} onClose={handleClose}>
         <DialogTitle>
-          忘記密碼
+          {lang==='eng'?'Forget Password':'忘記密碼'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            輸入你的電郵確認身份，用以重設密碼。
+            {lang==='eng'?'Please input your email':'輸入你的電郵確認身份，用以重設密碼。'}
         </DialogContentText>
           <TextField
             autoFocus
@@ -121,7 +123,7 @@ const SignUp = () => {
             value={email}
             onChange={onEmailChange}
             label="Email Address"
-            type="email"
+            type={lang==="eng"? 'Email Address' : '電郵地址'}
             fullWidth
           />
           <Collapse in={dialogAlertOpen}>
@@ -145,16 +147,16 @@ const SignUp = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            返回
+            {lang === 'eng'? 'Back' : '返回'}
           </Button>
           <Button onClick={submitForgot} color="primary">
-            重設密碼
+            {lang === 'eng'? 'Forget Password' : '忘記密碼'}
           </Button>
         </DialogActions>
       </Dialog>
       <Paper className={classes.paper}>
         <Typography variant="h3" align='center'>
-          Broker登入
+          {lang === 'eng'? 'Broker Login' : 'Broker登入'}
         </Typography>
         <TextField
           id="input-with-icon-textfield"
@@ -215,7 +217,7 @@ const SignUp = () => {
               onClick={onForgetClick}
             >
               <NavigationIcon />
-              忘記密碼
+              {lang === 'eng'? 'Forget Password' : '忘記密碼'}
             </Fab>
           </Grid>
           <Grid container item xs={6}>
@@ -227,7 +229,7 @@ const SignUp = () => {
               onClick={onLoginClick}
             >
               <NavigationIcon />
-              登入
+              {lang==='eng'? 'Login' : '登入'}
             </Fab>
           </Grid>
         </Grid>

@@ -18,7 +18,7 @@ export default props => {
   const setting2 = [
     { titleCht: '保險公司', titleEn: 'Insurance provider', contentEn: props.item.insuranceCompanyNameEn, contentCht: props.item.insuranceCompanyNameCht },
     { titleCht: '投保計劃', titleEn: 'Insurance plan', content: props.item.insurancePlanTypeEn, contentCht: props.item.insurancePlanTypeCht },
-    { titleCht: '特惠一年保養', titleEn: 'Special one-year maintenance', contentEn: props.item.oneYearInsuranceFee, contentCht: props.item.oneYearInsuranceFee },
+    { titleCht: '特惠一年保費', titleEn: 'Special one-year insurance premium', contentEn: props.item.oneYearInsuranceFee, contentCht: props.item.oneYearInsuranceFee },
     { titleCht: 'General Excess * 自身車輛財物損毀', titleEn: 'General Excess', contentEn: props.item.generalExcess, contentCht: props.item.generalExcess },
     { titleCht: 'Theft Loss Excess * 全車被盗', titleEn: 'Theft Loss Excess', contentEn: props.item.theftLossExcess, contentCht: props.item.theftLossExcess },
     { titleCht: 'Parking * 自身車輛財物損毀 * 於停泊時', titleEn: 'Parking', contentEn: props.item.parking, contentCht: props.item.parking },

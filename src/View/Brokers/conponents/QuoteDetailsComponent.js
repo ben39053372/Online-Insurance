@@ -5,11 +5,13 @@ import { useParams, useHistory } from 'react-router-dom'
 import { getCompanyList, getPlanList } from '../../../api/api/broker'
 import useStyles from '../../../style/style'
 import Alert from '@material-ui/lab/Alert';
+import { useSelector } from 'react-redux'
 
 export default props => {
   const classes = useStyles()
   let { id } = useParams()
   const history = useHistory()
+  const lang = useSelector(state=>state.lang)
   const [inputData, setInputData] = useState({
     planCompanyId: '',
     insurancePlanTypeId: '',
@@ -114,10 +116,10 @@ export default props => {
   return (
     <div>
       <List dense >
-        <ListSubheader disableSticky style={{ background: '#922' }}>報價詳情</ListSubheader>
+        <ListSubheader disableSticky style={{ background: '#922' }}>{lang==='eng'?'Quotation Detail':'報價詳情'}</ListSubheader>
         <ListItem>
           <ListItemText
-            primary={'保險公司'.split(' * ').map(text => (
+            primary={(lang==='eng'?'Insurance provider':'保險公司').split(' * ').map(text => (
               <Typography
                 className={classes.listPrimary}
                 display="inline"
@@ -173,7 +175,7 @@ export default props => {
         <Divider />
         <ListItem>
           <ListItemText
-            primary={'特惠一年保養'.split(' * ').map(text => (
+            primary={(lang==='eng'?'Special one-year insurance premium':'特惠一年保費').split(' * ').map(text => (
               <Typography
                 key={text}
                 className={classes.listPrimary}
@@ -331,20 +333,20 @@ export default props => {
       </Collapse>
 
       <div>
-        <Typography display="inline">車主資料</Typography>
+        <Typography display="inline">{lang==='eng'?'Driver information':'車主資料'}</Typography>
         <div style={{ float: 'right' }}>
           {props.data.isUserInterested === 0 ? (
-            <Typography>未授權顯示</Typography>
+            <Typography>{lang==='eng'?'No authorized to be shown':'未授權顯示'}</Typography>
           ) : (
               <Typography>{props.data.customerPhoneNumber || 'None'}</Typography>
             )}
         </div>
       </div>
       <div>
-        <Typography display="inline">你的報價將會即時電郵給車主</Typography>
+        <Typography display="inline">{lang==='eng'?'Your quotation is sent to driver':'你的報價將會即時電郵給車主'}</Typography>
         <div style={{ float: 'right' }}>
           <Button variant="contained" onClick={onSubmit} color="primary">
-            提交報價
+            {lang==='eng'?'Submit':'提交報價'}
           </Button>
         </div>
       </div>

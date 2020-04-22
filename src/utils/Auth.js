@@ -1,28 +1,34 @@
+const jwt = require('jsonwebtoken')
 
+const validJwt = (token) => {
+  let decoded = jwt.decode(token)
+  if(Math.floor(Date.now()/1000) < decoded.exp) {
+    return true
+  } else {
+    return false
+  }
+}
 
 export const ishaveTokenOne = () => {
-  console.log(window.location.search)
   let search = window.location.search
   let params = new URLSearchParams(search);
   let token = params.get('t')
-  console.log(token)
   if(token !== null) localStorage.setItem('jwt1', token)
   if (localStorage.getItem('jwt1') !== null && localStorage.getItem('jwt1') !== undefined) {
-    return true
+    return validJwt(localStorage.getItem('jwt1'))
   }else {
     return false
   }
 }
 
 export const ishaveTokenTwo = () => {
-  console.log(window.location.search)
   let search = window.location.search
   let params = new URLSearchParams(search);
   let token = params.get('t')
-  console.log(token)
+  
   if(token !== null) localStorage.setItem('jwt2', token)
   if(localStorage.getItem('jwt2') !== null && localStorage.getItem('jwt2') !== undefined) {
-    return true
+    return validJwt(localStorage.getItem('jwt2'))
   }else {
     return false
   }
