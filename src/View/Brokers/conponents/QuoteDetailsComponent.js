@@ -128,7 +128,7 @@ export default props => {
             ))}
             secondary={
               <TextField
-                disabled={inputData.isUserInterested === 1}
+                disabled={props.data.isUserInterested === 1}
                 select
                 error={commited && inputData.planCompanyId === null}
                 className={classes.listInputSecondary}
@@ -159,7 +159,7 @@ export default props => {
             secondary={
               <TextField
                 select
-                disabled={inputData.isUserInterested === 1}
+                disabled={props.data.isUserInterested === 1}
                 error={commited && inputData.insurancePlanTypeId === null}
                 className={classes.listInputSecondary}
                 value={inputData.insurancePlanTypeId}
@@ -189,7 +189,7 @@ export default props => {
             secondary={
               <TextField
                 type="number"
-                disabled={inputData.isUserInterested === 1}
+                disabled={props.data.isUserInterested === 1}
                 error={commited && (inputData.oneYearInsuranceFee === null || inputData.oneYearInsuranceFee === '')}
                 className={classes.listInputSecondary}
                 value={inputData.oneYearInsuranceFee}
@@ -213,7 +213,7 @@ export default props => {
             secondary={
               <TextField
                 type="number"
-                disabled={inputData.isUserInterested === 1}
+                disabled={props.data.isUserInterested === 1}
                 error={commited && (inputData.generalExcess === null || inputData.generalExcess === '')}
                 className={classes.listInputSecondary}
                 value={inputData.generalExcess}
@@ -234,7 +234,7 @@ export default props => {
             secondary={
               <TextField
                 type="number"
-                disabled={inputData.isUserInterested === 1}
+                disabled={props.data.isUserInterested === 1}
                 error={commited && (inputData.theftLossExcess === null || inputData.theftLossExcess === '')}
                 className={classes.listInputSecondary}
                 value={inputData.theftLossExcess}
@@ -252,7 +252,7 @@ export default props => {
             secondary={
               <TextField
                 type="number"
-                disabled={inputData.isUserInterested === 1}
+                disabled={props.data.isUserInterested === 1}
                 error={commited && (inputData.parking === null || inputData.parking === '')}
                 className={classes.listInputSecondary}
                 value={inputData.parking}
@@ -270,7 +270,7 @@ export default props => {
             secondary={
               <TextField
                 type="number"
-                disabled={inputData.isUserInterested === 1}
+                disabled={props.data.isUserInterested === 1}
                 error={commited && (inputData.TPPD === null || inputData.TPPD === '')}
                 className={classes.listInputSecondary}
                 value={inputData.TPPD}
@@ -288,7 +288,7 @@ export default props => {
             secondary={
               <TextField
                 type="number"
-                disabled={inputData.isUserInterested === 1}
+                disabled={props.data.isUserInterested === 1}
                 error={commited && (inputData.TPPDY === null || inputData.TPPDY === '')}
                 className={classes.listInputSecondary}
                 value={inputData.TPPDY}
@@ -306,7 +306,7 @@ export default props => {
             secondary={
               <TextField
                 type="number"
-                disabled={inputData.isUserInterested === 1}
+                disabled={props.data.isUserInterested === 1}
                 error={commited && (inputData.TPPDI === null || inputData.TPPDI === '')}
                 className={classes.listInputSecondary}
                 value={inputData.TPPDI}
@@ -324,7 +324,7 @@ export default props => {
             secondary={
               <TextField
                 type="number"
-                disabled={inputData.isUserInterested === 1}
+                disabled={props.data.isUserInterested === 1}
                 error={commited && (inputData.TPPDU === null || inputData.TPPDU === '')}
                 className={classes.listInputSecondary}
                 value={inputData.TPPDU}
@@ -355,7 +355,7 @@ export default props => {
       <div>
         <Typography display="inline">{lang==='eng'?'Your quotation is sent to driver':'你的報價將會即時電郵給車主'}</Typography>
         <div style={{ float: 'right' }}>
-          <Button disabled={inputData.isUserInterested === 1} variant="contained" onClick={onSubmit} color="primary">
+          <Button disabled={props.data.isUserInterested === 1} variant="contained" onClick={onSubmit} color="primary">
             {lang==='eng'?'Submit':'提交報價'}
           </Button>
         </div>
