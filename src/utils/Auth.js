@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 const validJwt = (token) => {
+
   let decoded = jwt.decode(token)
   if(Math.floor(Date.now()/1000) < decoded.exp) {
     return true
@@ -15,7 +16,7 @@ export const ishaveTokenOne = () => {
   let token = params.get('t')
   if(token !== null) localStorage.setItem('jwt1', token)
   if (localStorage.getItem('jwt1') !== null && localStorage.getItem('jwt1') !== undefined) {
-    return validJwt(localStorage.getItem('jwt1'))
+    return true
   }else {
     return false
   }

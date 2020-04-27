@@ -198,7 +198,7 @@ const InputForm = props => {
       <Exp5 open={open} prev={prev} next={next} state={ownerState_head} setState={setOwnerState_head} />
       <ExpansionPanel expanded={open === 2}>
         <ExpansionPanelSummary>
-          <Typography>{lang==='eng'?'':'駕駛者資料'}</Typography>
+          <Typography>{lang==='eng'?'Driver Information':'駕駛者資料'}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Grid container direction="row">
