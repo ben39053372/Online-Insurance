@@ -156,7 +156,11 @@ export default createMuiTheme({
           backgroundColor: 'rgba(0,0,0,0)'
         }
       },
-      
+    },
+    MuiFab: {
+      label: {
+        fontSize: '2.5vw'
+      }
     }
   },
 });

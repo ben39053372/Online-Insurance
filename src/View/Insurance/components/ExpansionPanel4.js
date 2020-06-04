@@ -103,10 +103,10 @@ const ExpansionPanel4 = props => {
           <br />
           {/* client 6Ld0IecUAAAAAFuJm2gJhYDeiWe7ZQrw9M-amgc1 */}
           {/* server 6Ld0IecUAAAAADgyIX9aGUol070iy_A8YUB1egpi */}
-          <ReCAPTCHA
+          {/* <ReCAPTCHA
             sitekey="6Ld0IecUAAAAAFuJm2gJhYDeiWe7ZQrw9M-amgc1"
             onChange={onRecaptchaChange}
-          />
+          /> */}
           <br />
 
           <Collapse in={ErrorOpen}>
@@ -122,7 +122,7 @@ const ExpansionPanel4 = props => {
             </Grid>
             <Grid item xs={6}>
               <Fab
-                disabled={recaptcha === ''}
+                // disabled={recaptcha === ''}
                 className={classes.NextButton}
                 variant="extended"
                 // onClick={props.finish}

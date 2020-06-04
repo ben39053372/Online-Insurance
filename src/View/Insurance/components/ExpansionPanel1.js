@@ -36,29 +36,29 @@ const ExpansionPanel1 = props => {
   const [bodyTypeList, setBodyTypeList] = useState([])
   const [commited, setCommited] = useState(false)
   const lang = useSelector(state => state.lang)
-  
+
   const valid = () => {
     setCommited(true)
     if (props.state.regisType === '') {
-      lang==='eng'?seterrorState('Please Input all info'):seterrorState('請選擇登記類別')
+      lang === 'eng' ? seterrorState('Please Input all info') : seterrorState('請選擇登記類別')
       setErrorOpen(true)
     } else if (props.state.depotName === '') {
-      lang==='eng'?seterrorState('Please Input all info'):seterrorState('請選擇車廠名稱')
+      lang === 'eng' ? seterrorState('Please Input all info') : seterrorState('請選擇車廠名稱')
       setErrorOpen(true)
     } else if (props.state.manufactureYear === '') {
-      lang==='eng'?seterrorState('Please Input all info'):seterrorState('請選擇出廠年份')
+      lang === 'eng' ? seterrorState('Please Input all info') : seterrorState('請選擇出廠年份')
       setErrorOpen(true)
     } else if (props.state.model === '') {
-      lang==='eng'?seterrorState('Please Input all info'):seterrorState('請輸入型號')
+      lang === 'eng' ? seterrorState('Please Input all info') : seterrorState('請輸入型號')
       setErrorOpen(true)
     } else if (props.state.engineCapacity === '') {
-      lang==='eng'?seterrorState('Please Input all info'):seterrorState('請輸入引擎容量')
+      lang === 'eng' ? seterrorState('Please Input all info') : seterrorState('請輸入引擎容量')
       setErrorOpen(true)
     } else if (props.state.licensePlate === '') {
-      lang==='eng'?seterrorState('Please Input all info'):seterrorState('請輸入車牌號碼')
+      lang === 'eng' ? seterrorState('Please Input all info') : seterrorState('請輸入車牌號碼')
       setErrorOpen(true)
     } else if (props.state.carBodyType === '') {
-      lang==='eng'?seterrorState('Please Input all info'):seterrorState('請選擇車身類型')
+      lang === 'eng' ? seterrorState('Please Input all info') : seterrorState('請選擇車身類型')
       setErrorOpen(true)
     } else {
       seterrorState('')
@@ -88,7 +88,7 @@ const ExpansionPanel1 = props => {
     <ExpansionPanel className={classes.ExpansionPanel} expanded={props.open === 0}>
       <ExpansionPanelSummary>
         <DirectionsCarIcon />
-        <Typography>{lang==='eng'? 'Car Information' : '車輛資料'}</Typography>
+        <Typography>{lang === 'eng' ? 'Car Information' : '車輛資料'}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails >
 
@@ -102,11 +102,11 @@ const ExpansionPanel1 = props => {
               ...state, regisType: e.target.value
             }))}
             InputLabelProps={InputLabelProps}
-            label={lang==='eng'? 'Registration Type' : '登記類別'}
+            label={lang === 'eng' ? 'Registration Type' : '登記類別'}
           >
             {registerTypeList.map((item, i) => (
               <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
-                {lang==='eng'?item.nameEn: item.nameCht}
+                {lang === 'eng' ? item.nameEn : item.nameCht}
               </MenuItem>
             ))}
           </TextField>
@@ -116,14 +116,14 @@ const ExpansionPanel1 = props => {
             onChange={(e) => props.setState(state => ({
               ...state, depotName: e.target.value
             }))}
-            label={lang==='eng'? 'Car brand' : "車廠名稱"}
+            label={lang === 'eng' ? 'Car brand' : "車廠名稱"}
             select
             fullWidth
             InputLabelProps={InputLabelProps}
           >
             {brandList.map((item, i) => (
               <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
-                {lang==='eng'?item.nameEn: item.nameCht}
+                {lang === 'eng' ? item.nameEn : item.nameCht}
               </MenuItem>
             ))}
           </TextField>
@@ -136,7 +136,7 @@ const ExpansionPanel1 = props => {
             }))}
             select
             InputLabelProps={InputLabelProps}
-            label={lang==='eng'? 'Manufacture year' : "出廠年份"}
+            label={lang === 'eng' ? 'Manufacture year' : "出廠年份"}
           >
             {manufactureYearList.map((item, i) => (
               <MenuItem key={`option${i}${item.year}`} value={item.id}>
@@ -155,7 +155,7 @@ const ExpansionPanel1 = props => {
               }))
             }}
             InputLabelProps={InputLabelProps}
-            label={lang==='eng'? 'Model' : "型號"}
+            label={lang === 'eng' ? 'Model' : "型號"}
           />
           <TextField
             fullWidth
@@ -171,9 +171,10 @@ const ExpansionPanel1 = props => {
               props.setState(state => ({
                 ...state, engineCapacity: value
               }))
+
             }}
             InputLabelProps={InputLabelProps}
-            label={lang==='eng'? 'Cylinder capacity' : "引擎容量(c.c)"}
+            label={lang === 'eng' ? 'Cylinder capacity' : "引擎容量(c.c)"}
           />
           <TextField
             fullWidth
@@ -186,7 +187,7 @@ const ExpansionPanel1 = props => {
               }))
             }}
             InputLabelProps={InputLabelProps}
-            label={lang==='eng'? 'Car license' : "車牌號碼"}
+            label={lang === 'eng' ? 'Car license' : "車牌號碼"}
           />
           <TextField
             fullWidth
@@ -197,11 +198,11 @@ const ExpansionPanel1 = props => {
               ...state, carBodyType: e.target.value
             }))}
             InputLabelProps={InputLabelProps}
-            label={lang==='eng'? 'Car body type' : "車身類型"}
+            label={lang === 'eng' ? 'Car body type' : "車身類型"}
           >
             {bodyTypeList.map((item, i) => (
               <MenuItem key={`option${i}${item.nameEn}`} value={item.id}>
-                {lang==='eng'?item.nameEn: item.nameCht}
+                {lang === 'eng' ? item.nameEn : item.nameCht}
               </MenuItem>
             ))}
           </TextField>
@@ -214,11 +215,11 @@ const ExpansionPanel1 = props => {
             <Fab
               className={classes.NextButton}
               variant="extended"
-              onClick={valid} 
+              onClick={valid}
               // onClick={props.next}
               alignItems="center"
             >
-              <Typography>{lang === 'eng'? 'Next step' : '下一步' }</Typography>
+              <Typography>{lang === 'eng' ? 'Next step' : '下一步'}</Typography>
             </Fab>
           </Grid>
         </div>

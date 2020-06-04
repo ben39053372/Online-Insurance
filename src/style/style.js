@@ -80,7 +80,7 @@ const useStyles = makeStyles(theme => ({
     boxShadow: 'None'
   },
   DriverButton: {
-    width: '100%',
+    width: '100%',  
     margin: '10px',
     backgroundColor: '#CCC',
     boxShadow: 'None'
@@ -88,6 +88,7 @@ const useStyles = makeStyles(theme => ({
   header: {
     color: '#fff',
     width: '100%',
+    fontSize: '4vw',
     positon: 'abso',
     fontWeight: 'bold',
     textDecoration: 'none',
